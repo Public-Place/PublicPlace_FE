@@ -16,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          test commit
+          create develop branch
         </a>
       </header>
     </div>
