@@ -17,7 +17,7 @@ export const BtnContainer = styled.div`
   }
 `;
 
-export const LoginStateBtnWrapper = styled.button`
+export const SignInStateBtnWrapper = styled.button`
   width: fit-content;
   height: fit-content;
   padding-inline: 10px;
@@ -36,7 +36,7 @@ export const LoginStateBtnWrapper = styled.button`
   }
 `;
 
-export const JoinBtnWrapper = styled.button`
+export const SignUpBtnWrapper = styled.button`
   width: fit-content;
   height: fit-content;
   padding-inline: 10px;

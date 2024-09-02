@@ -1,4 +1,8 @@
-import { BtnContainer, JoinBtnWrapper, LoginStateBtnWrapper } from "./styles";
+import {
+  BtnContainer,
+  SignUpBtnWrapper,
+  SignInStateBtnWrapper,
+} from "./styles";
 import { FaBars, FaXmark } from "react-icons/fa6";
 import { CancleBtnType, HambergerBtnType } from "./types";
 
@@ -18,10 +22,10 @@ export const CancleBtn = ({ toggleNav }: CancleBtnType) => {
   );
 };
 
-export const LoginBtn = () => {
-  return <LoginStateBtnWrapper>로그인</LoginStateBtnWrapper>;
+export const SignInBtn = () => {
+  return <SignInStateBtnWrapper>로그인</SignInStateBtnWrapper>;
 };
 
-export const JoinBtn = () => {
-  return <JoinBtnWrapper>회원가입</JoinBtnWrapper>;
+export const SignUpBtn = () => {
+  return <SignUpBtnWrapper>회원가입</SignUpBtnWrapper>;
 };

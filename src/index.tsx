@@ -8,8 +8,6 @@ import { router } from "./router/Router";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-root.render(
-    <RouterProvider router={router} />
-);
+root.render(<RouterProvider router={router} />);
 
 reportWebVitals();

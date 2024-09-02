@@ -21,7 +21,7 @@ const fadeOut = keyframes`
 `;
 
 export const Container = styled.div<{ isClosing?: boolean }>`
-  width: 20%;
+  width: 17rem;
   height: 100%;
 
   display: flex;

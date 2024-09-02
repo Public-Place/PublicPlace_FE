@@ -1,4 +1,4 @@
-import { CancleBtn, JoinBtn, LoginBtn } from "../button/Button";
+import { CancleBtn, SignInBtn, SignUpBtn } from "../button/Button";
 import { Auth, Category, Container, Details, Li, Summary, Ul } from "./styles";
 import { NavagationType } from "./types";
 
@@ -30,8 +30,8 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
         </Details>
       </Category>
       <Auth>
-        <LoginBtn />
-        <JoinBtn />
+        <SignInBtn />
+        <SignUpBtn />
       </Auth>
     </Container>
   );
