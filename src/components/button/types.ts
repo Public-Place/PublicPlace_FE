@@ -5,3 +5,11 @@ export interface HambergerBtnType {
 export interface CancleBtnType {
   toggleNav: () => void;
 }
+
+export interface SignInBtnType {
+  handleSignIn: () => void;
+}
+
+export interface SignUpBtnType {
+  handleSignUp: () => void;
+}

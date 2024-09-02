@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import img from "../../assets/images/background.png";
-import { MobileScreen } from "../../constants/ScreenSize";
+import { MobileScreen } from "../../constants/FixValues";
 
 export const Container = styled.div`
   width: 100%;

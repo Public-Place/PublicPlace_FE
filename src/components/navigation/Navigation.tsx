@@ -1,8 +1,19 @@
 import { CancleBtn, SignInBtn, SignUpBtn } from "../button/Button";
 import { Auth, Category, Container, Details, Li, Summary, Ul } from "./styles";
 import { NavagationType } from "./types";
+import { SignInModal, SignUpModal } from "../modal/Modal";
+import { useNavigationEvent } from "./events";
 
 export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
+  const {
+    isSignInModalOpen,
+    setIsSignInModalOpen,
+    handleSignIn,
+    isSignUpModalOpen,
+    setIsSignUpModalOpen,
+    handleSignUp,
+  } = useNavigationEvent();
+
   return (
     <Container isClosing={isClosing}>
       <CancleBtn toggleNav={toggleNav} />
@@ -30,9 +41,18 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
         </Details>
       </Category>
       <Auth>
-        <SignInBtn />
-        <SignUpBtn />
+        <SignInBtn handleSignIn={handleSignIn} />
+        <SignUpBtn handleSignUp={handleSignUp} />
       </Auth>
+      <SignInModal
+        isSignInModalOpen={isSignInModalOpen}
+        setIsSignInModalOpen={setIsSignInModalOpen}
+        handleSignUp={handleSignUp}
+      />
+      <SignUpModal
+        isSignUpModalOpen={isSignUpModalOpen}
+        setIsSignUpModalOpen={setIsSignUpModalOpen}
+      />
     </Container>
   );
 };

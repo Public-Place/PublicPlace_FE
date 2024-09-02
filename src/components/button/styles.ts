@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { KakaoLoginBtnColor, BtnColor } from "../../constants/FixValues";
 
 export const BtnContainer = styled.div`
   width: 2rem;
@@ -53,5 +54,89 @@ export const SignUpBtnWrapper = styled.button`
   &:hover {
     cursor: pointer;
     color: whitesmoke;
+  }
+`;
+
+export const SignInBtnInModalContainer = styled.div`
+  width: 100%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem 0rem;
+
+  color: white;
+  background-color: ${BtnColor};
+  font-weight: bold;
+
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const KakaoLoginBtnContainer = styled.div`
+  width: 100%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  padding: 0.5rem 0rem;
+  margin-top: 1rem;
+
+  color: black;
+  background-color: ${KakaoLoginBtnColor};
+  font-weight: bold;
+
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const KakaoIcon = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  left: 0.5rem;
+`;
+
+export const CreateAccountContainer = styled.div`
+  width: 30%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  padding: 0.5rem 0rem;
+  margin-top: 1rem;
+
+  color: white;
+  background-color: ${BtnColor};
+  font-weight: bold;
+
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+
+  &:hover {
+    cursor: pointer;
   }
 `;

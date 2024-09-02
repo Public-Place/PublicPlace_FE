@@ -2,10 +2,21 @@ import {
   BtnContainer,
   SignUpBtnWrapper,
   SignInStateBtnWrapper,
+  SignInBtnInModalContainer,
+  KakaoLoginBtnContainer,
+  KakaoIcon,
+  CreateAccountContainer,
 } from "./styles";
 import { FaBars, FaXmark } from "react-icons/fa6";
-import { CancleBtnType, HambergerBtnType } from "./types";
+import {
+  CancleBtnType,
+  HambergerBtnType,
+  SignInBtnType,
+  SignUpBtnType,
+} from "./types";
+import { RiKakaoTalkFill } from "react-icons/ri";
 
+// 햄버거 버튼
 export const HambergerBtn = ({ toggleNav }: HambergerBtnType) => {
   return (
     <BtnContainer onClick={toggleNav}>
@@ -14,6 +25,7 @@ export const HambergerBtn = ({ toggleNav }: HambergerBtnType) => {
   );
 };
 
+// X 버튼
 export const CancleBtn = ({ toggleNav }: CancleBtnType) => {
   return (
     <BtnContainer onClick={toggleNav}>
@@ -22,10 +34,48 @@ export const CancleBtn = ({ toggleNav }: CancleBtnType) => {
   );
 };
 
-export const SignInBtn = () => {
-  return <SignInStateBtnWrapper>로그인</SignInStateBtnWrapper>;
+// 내비게이션 내부의 로그인 버튼
+export const SignInBtn = ({ handleSignIn }: SignInBtnType) => {
+  return (
+    <SignInStateBtnWrapper onClick={handleSignIn}>로그인</SignInStateBtnWrapper>
+  );
 };
 
-export const SignUpBtn = () => {
-  return <SignUpBtnWrapper>회원가입</SignUpBtnWrapper>;
+// 내비게이션 내부의 회원가입 버튼
+export const SignUpBtn = ({ handleSignUp }: SignUpBtnType) => {
+  return <SignUpBtnWrapper onClick={handleSignUp}>회원가입</SignUpBtnWrapper>;
+};
+
+// 로그인 창 내부의 로그인 버튼
+export const SignInBtnInModal = () => {
+  return <SignInBtnInModalContainer>로그인</SignInBtnInModalContainer>;
+};
+
+// 로그인 창 내부의 회원가입 버튼
+export const SignUpBtnInModal = ({ handleSignUp }: SignUpBtnType) => {
+  return (
+    <div
+      onClick={handleSignUp}
+      style={{ fontSize: "0.7rem", marginBlock: "0.7rem", cursor: "pointer" }}
+    >
+      회원가입
+    </div>
+  );
+};
+
+// 로그인 창 내부의 카카오 로그인 버튼
+export const KakaoLoginBtn = () => {
+  return (
+    <KakaoLoginBtnContainer>
+      <KakaoIcon>
+        <RiKakaoTalkFill size="1.2rem" color="black" />
+      </KakaoIcon>
+      카카오 로그인
+    </KakaoLoginBtnContainer>
+  );
+};
+
+// 회원가입 창 내부의 확인 버튼
+export const CreateAccount = () => {
+  return <CreateAccountContainer>확인</CreateAccountContainer>;
 };
