@@ -14,6 +14,7 @@ export const useSignInModalEvent = () => {
 
 // 회원가입 창 내부 상태 및 핸들러
 export const useSignUpModalEvent = () => {
+  // 회원가입 필수 입력값들
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
@@ -27,6 +28,7 @@ export const useSignUpModalEvent = () => {
 
   // 입력창 입력값 확인용 테스트 핸들러
   const handleCheckValues = () => {
+    CheckEssentialValues();
     console.log("Email:", email);
     console.log("Password:", password);
     console.log("Password Check:", passwordCheck);
@@ -37,6 +39,54 @@ export const useSignUpModalEvent = () => {
     console.log("Position:", position);
     console.log("Gender:", gender);
     console.log("Age Range:", ageRange);
+  };
+
+  // 필수 입력값 확인 및 비밀번호 일치 여부 확인
+  const CheckEssentialValues = () => {
+    if (!email) {
+      alert("이메일을 입력해주세요.");
+      return;
+    }
+    if (!password) {
+      alert("비밀번호를 입력해주세요.");
+      return;
+    }
+    if (!passwordCheck) {
+      alert("비밀번호 확인을 입력해주세요.");
+      return;
+    }
+    if (password !== passwordCheck) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+    if (!name) {
+      alert("이름을 입력해주세요.");
+      return;
+    }
+    if (!nickname) {
+      alert("닉네임을 입력해주세요.");
+      return;
+    }
+    if (!tel) {
+      alert("전화번호를 입력해주세요.");
+      return;
+    }
+    if (!foot) {
+      alert("주발을 선택해주세요.");
+      return;
+    }
+    if (!position) {
+      alert("선호 포지션을 선택해주세요.");
+      return;
+    }
+    if (!gender) {
+      alert("성별을 선택해주세요.");
+      return;
+    }
+    if (!ageRange) {
+      alert("연령대를 선택해주세요.");
+      return;
+    }
   };
 
   return {
