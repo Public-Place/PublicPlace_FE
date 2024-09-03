@@ -107,7 +107,7 @@ export const Select = styled.select`
   width: 100%;
   height: fit-content;
 
-  padding: 0.5rem 0.3rem;
+  padding: 0.5rem 0.2rem;
 
   color: white;
   background-color: ${ModalColor};

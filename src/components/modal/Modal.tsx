@@ -4,25 +4,27 @@ import { InputTitle, SignInTitle, SignUpTitle } from "../text/Text";
 import { ModalButton, ModalInput, ModalSelect, ModalTitle } from "./styles";
 import { ModalColor } from "../../constants/FixValues";
 import {
-  DayInput,
+  AgeRangeInput,
   EmailInput,
   FootInput,
   GenderInput,
-  MonthInput,
   NameInput,
   NickNameInput,
   PasswordCheckInput,
   PasswordInput,
   PositionInput,
   TelInput,
-  YearInput,
 } from "../input/Input";
 import {
+  BasicBtn,
   CreateAccount,
+  ErrorBtn,
   KakaoLoginBtn,
   SignInBtnInModal,
   SignUpBtnInModal,
+  SuccessBtn,
 } from "../button/Button";
+import { useSignInModalEvent, useSignUpModalEvent } from "./events";
 
 // 로그인 창
 export const SignInModal = ({
@@ -30,6 +32,8 @@ export const SignInModal = ({
   setIsSignInModalOpen,
   handleSignUp,
 }: SignInModalType) => {
+  const { handleKakaoSignInAPI } = useSignInModalEvent();
+
   return (
     <Modal
       isOpen={isSignInModalOpen}
@@ -71,7 +75,7 @@ export const SignInModal = ({
         <hr
           style={{ width: "100%", color: "lightgray", marginBlock: "0rem" }}
         />
-        <KakaoLoginBtn />
+        <KakaoLoginBtn handleKakaoSignInAPI={handleKakaoSignInAPI} />
       </ModalButton>
     </Modal>
   );
@@ -82,6 +86,30 @@ export const SignUpModal = ({
   isSignUpModalOpen,
   setIsSignUpModalOpen,
 }: SignUpModalType) => {
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    passwordCheck,
+    setPasswordCheck,
+    name,
+    setName,
+    nickname,
+    setNickname,
+    tel,
+    setTel,
+    foot,
+    setFoot,
+    position,
+    setPosition,
+    gender,
+    setGender,
+    ageRange,
+    setAgeRange,
+    handleCheckValues,
+  } = useSignUpModalEvent();
+
   return (
     <Modal
       isOpen={isSignUpModalOpen}
@@ -103,6 +131,7 @@ export const SignUpModal = ({
           border: "1px solid lightgray",
           borderRadius: "1rem",
           padding: "1rem 2rem",
+          overflow: "scroll",
         },
       }}
     >
@@ -110,59 +139,60 @@ export const SignUpModal = ({
         <SignUpTitle />
       </ModalTitle>
       <ModalInput>
-        <InputTitle text="이메일" />
-        <EmailInput />
+        <div style={{ position: "relative", width: "20rem" }}>
+          <InputTitle text="이메일" msg="※ 중복 여부를 확인해주세요" />
+          <BasicBtn />
+        </div>
+        <EmailInput value={email} setValue={setEmail} />
       </ModalInput>
       <ModalInput>
         <InputTitle text="비밀번호" />
-        <PasswordInput />
+        <PasswordInput value={password} setValue={setPassword} />
       </ModalInput>
       <ModalInput>
         <InputTitle text="비밀번호 확인" />
-        <PasswordCheckInput />
+        <PasswordCheckInput value={passwordCheck} setValue={setPasswordCheck} />
       </ModalInput>
       <ModalInput>
         <InputTitle text="이름" />
-        <NameInput />
+        <NameInput value={name} setValue={setName} />
       </ModalInput>
       <ModalInput>
-        <InputTitle text="닉네임" />
-        <NickNameInput />
+        <div style={{ position: "relative", width: "20rem" }}>
+          <InputTitle text="닉네임" msg="※ 중복 여부를 확인해주세요" />
+          <SuccessBtn />
+        </div>
+        <NickNameInput value={nickname} setValue={setNickname} />
       </ModalInput>
       <ModalInput>
-        <InputTitle text="전화번호" />
-        <TelInput />
+        <div style={{ position: "relative", width: "20rem" }}>
+          <InputTitle text="전화번호" msg="※ 중복 여부를 확인해주세요" />
+          <ErrorBtn />
+        </div>
+        <TelInput value={tel} setValue={setTel} />
       </ModalInput>
       <ModalSelect>
-        <ModalInput width="30%">
-          <InputTitle text="성별" />
-          <GenderInput />
-        </ModalInput>
-        <ModalInput width="30%">
+        <ModalInput width="47%">
           <InputTitle text="주발" />
-          <FootInput />
+          <FootInput value={foot} setValue={setFoot} />
         </ModalInput>
-        <ModalInput width="30%">
+        <ModalInput width="47%">
           <InputTitle text="선호 포지션" />
-          <PositionInput />
+          <PositionInput value={position} setValue={setPosition} />
         </ModalInput>
       </ModalSelect>
       <ModalSelect>
-        <ModalInput width="30%">
-          <InputTitle text="연" />
-          <YearInput />
+        <ModalInput width="47%">
+          <InputTitle text="성별" />
+          <GenderInput value={gender} setValue={setGender} />
         </ModalInput>
-        <ModalInput width="30%">
-          <InputTitle text="월" />
-          <MonthInput />
-        </ModalInput>
-        <ModalInput width="30%">
-          <InputTitle text="일" />
-          <DayInput />
+        <ModalInput width="47%">
+          <InputTitle text="연령대" />
+          <AgeRangeInput value={ageRange} setValue={setAgeRange} />
         </ModalInput>
       </ModalSelect>
       <ModalButton>
-        <CreateAccount />
+        <CreateAccount handleCheckValues={handleCheckValues} />
       </ModalButton>
     </Modal>
   );

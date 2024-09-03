@@ -6,15 +6,23 @@ import {
   KakaoLoginBtnContainer,
   KakaoIcon,
   CreateAccountContainer,
+  FaContainer,
 } from "./styles";
-import { FaBars, FaXmark } from "react-icons/fa6";
+import { FaBars, FaXmark, FaCheck, FaO } from "react-icons/fa6";
 import {
   CancleBtnType,
+  CheckValues,
   HambergerBtnType,
+  KakaoSignInType,
   SignInBtnType,
   SignUpBtnType,
 } from "./types";
 import { RiKakaoTalkFill } from "react-icons/ri";
+import {
+  BasicMsgColor,
+  ErrorMsgColor,
+  SuccessMsgColor,
+} from "../../constants/FixValues";
 
 // 햄버거 버튼
 export const HambergerBtn = ({ toggleNav }: HambergerBtnType) => {
@@ -64,9 +72,9 @@ export const SignUpBtnInModal = ({ handleSignUp }: SignUpBtnType) => {
 };
 
 // 로그인 창 내부의 카카오 로그인 버튼
-export const KakaoLoginBtn = () => {
+export const KakaoLoginBtn = ({ handleKakaoSignInAPI }: KakaoSignInType) => {
   return (
-    <KakaoLoginBtnContainer>
+    <KakaoLoginBtnContainer onClick={handleKakaoSignInAPI}>
       <KakaoIcon>
         <RiKakaoTalkFill size="1.2rem" color="black" />
       </KakaoIcon>
@@ -76,6 +84,38 @@ export const KakaoLoginBtn = () => {
 };
 
 // 회원가입 창 내부의 확인 버튼
-export const CreateAccount = () => {
-  return <CreateAccountContainer>확인</CreateAccountContainer>;
+export const CreateAccount = ({ handleCheckValues }: CheckValues) => {
+  return (
+    <CreateAccountContainer onClick={handleCheckValues}>
+      확인
+    </CreateAccountContainer>
+  );
+};
+
+// faX, faO, faCheck
+// 회원가입 창 내부의 중복 확인 체크 버튼
+export const BasicBtn = () => {
+  return (
+    <FaContainer>
+      <FaCheck color={BasicMsgColor} style={{ cursor: "pointer" }} />
+    </FaContainer>
+  );
+};
+
+// 회원가입 창 내부의 중복 확인 성공 버튼
+export const SuccessBtn = () => {
+  return (
+    <FaContainer>
+      <FaO color={SuccessMsgColor} />
+    </FaContainer>
+  );
+};
+
+// 회원가입 창 내부의 중복 확인 실패 버튼
+export const ErrorBtn = () => {
+  return (
+    <FaContainer>
+      <FaXmark color={ErrorMsgColor} />
+    </FaContainer>
+  );
 };

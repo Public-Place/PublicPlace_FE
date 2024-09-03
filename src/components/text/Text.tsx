@@ -1,4 +1,4 @@
-import { SmallTitle, Title } from "./styles";
+import { Msg, SmallTitle, Title } from "./styles";
 import { InputTitleType } from "./types";
 
 export const SignInTitle = () => {
@@ -9,6 +9,13 @@ export const SignUpTitle = () => {
   return <Title>회원가입</Title>;
 };
 
-export const InputTitle = ({ text }: InputTitleType) => {
-  return <SmallTitle>{text}</SmallTitle>;
+export const InputTitle = ({ text, msg }: InputTitleType) => {
+  return (
+    <SmallTitle>
+      <div>
+        {text}
+        <Msg>{msg}</Msg>
+      </div>
+    </SmallTitle>
+  );
 };

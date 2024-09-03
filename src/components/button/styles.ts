@@ -140,3 +140,18 @@ export const CreateAccountContainer = styled.div`
     cursor: pointer;
   }
 `;
+
+export const FaContainer = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  padding: 0.2rem 0.2rem;
+`;
