@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
-import { KakaoSignInAPI } from "../../apis/api/kakaoSignIn/KakaoSignInAPI";
+import { KakaoSignInAPI } from "../../services/api/kakaoSignIn/KakaoSignInAPI";
 import { CheckDuplicationType } from "./types";
-import { EmailCheckAPI } from "../../apis/api/checkDuplication/EmailCheckAPI";
+import { EmailCheckAPI } from "../../services/api/checkDuplication/EmailCheckAPI";
 import {
   BasicMsgColor,
   ErrorMsgColor,
   SuccessMsgColor,
 } from "../../constants/FixValues";
-import { NickNameCheckAPI } from "../../apis/api/checkDuplication/NickNameCheckAPI";
-import { TelCheckAPI } from "../../apis/api/checkDuplication/TelCheckAPI";
+import { NickNameCheckAPI } from "../../services/api/checkDuplication/NickNameCheckAPI";
+import { TelCheckAPI } from "../../services/api/checkDuplication/TelCheckAPI";
+import DefaultProfile from "../../assets/images/DefaultProfile.png";
+import { S3API } from "../../services/api/s3/S3API";
+import { SignUpDto } from "../../dtos/signUp/SignUpDto";
+import { SignUpAPI } from "../../services/api/signUp/SignUpAPI";
 
 // 로그인 창 내부 상태 및 핸들러
 export const useSignInModalEvent = () => {
@@ -35,9 +39,48 @@ export const useSignUpModalEvent = () => {
   const [gender, setGender] = useState("");
   const [ageRange, setAgeRange] = useState("");
 
+  // s3 이미지 변환 로직
+  const handleTransformImg = async () => {
+    const defaultProfile = await S3API(DefaultProfile);
+    return defaultProfile;
+  };
+
   // 회원가입 창 내부 확인 버튼 클릭 시
-  const handleCreateAccount = () => {
-    CheckEssentialValues();
+  const handleCreateAccount = async () => {
+    CheckEssentialValues(); // 필수 입력값 확인 및 비밀번호 일치 여부 확인
+
+    // 모든 중복 여부 확인 시에만 회원가입 가능
+    if (emailSuccess !== true) {
+      alert("이메일 중복 여부를 확인해주세요.");
+    } else if (nickNameSuccess !== true) {
+      alert("닉네임 중복 여부를 확인해주세요.");
+    } else if (telSuccess !== true) {
+      alert("전화번호 중복 여부를 확인해주세요.");
+    } else if (
+      emailSuccess === true &&
+      nickNameSuccess === true &&
+      telSuccess === true
+    ) {
+      // 기본 프로필 이미지 생성 (.png -> url)
+      const defaultProfile = await handleTransformImg();
+
+      // 회원가입 로직
+      const SignUpData: SignUpDto = {
+        email: email,
+        password: password,
+        name: name,
+        nickname: nickname,
+        phoneNumber: tel,
+        foot: foot,
+        position: position,
+        gender: gender,
+        ageRange: ageRange,
+        profileImg: defaultProfile,
+      };
+
+      // 회원가입 요청 API
+      await SignUpAPI(SignUpData);
+    }
   };
 
   // 필수 입력값 확인 및 비밀번호 일치 여부 확인

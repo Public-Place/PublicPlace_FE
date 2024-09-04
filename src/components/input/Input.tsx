@@ -119,7 +119,7 @@ export const NickNameInput = ({ value, setValue }: SignUpInputType) => {
 // 전화번호 입력창
 export const TelInput = ({ value, setValue }: SignUpInputType) => {
   // 전화번호 입력창 유효성 검사
-  const telRegex = /^[0-9]*$/;
+  const telRegex = /^[0-9-]*$/;
 
   return (
     <Tel
