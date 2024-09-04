@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { BasicMsgColor } from "../../constants/FixValues";
 
 export const Title = styled.div`
   color: white;
@@ -28,5 +27,4 @@ export const Msg = styled.span`
   margin-left: 0.5rem;
 
   font-size: 0.6rem;
-  color: ${BasicMsgColor};
 `;

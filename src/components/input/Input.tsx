@@ -13,11 +13,18 @@ import { SignUpInputType } from "./types";
 
 // 이메일 입력창
 export const EmailInput = ({ value, setValue }: SignUpInputType) => {
+  // 이메일 입력창 유효성 검사 (영어, 숫자, "@", "." 허용)
+  const emailRegex = /^[a-zA-Z0-9.@]*$/;
+
   return (
     <Email
       value={value}
       onChange={(e) => {
-        if (setValue) {
+        if (
+          setValue &&
+          emailRegex.test(e.target.value) &&
+          !/\s/.test(e.target.value)
+        ) {
           setValue(e.target.value);
         }
       }}
@@ -27,11 +34,18 @@ export const EmailInput = ({ value, setValue }: SignUpInputType) => {
 
 // 비밀번호 입력창
 export const PasswordInput = ({ value, setValue }: SignUpInputType) => {
+  // 비밀번호 입력창 유효성 검사 (영어, 숫자, 모든 특수문자 허용)
+  const passwordRegex = /^[a-zA-Z0-9\W]*$/;
+
   return (
     <Password
       value={value}
       onChange={(e) => {
-        if (setValue) {
+        if (
+          setValue &&
+          passwordRegex.test(e.target.value) &&
+          !/\s/.test(e.target.value)
+        ) {
           setValue(e.target.value);
         }
       }}
@@ -41,11 +55,18 @@ export const PasswordInput = ({ value, setValue }: SignUpInputType) => {
 
 // 비밀번호 확인 입력창
 export const PasswordCheckInput = ({ value, setValue }: SignUpInputType) => {
+  // 비밀번호 확인 입력창 유효성 검사 (영어, 숫자, 모든 특수문자 허용)
+  const passwordCheckRegex = /^[a-zA-Z0-9\W]*$/;
+
   return (
     <PasswordCheck
       value={value}
       onChange={(e) => {
-        if (setValue) {
+        if (
+          setValue &&
+          passwordCheckRegex.test(e.target.value) &&
+          !/\s/.test(e.target.value)
+        ) {
           setValue(e.target.value);
         }
       }}
@@ -55,11 +76,18 @@ export const PasswordCheckInput = ({ value, setValue }: SignUpInputType) => {
 
 // 이름 입력창
 export const NameInput = ({ value, setValue }: SignUpInputType) => {
+  // 이름 입력창 유효성 검사 (한글, 영어 허용)
+  const nameRegex = /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣]*$/;
+
   return (
     <Name
       value={value}
       onChange={(e) => {
-        if (setValue) {
+        if (
+          setValue &&
+          nameRegex.test(e.target.value) &&
+          !/\s/.test(e.target.value)
+        ) {
           setValue(e.target.value);
         }
       }}
@@ -69,11 +97,18 @@ export const NameInput = ({ value, setValue }: SignUpInputType) => {
 
 // 닉네임 입력창
 export const NickNameInput = ({ value, setValue }: SignUpInputType) => {
+  // 닉네임 입력창 유효성 검사 (한글, 영어, 숫자 허용)
+  const nickNameRegex = /^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9]*$/;
+
   return (
     <NickName
       value={value}
       onChange={(e) => {
-        if (setValue) {
+        if (
+          setValue &&
+          nickNameRegex.test(e.target.value) &&
+          !/\s/.test(e.target.value)
+        ) {
           setValue(e.target.value);
         }
       }}
@@ -83,11 +118,18 @@ export const NickNameInput = ({ value, setValue }: SignUpInputType) => {
 
 // 전화번호 입력창
 export const TelInput = ({ value, setValue }: SignUpInputType) => {
+  // 전화번호 입력창 유효성 검사
+  const telRegex = /^[0-9-]*$/;
+
   return (
     <Tel
       value={value}
       onChange={(e) => {
-        if (setValue) {
+        if (
+          setValue &&
+          telRegex.test(e.target.value) &&
+          !/\s/.test(e.target.value)
+        ) {
           setValue(e.target.value);
         }
       }}

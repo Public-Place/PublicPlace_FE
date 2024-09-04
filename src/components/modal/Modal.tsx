@@ -107,7 +107,19 @@ export const SignUpModal = ({
     setGender,
     ageRange,
     setAgeRange,
-    handleCheckValues,
+    handleCreateAccount,
+    handleCheckEmail,
+    emailSuccess,
+    emailMsg,
+    getEmailMsgColor,
+    handleCheckNickName,
+    nickNameSuccess,
+    nickNameMsg,
+    getNickNameMsgColor,
+    handleCheckTel,
+    telSuccess,
+    telMsg,
+    getTelMsgColor,
   } = useSignUpModalEvent();
 
   return (
@@ -139,60 +151,105 @@ export const SignUpModal = ({
         <SignUpTitle />
       </ModalTitle>
       <ModalInput>
+        {/* 이메일 입력창 */}
         <div style={{ position: "relative", width: "20rem" }}>
-          <InputTitle text="이메일" msg="※ 중복 여부를 확인해주세요" />
-          <BasicBtn />
+          <InputTitle
+            text="이메일"
+            msg={emailMsg || "※ 중복 여부를 확인해주세요"}
+            msgColor={getEmailMsgColor()}
+          />
+          <div onClick={() => handleCheckEmail({ value: email })}>
+            {emailSuccess === true ? (
+              <SuccessBtn />
+            ) : emailSuccess === false ? (
+              <ErrorBtn />
+            ) : (
+              <BasicBtn />
+            )}
+          </div>
         </div>
         <EmailInput value={email} setValue={setEmail} />
       </ModalInput>
       <ModalInput>
+        {/* 비밀번호 입력창 */}
         <InputTitle text="비밀번호" />
         <PasswordInput value={password} setValue={setPassword} />
       </ModalInput>
       <ModalInput>
+        {/* 비밀번호 확인 입력창 */}
         <InputTitle text="비밀번호 확인" />
         <PasswordCheckInput value={passwordCheck} setValue={setPasswordCheck} />
       </ModalInput>
       <ModalInput>
+        {/* 이름 입력창 */}
         <InputTitle text="이름" />
         <NameInput value={name} setValue={setName} />
       </ModalInput>
       <ModalInput>
+        {/* 닉네임 입력창 */}
         <div style={{ position: "relative", width: "20rem" }}>
-          <InputTitle text="닉네임" msg="※ 중복 여부를 확인해주세요" />
-          <SuccessBtn />
+          <InputTitle
+            text="닉네임"
+            msg={nickNameMsg || "※ 중복 여부를 확인해주세요"}
+            msgColor={getNickNameMsgColor()}
+          />
+          <div onClick={() => handleCheckNickName({ value: nickname })}>
+            {nickNameSuccess === true ? (
+              <SuccessBtn />
+            ) : nickNameSuccess === false ? (
+              <ErrorBtn />
+            ) : (
+              <BasicBtn />
+            )}
+          </div>
         </div>
         <NickNameInput value={nickname} setValue={setNickname} />
       </ModalInput>
       <ModalInput>
+        {/* 전화번호 입력창 */}
         <div style={{ position: "relative", width: "20rem" }}>
-          <InputTitle text="전화번호" msg="※ 중복 여부를 확인해주세요" />
-          <ErrorBtn />
+          <InputTitle
+            text="전화번호"
+            msg={telMsg || "※ 중복 여부를 확인해주세요"}
+            msgColor={getTelMsgColor()}
+          />
+          <div onClick={() => handleCheckTel({ value: tel })}>
+            {telSuccess === true ? (
+              <SuccessBtn />
+            ) : telSuccess === false ? (
+              <ErrorBtn />
+            ) : (
+              <BasicBtn />
+            )}
+          </div>
         </div>
         <TelInput value={tel} setValue={setTel} />
       </ModalInput>
       <ModalSelect>
         <ModalInput width="47%">
+          {/* 주발 선택창 */}
           <InputTitle text="주발" />
           <FootInput value={foot} setValue={setFoot} />
         </ModalInput>
         <ModalInput width="47%">
+          {/* 선호 포지션 선택창 */}
           <InputTitle text="선호 포지션" />
           <PositionInput value={position} setValue={setPosition} />
         </ModalInput>
       </ModalSelect>
       <ModalSelect>
         <ModalInput width="47%">
+          {/* 성별 선택창 */}
           <InputTitle text="성별" />
           <GenderInput value={gender} setValue={setGender} />
         </ModalInput>
         <ModalInput width="47%">
-          <InputTitle text="연령대" />
+          <InputTitle text="연령대" /> {/* 연령대 선택창 */}
           <AgeRangeInput value={ageRange} setValue={setAgeRange} />
         </ModalInput>
       </ModalSelect>
       <ModalButton>
-        <CreateAccount handleCheckValues={handleCheckValues} />
+        <CreateAccount handleCreateAccount={handleCreateAccount} />
       </ModalButton>
     </Modal>
   );
