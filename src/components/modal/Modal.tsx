@@ -31,8 +31,20 @@ export const SignInModal = ({
   isSignInModalOpen,
   setIsSignInModalOpen,
   handleSignUp,
+  setIsSignIn,
 }: SignInModalType) => {
-  const { handleKakaoSignInAPI } = useSignInModalEvent();
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    handleKakaoSignInAPI,
+    handleCheckAccount,
+  } = useSignInModalEvent({
+    isSignInModalOpen,
+    setIsSignInModalOpen,
+    setIsSignIn,
+  });
 
   return (
     <Modal
@@ -63,14 +75,14 @@ export const SignInModal = ({
       </ModalTitle>
       <ModalInput>
         <InputTitle text="이메일" />
-        <EmailInput />
+        <EmailInput value={email} setValue={setEmail} />
       </ModalInput>
       <ModalInput>
         <InputTitle text="비밀번호" />
-        <PasswordInput />
+        <PasswordInput value={password} setValue={setPassword} />
       </ModalInput>
       <ModalButton>
-        <SignInBtnInModal />
+        <SignInBtnInModal handleSignIn={handleCheckAccount} />
         <SignUpBtnInModal handleSignUp={handleSignUp} />
         <hr
           style={{ width: "100%", color: "lightgray", marginBlock: "0rem" }}
@@ -120,7 +132,7 @@ export const SignUpModal = ({
     telSuccess,
     telMsg,
     getTelMsgColor,
-  } = useSignUpModalEvent();
+  } = useSignUpModalEvent({ isSignUpModalOpen, setIsSignUpModalOpen });
 
   return (
     <Modal

@@ -43,9 +43,12 @@ export const CancleBtn = ({ toggleNav }: CancleBtnType) => {
 };
 
 // 내비게이션 내부의 로그인 버튼
-export const SignInBtn = ({ handleSignIn }: SignInBtnType) => {
+export const SignInBtn = ({ handleSignIn, isSignIn }: SignInBtnType) => {
   return (
-    <SignInStateBtnWrapper onClick={handleSignIn}>로그인</SignInStateBtnWrapper>
+    <SignInStateBtnWrapper onClick={handleSignIn}>
+      {!isSignIn && "로그인"}
+      {isSignIn && "로그아웃"}
+    </SignInStateBtnWrapper>
   );
 };
 
@@ -55,8 +58,12 @@ export const SignUpBtn = ({ handleSignUp }: SignUpBtnType) => {
 };
 
 // 로그인 창 내부의 로그인 버튼
-export const SignInBtnInModal = () => {
-  return <SignInBtnInModalContainer>로그인</SignInBtnInModalContainer>;
+export const SignInBtnInModal = ({ handleSignIn }: SignInBtnType) => {
+  return (
+    <SignInBtnInModalContainer onClick={handleSignIn}>
+      로그인
+    </SignInBtnInModalContainer>
+  );
 };
 
 // 로그인 창 내부의 회원가입 버튼

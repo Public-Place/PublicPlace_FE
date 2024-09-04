@@ -150,7 +150,7 @@ export const GenderInput = ({ value, setValue }: SignUpInputType) => {
         }
       }}
     >
-      <option value={0} selected>
+      <option value={"선택"} selected>
         선택
       </option>
       <option value={"남자"}>남자</option>
@@ -170,7 +170,7 @@ export const FootInput = ({ value, setValue }: SignUpInputType) => {
         }
       }}
     >
-      <option value={0} selected>
+      <option value={"선택"} selected>
         선택
       </option>
       <option value={"왼발"}>왼발</option>
@@ -191,7 +191,7 @@ export const PositionInput = ({ value, setValue }: SignUpInputType) => {
         }
       }}
     >
-      <option value={0} selected>
+      <option value={"선택"} selected>
         선택
       </option>
       <option value={"스트라이커"}>스트라이커</option>
@@ -217,7 +217,7 @@ export const AgeRangeInput = ({ value, setValue }: SignUpInputType) => {
         }
       }}
     >
-      <option value={0} selected>
+      <option value={"선택"} selected>
         선택
       </option>
       <option value={"0~9"}>0~9</option>

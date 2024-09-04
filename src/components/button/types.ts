@@ -8,6 +8,7 @@ export interface CancleBtnType {
 
 export interface SignInBtnType {
   handleSignIn: () => void;
+  isSignIn?: boolean;
 }
 
 export interface SignUpBtnType {

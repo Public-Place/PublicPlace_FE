@@ -4,6 +4,7 @@ export interface SignInModalType {
   isSignInModalOpen: boolean;
   setIsSignInModalOpen: Dispatch<SetStateAction<boolean>>; // 상태 관리 Type
   handleSignUp: () => void;
+  setIsSignIn: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface SignUpModalType {
@@ -13,4 +14,10 @@ export interface SignUpModalType {
 
 export interface CheckDuplicationType {
   value: string;
+}
+
+export interface useSignInModalEventType {
+  isSignInModalOpen: boolean;
+  setIsSignInModalOpen: Dispatch<SetStateAction<boolean>>; // 상태 관리 Type
+  setIsSignIn: Dispatch<SetStateAction<boolean>>;
 }
