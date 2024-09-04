@@ -10,3 +10,7 @@ export interface SignUpModalType {
   isSignUpModalOpen: boolean;
   setIsSignUpModalOpen: Dispatch<SetStateAction<boolean>>; // 상태 관리 Type
 }
+
+export interface CheckDuplicationType {
+  value: string;
+}

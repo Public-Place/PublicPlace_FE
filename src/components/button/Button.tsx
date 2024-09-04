@@ -84,9 +84,9 @@ export const KakaoLoginBtn = ({ handleKakaoSignInAPI }: KakaoSignInType) => {
 };
 
 // 회원가입 창 내부의 확인 버튼
-export const CreateAccount = ({ handleCheckValues }: CheckValues) => {
+export const CreateAccount = ({ handleCreateAccount }: CheckValues) => {
   return (
-    <CreateAccountContainer onClick={handleCheckValues}>
+    <CreateAccountContainer onClick={handleCreateAccount}>
       확인
     </CreateAccountContainer>
   );

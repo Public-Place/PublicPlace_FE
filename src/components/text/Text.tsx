@@ -9,12 +9,12 @@ export const SignUpTitle = () => {
   return <Title>회원가입</Title>;
 };
 
-export const InputTitle = ({ text, msg }: InputTitleType) => {
+export const InputTitle = ({ text, msg, msgColor }: InputTitleType) => {
   return (
     <SmallTitle>
       <div>
         {text}
-        <Msg>{msg}</Msg>
+        <Msg style={{ color: msgColor }}>{msg}</Msg>
       </div>
     </SmallTitle>
   );

@@ -107,7 +107,19 @@ export const SignUpModal = ({
     setGender,
     ageRange,
     setAgeRange,
-    handleCheckValues,
+    handleCreateAccount,
+    handleCheckEmail,
+    emailSuccess,
+    emailMsg,
+    getEmailMsgColor,
+    handleCheckNickName,
+    nickNameSuccess,
+    nickNameMsg,
+    getNickNameMsgColor,
+    handleCheckTel,
+    telSuccess,
+    telMsg,
+    getTelMsgColor,
   } = useSignUpModalEvent();
 
   return (
@@ -140,8 +152,20 @@ export const SignUpModal = ({
       </ModalTitle>
       <ModalInput>
         <div style={{ position: "relative", width: "20rem" }}>
-          <InputTitle text="이메일" msg="※ 중복 여부를 확인해주세요" />
-          <BasicBtn />
+          <InputTitle
+            text="이메일"
+            msg={emailMsg || "※ 중복 여부를 확인해주세요"}
+            msgColor={getEmailMsgColor()}
+          />
+          <div onClick={() => handleCheckEmail({ value: email })}>
+            {emailSuccess === true ? (
+              <SuccessBtn />
+            ) : emailSuccess === false ? (
+              <ErrorBtn />
+            ) : (
+              <BasicBtn />
+            )}
+          </div>
         </div>
         <EmailInput value={email} setValue={setEmail} />
       </ModalInput>
@@ -159,15 +183,39 @@ export const SignUpModal = ({
       </ModalInput>
       <ModalInput>
         <div style={{ position: "relative", width: "20rem" }}>
-          <InputTitle text="닉네임" msg="※ 중복 여부를 확인해주세요" />
-          <SuccessBtn />
+          <InputTitle
+            text="닉네임"
+            msg={nickNameMsg || "※ 중복 여부를 확인해주세요"}
+            msgColor={getNickNameMsgColor()}
+          />
+          <div onClick={() => handleCheckNickName({ value: nickname })}>
+            {nickNameSuccess === true ? (
+              <SuccessBtn />
+            ) : nickNameSuccess === false ? (
+              <ErrorBtn />
+            ) : (
+              <BasicBtn />
+            )}
+          </div>
         </div>
         <NickNameInput value={nickname} setValue={setNickname} />
       </ModalInput>
       <ModalInput>
         <div style={{ position: "relative", width: "20rem" }}>
-          <InputTitle text="전화번호" msg="※ 중복 여부를 확인해주세요" />
-          <ErrorBtn />
+          <InputTitle
+            text="전화번호"
+            msg={telMsg || "※ 중복 여부를 확인해주세요"}
+            msgColor={getTelMsgColor()}
+          />
+          <div onClick={() => handleCheckTel({ value: tel })}>
+            {telSuccess === true ? (
+              <SuccessBtn />
+            ) : telSuccess === false ? (
+              <ErrorBtn />
+            ) : (
+              <BasicBtn />
+            )}
+          </div>
         </div>
         <TelInput value={tel} setValue={setTel} />
       </ModalInput>
@@ -192,7 +240,7 @@ export const SignUpModal = ({
         </ModalInput>
       </ModalSelect>
       <ModalButton>
-        <CreateAccount handleCheckValues={handleCheckValues} />
+        <CreateAccount handleCreateAccount={handleCreateAccount} />
       </ModalButton>
     </Modal>
   );
