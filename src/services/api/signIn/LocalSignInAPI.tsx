@@ -11,6 +11,7 @@ export const LocalSignInAPI = async ({
     );
     // console.log("일반 로그인 성공", response.data);
     localStorage.setItem("token", response.data.token);
+    console.log("일반 로그인 토큰 저장 완료 : ", localStorage.getItem("token"));
     return response.data;
   } catch (error) {
     // console.log("일반 로그인 실패", error);

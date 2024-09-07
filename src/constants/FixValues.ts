@@ -18,3 +18,6 @@ export const SuccessMsgColor = "rgb(65, 119, 37)";
 
 // 회원가입 창 내부 중복 확인 메시지 색상 (빨간색)
 export const ErrorMsgColor = "rgb(233, 51, 35)";
+
+// 모든 페이지 기본 배경 색상
+export const DefaultBackgroundColor = "#1C1C1C";

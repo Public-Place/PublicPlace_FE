@@ -7,13 +7,17 @@ export const axios = Axios.create({
   baseURL: BASE_URL,
 });
 
-// 요청 인터셉터를 사용하여 매 요청마다 `token`을 설정
+// 요청 인터셉터 추가 (Request Interceptor)
 axios.interceptors.request.use(
   (config) => {
+    // localStorage에서 JWT 토큰을 가져오기
     const token = localStorage.getItem("token");
+
+    // 토큰이 있을 경우 헤더에 추가
     if (token) {
       config.headers["X-AUTH-TOKEN"] = token;
     }
+
     return config;
   },
   (error) => {
