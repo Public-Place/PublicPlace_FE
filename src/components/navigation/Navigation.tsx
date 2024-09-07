@@ -4,6 +4,7 @@ import { NavagationType } from "./types";
 import { SignInModal, SignUpModal } from "../modal/Modal";
 import { useNavigationEvent } from "./events";
 import { useEffect, useState } from "react";
+import { GetUserAPI } from "../../services/api/user/GetUserAPI";
 
 export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
   // 로그인 여부에 따라 '로그인', '로그아웃' 텍스트 변경을 위한 상태
@@ -38,6 +39,16 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
     }
   };
 
+  // 로컬 스토리지 내부의 토큰 값 확인 및 회원정보 조회 API 요청
+  const handleCheckToken = async () => {
+    // 로컬 스토리지의 토큰
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      await GetUserAPI();
+    }
+  };
+
   return (
     <Container isClosing={isClosing}>
       <CancleBtn toggleNav={toggleNav} />
@@ -68,6 +79,7 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
         <SignInBtn handleSignIn={handleAuthAction} isSignIn={isSignIn} />
         {!isSignIn && <SignUpBtn handleSignUp={handleSignUp} />}
       </Auth>
+      <div onClick={handleCheckToken}>토큰 확인 버튼</div>
       <SignInModal
         isSignInModalOpen={isSignInModalOpen}
         setIsSignInModalOpen={setIsSignInModalOpen}

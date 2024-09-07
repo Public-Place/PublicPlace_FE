@@ -233,7 +233,6 @@ export const useSignUpModalEvent = ({
     value: nickname,
   }: CheckDuplicationType) => {
     const checkNickNameResult = await NickNameCheckAPI({ nickname });
-
     setNickNameSuccess(checkNickNameResult.success);
     setNickNameMsg(checkNickNameResult.msg);
   };
@@ -267,19 +266,19 @@ export const useSignUpModalEvent = ({
     return BasicMsgColor;
   };
 
-  // 이메일 상태가 빈 문자열일 경우 emailSuccess를 null로 변경
+  // 이메일 상태가 바뀔 경우 emailSuccess를 null로 변경
   useEffect(() => {
     setEmailSuccess(null);
     setEmailMsg("");
   }, [email]);
 
-  // 닉네임 상태가 빈 문자열일 경우 nickNameSuccess를 null로 변경
+  // 닉네임 상태가 바뀔 경우 nickNameSuccess를 null로 변경
   useEffect(() => {
     setNickNameSuccess(null);
     setNickNameMsg("");
   }, [nickname]);
 
-  // 전화번호 상태가 빈 문자열일 경우 telSuccess를 null로 변경
+  // 전화번호 상태가 바뀔 경우 telSuccess를 null로 변경
   useEffect(() => {
     setTelSuccess(null);
     setTelMsg("");
