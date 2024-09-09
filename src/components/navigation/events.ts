@@ -2,7 +2,10 @@ import { useState } from "react";
 import { NavigationEventType } from "./types";
 import { useNavigate } from "react-router-dom";
 
-export const useNavigationEvent = ({ setIsSignIn }: NavigationEventType) => {
+export const useNavigationEvent = ({
+  setIsSignIn,
+  toggleNav,
+}: NavigationEventType) => {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
   const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
@@ -36,6 +39,7 @@ export const useNavigationEvent = ({ setIsSignIn }: NavigationEventType) => {
 
     if (token) {
       navigator("/myinfo");
+      toggleNav();
     } else {
       alert("로그인 시 이용 가능합니다.");
     }

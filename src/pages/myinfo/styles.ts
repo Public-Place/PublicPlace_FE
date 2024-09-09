@@ -128,6 +128,8 @@ export const TeamSortArea = styled.div`
   width: 100%;
   height: fit-content;
 
+  margin-top: 1rem;
+
   display: flex;
   align-items: center;
   justify-content: start;

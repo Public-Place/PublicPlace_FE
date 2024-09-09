@@ -28,12 +28,13 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
     setIsSignUpModalOpen,
     handleSignUp,
     handleGoToMyInfo,
-  } = useNavigationEvent({ setIsSignIn });
+  } = useNavigationEvent({ setIsSignIn, toggleNav });
 
   // 로그인 여부에 따라 각자 다른 함수 실행
   const handleAuthAction = () => {
     if (isSignIn) {
       handleSignOut();
+      toggleNav();
     } else {
       handleSignIn();
     }
