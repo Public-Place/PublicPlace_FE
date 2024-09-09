@@ -34,7 +34,8 @@ export default function MyInfo() {
 
   // user 상태 변화 시 콘솔 로그 출력
   useEffect(() => {
-    console.log("qwe", user);
+    console.log("주발", user?.foot);
+    console.log("선호 포지션", user?.position);
   }, [user]);
 
   return (
