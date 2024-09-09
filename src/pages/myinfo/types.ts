@@ -13,3 +13,21 @@ export interface UserInfoType {
   updatedAt: string;
   userId: number;
 }
+
+export interface AppliedTeamsType {
+  teamId: number;
+  teamName: string;
+  teamImg: string;
+  teamMembers: number;
+  teamLocation: string;
+  teamCreationDate: string;
+}
+
+export interface JoinedTeamsType {
+  teamId: number;
+  teamName: string;
+  teamImg: string;
+  teamMembers: number;
+  teamLocation: string;
+  teamCreationDate: string;
+}

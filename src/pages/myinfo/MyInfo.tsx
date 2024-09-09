@@ -25,18 +25,21 @@ import { useMyInfoEvent } from "./events";
 import { ClipLoader } from "react-spinners";
 
 export default function MyInfo() {
-  const { user, GetUserInfo } = useMyInfoEvent();
+  const {
+    user,
+    GetUserInfo,
+    appliedTeams,
+    GetAppliedTeamsInfo,
+    joinedTeams,
+    GetJoinedTeamsInfo,
+  } = useMyInfoEvent();
 
-  // 페이지 렌더링 시 회원정보 조회
+  // 페이지 렌더링 시 회원 정보 & 소속 팀 정보 & 가입 신청 팀 정보 조회
   useEffect(() => {
     GetUserInfo();
+    GetAppliedTeamsInfo();
+    GetJoinedTeamsInfo();
   }, []);
-
-  // user 상태 변화 시 콘솔 로그 출력
-  useEffect(() => {
-    console.log("주발", user?.foot);
-    console.log("선호 포지션", user?.position);
-  }, [user]);
 
   return (
     <Container>
@@ -109,48 +112,111 @@ export default function MyInfo() {
           <TeamStateArea>
             <TeamStateText text={"소속 팀"} />
             <TeamSortArea>
-              <TeamBox>
-                <img
-                  src={BackGround}
-                  alt="TeamImage"
+              {joinedTeams && joinedTeams.length > 0 ? (
+                joinedTeams.map((joinedTeam, index) => (
+                  <TeamBox key={index}>
+                    <img
+                      src={joinedTeam.teamImg}
+                      alt="TeamImage"
+                      style={{
+                        width: "100%",
+                        height: "4rem",
+                        objectFit: "cover",
+                        borderRadius: "0.5rem",
+                        border: "1px solid black",
+                      }}
+                    />
+                    <div style={{ paddingLeft: "0.3rem" }}>
+                      <TeamNameText text={joinedTeam.teamName} />
+                      <TeamDetailText
+                        text={
+                          "창단일: " + joinedTeam.teamCreationDate.split("T")[0]
+                        }
+                      />
+                      <TeamDetailText
+                        text={"팀원 수 : " + joinedTeam.teamMembers + "명"}
+                      />
+                      <TeamDetailText
+                        text={"위치 : " + joinedTeam.teamLocation}
+                      />
+                    </div>
+                  </TeamBox>
+                ))
+              ) : (
+                <div
                   style={{
                     width: "100%",
-                    height: "4rem",
-                    objectFit: "cover",
-                    borderRadius: "0.5rem",
+                    height: "fit-content",
+
+                    padding: "5rem 0rem",
+
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+
+                    fontSize: "0.7rem",
+                    color: "white",
                   }}
-                />
-                <div style={{ paddingLeft: "0.3rem" }}>
-                  <TeamNameText text={"수원삼성블루윙즈"} />
-                  <TeamDetailText text={"95년 12월 12일 창단"} />
-                  <TeamDetailText text={"평균 연령대 : 20~29 | 36명"} />
-                  <TeamDetailText text={"경기도 수원시 팔달구 월드컵로"} />
+                >
+                  소속 팀이 없습니다.
                 </div>
-              </TeamBox>
+              )}
             </TeamSortArea>
           </TeamStateArea>
           <hr style={{ width: "100%" }} />
           <TeamStateArea>
             <TeamStateText text={"가입 신청 팀"} />
             <TeamSortArea>
-              <TeamBox>
-                <img
-                  src={BackGround}
-                  alt="TeamImage"
+              {appliedTeams && appliedTeams.length > 0 ? (
+                appliedTeams.map((appliedTeam, index) => (
+                  <TeamBox key={index}>
+                    <img
+                      src={appliedTeam.teamImg}
+                      alt="TeamImage"
+                      style={{
+                        width: "100%",
+                        height: "4rem",
+                        objectFit: "cover",
+                        borderRadius: "0.5rem",
+                        border: "1px solid black",
+                      }}
+                    />
+                    <div style={{ paddingLeft: "0.3rem" }}>
+                      <TeamNameText text={appliedTeam.teamName} />
+                      <TeamDetailText
+                        text={
+                          "창단일: " +
+                          appliedTeam.teamCreationDate.split("T")[0]
+                        }
+                      />
+                      <TeamDetailText
+                        text={"팀원 수 : " + appliedTeam.teamMembers + "명"}
+                      />
+                      <TeamDetailText
+                        text={"위치 : " + appliedTeam.teamLocation}
+                      />
+                    </div>
+                  </TeamBox>
+                ))
+              ) : (
+                <div
                   style={{
                     width: "100%",
-                    height: "4rem",
-                    objectFit: "cover",
-                    borderRadius: "0.5rem",
+                    height: "fit-content",
+
+                    padding: "5rem 0rem",
+
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+
+                    fontSize: "0.7rem",
+                    color: "white",
                   }}
-                />
-                <div style={{ paddingLeft: "0.3rem" }}>
-                  <TeamNameText text={"수원삼성블루윙즈"} />
-                  <TeamDetailText text={"95년 12월 12일 창단"} />
-                  <TeamDetailText text={"평균 연령대 : 20~29 | 36명"} />
-                  <TeamDetailText text={"경기도 수원시 팔달구 월드컵로"} />
+                >
+                  가입 신청 팀이 없습니다.
                 </div>
-              </TeamBox>
+              )}
             </TeamSortArea>
           </TeamStateArea>
         </TeamInfoArea>
