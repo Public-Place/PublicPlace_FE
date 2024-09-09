@@ -18,11 +18,5 @@ export const useRootEvents = () => {
     }
   };
 
-  const handleContainerClick = () => {
-    if (isNavOpen) {
-      toggleNav();
-    }
-  };
-
-  return { toggleNav, isClosing, isNavOpen, handleContainerClick };
+  return { toggleNav, isClosing, isNavOpen };
 };

@@ -7,6 +7,7 @@ export const SignUpAPI = async (SignUpData: SignUpDto) => {
       "/sign-api/sign-up?roles=admin",
       SignUpData
     );
+    alert("회원가입 성공");
     // console.log("회원가입 성공", response.data);
     return response.data;
   } catch (error) {

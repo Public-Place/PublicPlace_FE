@@ -1,5 +1,5 @@
 import { useOutlet } from "react-router-dom";
-import { Container } from "./styles";
+import { Children, Container } from "./styles";
 import { HambergerBtn } from "../../components/button/Button";
 import { useRootEvents } from "./events";
 import { Navigation } from "../../components/navigation/Navigation";
@@ -15,7 +15,7 @@ export default function Root() {
     <Container>
       {!isNavOpen && <HambergerBtn toggleNav={toggleNav} />}
       {isNavOpen && <Navigation toggleNav={toggleNav} isClosing={isClosing} />}
-      {outlet}
+      <Children onClick={toggleNav}>{outlet}</Children>
     </Container>
   );
 }

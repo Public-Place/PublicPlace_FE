@@ -7,4 +7,5 @@ export interface NavagationType {
 
 export interface NavigationEventType {
   setIsSignIn: Dispatch<SetStateAction<boolean>>;
+  toggleNav: () => void;
 }

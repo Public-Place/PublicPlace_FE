@@ -112,7 +112,6 @@ export const TeamInfoArea = styled.div`
 export const TeamStateArea = styled.div`
   width: calc(100% - 0rem);
   height: fit-content;
-  min-height: 23rem;
 
   display: flex;
   align-items: start;
@@ -127,6 +126,8 @@ export const TeamStateArea = styled.div`
 export const TeamSortArea = styled.div`
   width: 100%;
   height: fit-content;
+
+  margin-top: 1rem;
 
   display: flex;
   align-items: center;
