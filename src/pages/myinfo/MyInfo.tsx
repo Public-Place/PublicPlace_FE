@@ -65,7 +65,7 @@ export default function MyInfo() {
                   alt="TeamImage"
                   style={{
                     width: "100%",
-                    height: "fit-content",
+                    height: "4rem",
                     objectFit: "cover",
                     borderRadius: "0.5rem",
                   }}
