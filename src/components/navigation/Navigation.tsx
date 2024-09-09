@@ -27,6 +27,7 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
     isSignUpModalOpen,
     setIsSignUpModalOpen,
     handleSignUp,
+    handleGoToMyInfo,
   } = useNavigationEvent({ setIsSignIn });
 
   // 로그인 여부에 따라 각자 다른 함수 실행
@@ -59,7 +60,7 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
         <Details open>
           <Summary>&nbsp;&nbsp;MyPage</Summary>
           <Ul>
-            <Li>내 정보</Li>
+            <Li onClick={handleGoToMyInfo}>내 정보</Li>
             <Li>내 정보 수정</Li>
           </Ul>
         </Details>
