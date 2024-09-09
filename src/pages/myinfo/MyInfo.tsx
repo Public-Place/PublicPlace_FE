@@ -49,10 +49,8 @@ export default function MyInfo() {
                   src={user?.profileImg}
                   alt="Profile"
                   style={{
-                    width: "60%",
-                    minWidth: "5rem",
-                    height: "60%",
-                    minHeight: "5rem",
+                    width: "5rem",
+                    height: "5rem",
                     objectFit: "cover",
                     borderRadius: "50%",
                     border: "1px solid white",
@@ -93,19 +91,15 @@ export default function MyInfo() {
                 <ClipLoader size={"1rem"} color="white" />
               </div>
             )}
-            {user ? (
+            {user?.foot ? (
               <UserInfoText text={"주발 : " + user.foot} />
             ) : (
-              <div>
-                <ClipLoader size={"1rem"} color="white" />
-              </div>
+              <UserInfoText text={"주발 : 미입력"} />
             )}
-            {user ? (
+            {user?.position ? (
               <UserInfoText text={"선호 포지션 : " + user.position} />
             ) : (
-              <div>
-                <ClipLoader size={"1rem"} color="white" />
-              </div>
+              <UserInfoText text={"선호 포지션 : 미입력"} />
             )}
           </UserSubInfo>
           <Notice>※ 팀 탈퇴는 해당 팀을 클릭하여 진행 부탁드립니다.</Notice>
@@ -128,7 +122,7 @@ export default function MyInfo() {
                 <div style={{ paddingLeft: "0.3rem" }}>
                   <TeamNameText text={"수원삼성블루윙즈"} />
                   <TeamDetailText text={"95년 12월 12일 창단"} />
-                  <TeamDetailText text={"평균 연령층 : 20~29 | 36명"} />
+                  <TeamDetailText text={"평균 연령대 : 20~29 | 36명"} />
                   <TeamDetailText text={"경기도 수원시 팔달구 월드컵로"} />
                 </div>
               </TeamBox>
@@ -152,7 +146,7 @@ export default function MyInfo() {
                 <div style={{ paddingLeft: "0.3rem" }}>
                   <TeamNameText text={"수원삼성블루윙즈"} />
                   <TeamDetailText text={"95년 12월 12일 창단"} />
-                  <TeamDetailText text={"평균 연령층 : 20~29 | 36명"} />
+                  <TeamDetailText text={"평균 연령대 : 20~29 | 36명"} />
                   <TeamDetailText text={"경기도 수원시 팔달구 월드컵로"} />
                 </div>
               </TeamBox>
