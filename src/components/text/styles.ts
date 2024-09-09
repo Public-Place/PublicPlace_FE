@@ -28,3 +28,78 @@ export const Msg = styled.span`
 
   font-size: 0.6rem;
 `;
+
+export const UserName = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  padding: 0.5rem 0rem;
+
+  font-size: 1.5rem;
+  font-weight: bold;
+
+  background-color: transparent;
+`;
+
+export const UserInfo = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  padding: 0.5rem 0rem;
+
+  font-size: 1rem;
+
+  background-color: transparent;
+`;
+
+export const TeamState = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  padding: 0.5rem 1rem;
+
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: white;
+
+  background-color: transparent;
+`;
+
+export const TeamName = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  padding: 0.2rem 0rem;
+
+  font-size: 0.8rem;
+  font-weight: bold;
+
+  color: black;
+
+  background-color: transparent;
+`;
+
+export const TeamDetail = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  padding: 0.2rem 0rem;
+
+  font-size: 0.5rem;
+
+  color: black;
+
+  background-color: transparent;
+`;
+
+export const Notice = styled.div`
+  width: calc(100% - rrem);
+  height: fit-content;
+
+  padding: 1rem 2rem;
+
+  font-size: 0.7rem;
+  color: gray;
+
+  background-color: transparent;
+`;

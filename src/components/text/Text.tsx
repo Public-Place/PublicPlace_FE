@@ -1,4 +1,12 @@
-import { Msg, SmallTitle, Title } from "./styles";
+import {
+  Msg,
+  SmallTitle,
+  TeamDetail,
+  TeamName,
+  TeamState,
+  Title,
+  UserInfo,
+} from "./styles";
 import { InputTitleType } from "./types";
 
 export const SignInTitle = () => {
@@ -18,4 +26,20 @@ export const InputTitle = ({ text, msg, msgColor }: InputTitleType) => {
       </div>
     </SmallTitle>
   );
+};
+
+export const UserInfoText = ({ text }: { text: string }) => {
+  return <UserInfo>{text}</UserInfo>;
+};
+
+export const TeamStateText = ({ text }: { text: string }) => {
+  return <TeamState>{text}</TeamState>;
+};
+
+export const TeamNameText = ({ text }: { text: string }) => {
+  return <TeamName>{text}</TeamName>;
+};
+
+export const TeamDetailText = ({ text }: { text: string }) => {
+  return <TeamDetail>{text}</TeamDetail>;
 };
