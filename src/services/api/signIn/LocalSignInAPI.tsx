@@ -11,9 +11,11 @@ export const LocalSignInAPI = async ({
     );
     // console.log("일반 로그인 성공", response.data);
     localStorage.setItem("token", response.data.token);
-    console.log("일반 로그인 토큰 저장 완료 : ", localStorage.getItem("token"));
+    // 로그인 성공 시 새로고침
+    window.location.reload();
     return response.data;
   } catch (error) {
     // console.log("일반 로그인 실패", error);
+    alert("이메일과 비밀번호를 확인해주세요.");
   }
 };

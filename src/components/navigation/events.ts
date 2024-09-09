@@ -15,6 +15,8 @@ export const useNavigationEvent = ({ setIsSignIn }: NavigationEventType) => {
     if (window.confirm("로그아웃을 하시겠습니까?")) {
       localStorage.removeItem("token");
       setIsSignIn(false);
+      window.location.reload();
+      alert("로그아웃 되었습니다.");
     } else {
       return;
     }
