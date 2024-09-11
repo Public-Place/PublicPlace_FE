@@ -1,3 +1,4 @@
+import { BtnColor } from "../../constants/FixValues";
 import {
   Email,
   Select,
@@ -6,8 +7,10 @@ import {
   Password,
   PasswordCheck,
   Tel,
+  Profile,
 } from "./styles";
-import { SignUpInputType } from "./types";
+import { ProfileInputType, SignUpInputType } from "./types";
+import { LuRefreshCcw } from "react-icons/lu";
 
 /* --------------------------------------------------------------- */
 
@@ -330,3 +333,12 @@ export const DayInput = () => {
 };
 
 /* --------------------------------------------------------------- */
+
+// 이미지 선택 버튼
+export const ProfileInput = ({ src, handleProfileClick }: ProfileInputType) => {
+  return (
+    <Profile src={src} onClick={handleProfileClick}>
+      <LuRefreshCcw size={"30"} color="darkgray" />
+    </Profile>
+  );
+};

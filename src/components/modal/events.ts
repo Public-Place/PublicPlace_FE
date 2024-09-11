@@ -13,7 +13,7 @@ import {
 } from "../../constants/FixValues";
 import { NickNameCheckAPI } from "../../services/api/checkDuplication/NickNameCheckAPI";
 import { TelCheckAPI } from "../../services/api/checkDuplication/TelCheckAPI";
-import DefaultProfile from "../../assets/images/DefaultProfile.png";
+import Profile from "../../assets/images/Profile.png";
 import { S3API } from "../../services/api/s3/S3API";
 import { SignUpDto } from "../../dtos/signUp/SignUpDto";
 import { SignUpAPI } from "../../services/api/signUp/SignUpAPI";
@@ -114,7 +114,7 @@ export const useSignUpModalEvent = ({
 
   // s3 이미지 변환 로직
   const handleTransformImg = async () => {
-    const defaultProfile = await S3API(DefaultProfile);
+    const defaultProfile = await S3API(Profile);
     return defaultProfile;
   };
 

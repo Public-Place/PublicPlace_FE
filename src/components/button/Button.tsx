@@ -126,3 +126,16 @@ export const ErrorBtn = () => {
     </FaContainer>
   );
 };
+
+// '내 정보 수정 페이지' 내부의 확인 버튼
+export const UpdateInfoBtn = ({
+  handleUpdateInfo,
+}: {
+  handleUpdateInfo: () => void;
+}) => {
+  return (
+    <CreateAccountContainer onClick={handleUpdateInfo}>
+      확인
+    </CreateAccountContainer>
+  );
+};

@@ -45,6 +45,18 @@ export const useNavigationEvent = ({
     }
   };
 
+  // '내 정보 수정' 클릭 시
+  const handleGoToUpdateMyInfo = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      navigator("/updatemyinfo");
+      toggleNav();
+    } else {
+      alert("로그인 시 이용 가능합니다.");
+    }
+  };
+
   return {
     isSignInModalOpen,
     setIsSignInModalOpen,
@@ -54,5 +66,6 @@ export const useNavigationEvent = ({
     setIsSignUpModalOpen,
     handleSignUp,
     handleGoToMyInfo,
+    handleGoToUpdateMyInfo,
   };
 };

@@ -3,3 +3,8 @@ export interface SignUpInputType {
   value?: string;
   setValue?: (value: string) => void;
 }
+
+export interface ProfileInputType {
+  src: string;
+  handleProfileClick: () => void;
+}

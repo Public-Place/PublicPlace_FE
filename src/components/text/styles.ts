@@ -103,3 +103,17 @@ export const Notice = styled.div`
 
   background-color: transparent;
 `;
+
+export const PageCenterTitle = styled.div`
+  width: 100%;
+  height: fit-content;
+
+  padding: 2rem 0rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2rem;
+  font-weight: bold;
+`;
