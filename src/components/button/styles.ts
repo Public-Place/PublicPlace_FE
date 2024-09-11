@@ -117,7 +117,7 @@ export const KakaoIcon = styled.div`
 `;
 
 export const CreateAccountContainer = styled.div`
-  width: 30%;
+  width: fit-content;
   height: fit-content;
 
   display: flex;
@@ -126,7 +126,7 @@ export const CreateAccountContainer = styled.div`
 
   position: relative;
 
-  padding: 0.5rem 0rem;
+  padding: 0.5rem 2rem;
   margin-top: 1rem;
 
   color: white;

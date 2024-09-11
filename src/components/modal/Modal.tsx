@@ -102,6 +102,7 @@ export const SignInModal = ({
   );
 };
 
+/* -------------------------------------------------------------------------------- */
 // 회원가입 창
 export const SignUpModal = ({
   isSignUpModalOpen,

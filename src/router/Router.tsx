@@ -3,6 +3,7 @@ import Root from "../pages/root/Root";
 import Main from "../pages/main/Main";
 import Redirection from "../pages/redirection/Redirection";
 import MyInfo from "../pages/myinfo/MyInfo";
+import { UpdateMyInfo } from "../pages/updateMyInfo/UpdateMyInfo";
 
 /*
   페이지 경로 이름 작성 규칙
@@ -30,6 +31,11 @@ export const router = createBrowserRouter([
         // 내 정보 페이지
         path: "/myinfo",
         element: <MyInfo />,
+      },
+      {
+        // 내 정보 수정 페이지
+        path: "/updatemyinfo",
+        element: <UpdateMyInfo />,
       },
     ],
   },

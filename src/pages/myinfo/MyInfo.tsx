@@ -19,7 +19,6 @@ import {
   TeamSortArea,
   TeamBox,
 } from "./styles";
-import BackGround from "../../assets/images/background.png";
 import { useEffect } from "react";
 import { useMyInfoEvent } from "./events";
 import { ClipLoader } from "react-spinners";
@@ -32,6 +31,7 @@ export default function MyInfo() {
     GetAppliedTeamsInfo,
     joinedTeams,
     GetJoinedTeamsInfo,
+    navigator,
   } = useMyInfoEvent();
 
   // 페이지 렌더링 시 회원 정보 & 소속 팀 정보 & 가입 신청 팀 정보 조회
@@ -41,6 +41,15 @@ export default function MyInfo() {
     GetJoinedTeamsInfo();
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      if (!user.foot || !user.position) {
+        alert("주발 또는 선호 포지션을 입력을 위해 이동합니다.");
+        navigator("/updatemyinfo");
+      }
+    }
+  }, [user]);
+
   return (
     <Container>
       <Advertisement></Advertisement>
@@ -48,7 +57,7 @@ export default function MyInfo() {
         <UserInfoArea>
           <UserMainInfo>
             <UserProfileArea>
-              {user ? (
+              {user?.profileImg ? (
                 <img
                   src={user?.profileImg}
                   alt="Profile"
@@ -98,12 +107,16 @@ export default function MyInfo() {
             {user?.foot ? (
               <UserInfoText text={"주발 : " + user.foot} />
             ) : (
-              <UserInfoText text={"주발 : 미입력"} />
+              <div>
+                <ClipLoader size={"1rem"} color="white" />
+              </div>
             )}
             {user?.position ? (
               <UserInfoText text={"선호 포지션 : " + user.position} />
             ) : (
-              <UserInfoText text={"선호 포지션 : 미입력"} />
+              <div>
+                <ClipLoader size={"1rem"} color="white" />
+              </div>
             )}
           </UserSubInfo>
           <Notice>※ 팀 탈퇴는 해당 팀을 클릭하여 진행 부탁드립니다.</Notice>
@@ -117,10 +130,12 @@ export default function MyInfo() {
                   <TeamBox key={index}>
                     <img
                       src={joinedTeam.teamImg}
-                      alt="TeamImage"
+                      alt="이미지 없음"
                       style={{
                         width: "100%",
+                        minWidth: "100%",
                         height: "4rem",
+                        minHeight: "4rem",
                         objectFit: "cover",
                         borderRadius: "0.5rem",
                         border: "1px solid black",
@@ -172,10 +187,12 @@ export default function MyInfo() {
                   <TeamBox key={index}>
                     <img
                       src={appliedTeam.teamImg}
-                      alt="TeamImage"
+                      alt="이미지 없음"
                       style={{
                         width: "100%",
+                        minWidth: "100%",
                         height: "4rem",
+                        minHeight: "4rem",
                         objectFit: "cover",
                         borderRadius: "0.5rem",
                         border: "1px solid black",

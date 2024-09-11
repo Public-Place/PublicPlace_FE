@@ -3,8 +3,11 @@ import { GetUserAPI } from "../../services/api/user/GetUserAPI";
 import { AppliedTeamsType, JoinedTeamsType, UserInfoType } from "./types";
 import { GetAppliedTeamsAPI } from "../../services/api/user/GetAppliedTeamsAPI";
 import { GetJoinedTeamsAPI } from "../../services/api/user/GetJoinedTeamsAPI";
+import { useNavigate } from "react-router-dom";
 
 export const useMyInfoEvent = () => {
+  const navigator = useNavigate();
+
   // 회원 정보를 담기 위한 상태 관리
   const [user, setUser] = useState<UserInfoType>();
 
@@ -39,5 +42,6 @@ export const useMyInfoEvent = () => {
     GetAppliedTeamsInfo,
     joinedTeams,
     GetJoinedTeamsInfo,
+    navigator,
   };
 };
