@@ -10,7 +10,10 @@ import {
   SuccessMsgColor,
 } from "../../constants/FixValues";
 import { GetUserAPI } from "../../services/api/user/GetUserAPI";
-import { UpdateUserAPI } from "../../services/api/user/UpdateUserAPI";
+import {
+  UpdateKakaoUserAPI,
+  UpdateLocalUserAPI,
+} from "../../services/api/user/UpdateUserAPI";
 import { useNavigate } from "react-router-dom";
 
 export const useUpdateMyInfoEvent = () => {
@@ -19,9 +22,6 @@ export const useUpdateMyInfoEvent = () => {
   // 프로필 이미지를 위한 Ref
   const profileInputRef = useRef<HTMLInputElement>(null);
 
-  // 파일 탐색기에서 선택한 이미지 파일 저장하는 상태
-  const [profileFile, setProfileFile] = useState<File | null>(null);
-
   // 화면에 출력할 프로필 이미지 상태
   const [profileImage, setProfileImage] = useState("");
 
@@ -29,7 +29,6 @@ export const useUpdateMyInfoEvent = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setProfileFile(file);
       const reader = new FileReader();
       reader.onload = () => {
         if (typeof reader.result === "string") {
@@ -56,8 +55,8 @@ export const useUpdateMyInfoEvent = () => {
   const [foot, setFoot] = useState("");
   const [position, setPosition] = useState("");
 
-  // 필수 입력 값 확인 및 비밀번호 일치 여부 확인
-  const CheckEssentialValues = () => {
+  // 필수 입력 값 확인 및 비밀번호 일치 여부 확인 (일반 로그인)
+  const CheckLocalEssentialValues = () => {
     if (!password) {
       alert("비밀번호를 입력해주세요.");
       return false;
@@ -68,6 +67,27 @@ export const useUpdateMyInfoEvent = () => {
       alert("비밀번호가 일치하지 않습니다.");
       return false;
     } else if (!nickname) {
+      alert("닉네임을 입력해주세요.");
+      return false;
+    } else if (!tel) {
+      alert("전화번호를 입력해주세요.");
+      return false;
+    } else if (!foot || foot === "선택") {
+      alert("주발을 선택해주세요.");
+      return false;
+    } else if (!position || position === "선택") {
+      alert("선호 포지션을 선택해주세요.");
+      return false;
+    } else if (!gender || gender === "선택") {
+      alert("성별을 선택해주세요.");
+      return false;
+    }
+    return true;
+  };
+
+  // 필수 입력 값 확인 및 비밀번호 일치 여부 확인 (카카오 로그인)
+  const CheckKakaoEssentialValues = () => {
+    if (!nickname) {
       alert("닉네임을 입력해주세요.");
       return false;
     } else if (!tel) {
@@ -154,27 +174,56 @@ export const useUpdateMyInfoEvent = () => {
   const handleUpdateInfo = async () => {
     const profileImg = await S3API(profileImage);
 
-    if (!CheckEssentialValues()) {
-      return;
-    } else {
-      // 모든 중복 여부 확인 시에만 정보 수정 가능
-      if (nickNameSuccess !== true) {
-        alert("닉네임 중복 여부를 확인해주세요.");
-      } else if (telSuccess !== true) {
-        alert("전화번호 중복 여부를 확인해주세요.");
-      } else if (nickNameSuccess === true && telSuccess === true) {
-        const UpdateMyInfoData: UpdateMyInfoDto = {
-          nickname: nickname,
-          phoneNumber: tel,
-          gender: gender,
-          foot: foot,
-          position: position,
-          profileImg: profileImg,
-        };
+    const approach = await GetUserAPI();
 
-        await UpdateUserAPI(UpdateMyInfoData);
-        navigator("/myinfo");
-        window.location.reload();
+    if (approach.loginApproach === "Local-Login") {
+      if (!CheckLocalEssentialValues()) {
+        return;
+      } else {
+        // 모든 중복 여부 확인 시에만 정보 수정 가능
+        if (nickNameSuccess !== true) {
+          alert("닉네임 중복 여부를 확인해주세요.");
+        } else if (telSuccess !== true) {
+          alert("전화번호 중복 여부를 확인해주세요.");
+        } else if (nickNameSuccess === true && telSuccess === true) {
+          const UpdateMyLocalInfoData: UpdateMyInfoDto = {
+            nickname: nickname,
+            phoneNumber: tel,
+            gender: gender,
+            foot: foot,
+            position: position,
+            profileImg: profileImg,
+            password: password,
+          };
+
+          await UpdateLocalUserAPI(UpdateMyLocalInfoData);
+          navigator("/myinfo");
+          window.location.reload();
+        }
+      }
+    } else if (approach.loginApproach === "Kakao-Login") {
+      if (!CheckKakaoEssentialValues()) {
+        return;
+      } else {
+        // 모든 중복 여부 확인 시에만 정보 수정 가능
+        if (nickNameSuccess !== true) {
+          alert("닉네임 중복 여부를 확인해주세요.");
+        } else if (telSuccess !== true) {
+          alert("전화번호 중복 여부를 확인해주세요.");
+        } else if (nickNameSuccess === true && telSuccess === true) {
+          const UpdateMyKakaoInfoData: UpdateMyInfoDto = {
+            nickname: nickname,
+            phoneNumber: tel,
+            gender: gender,
+            foot: foot,
+            position: position,
+            profileImg: profileImg,
+          };
+
+          await UpdateKakaoUserAPI(UpdateMyKakaoInfoData);
+          navigator("/myinfo");
+          window.location.reload();
+        }
       }
     }
   };
