@@ -139,13 +139,11 @@ export const TeamBox = styled.div`
   width: calc(25% - 2rem);
   height: fit-content;
 
+  position: relative;
+
   margin: 0.5rem 0.5rem;
   padding: 0.5rem 0.5rem;
 
   background-color: white;
   border-radius: 1rem;
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
