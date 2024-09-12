@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { GetUserAPI } from "../../services/api/user/GetUserAPI";
-import { AppliedTeamsType, JoinedTeamsType, UserInfoType } from "./types";
+import {
+  AppliedTeamsType,
+  CancleJoinTeamType,
+  JoinedTeamsType,
+  UserInfoType,
+} from "./types";
 import { GetAppliedTeamsAPI } from "../../services/api/user/GetAppliedTeamsAPI";
 import { GetJoinedTeamsAPI } from "../../services/api/user/GetJoinedTeamsAPI";
 import { useNavigate } from "react-router-dom";
+import { CancleTeamJoinAPI } from "../../services/api/user/CancleTeamJoinAPI";
 
 export const useMyInfoEvent = () => {
   const navigator = useNavigate();
@@ -35,6 +41,16 @@ export const useMyInfoEvent = () => {
     setJoinedTeams(joinedTeamsInfo);
   };
 
+  // 팀 가입 신청 취소 버튼 클릭 시
+  const handleCancleTeamJoin = async (teamId: number, teamName: string) => {
+    if (window.confirm(`'${teamName}'에게 보낸 가입 신청을 취소하겠습니까?`)) {
+      await CancleTeamJoinAPI({ teamId, teamName });
+      window.location.reload();
+    } else {
+      return;
+    }
+  };
+
   return {
     user,
     GetUserInfo,
@@ -43,5 +59,6 @@ export const useMyInfoEvent = () => {
     joinedTeams,
     GetJoinedTeamsInfo,
     navigator,
+    handleCancleTeamJoin,
   };
 };

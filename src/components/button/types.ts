@@ -23,3 +23,7 @@ export interface CheckValues {
 export interface KakaoSignInType {
   handleKakaoSignInAPI: () => void;
 }
+
+export interface handleCancleTeamJoinType {
+  handleCancleTeamJoin: () => void;
+}

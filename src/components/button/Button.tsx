@@ -7,17 +7,20 @@ import {
   KakaoIcon,
   CreateAccountContainer,
   FaContainer,
+  CancleTeamJoin,
 } from "./styles";
 import { FaBars, FaXmark, FaCheck, FaO } from "react-icons/fa6";
 import {
   CancleBtnType,
   CheckValues,
   HambergerBtnType,
+  handleCancleTeamJoinType,
   KakaoSignInType,
   SignInBtnType,
   SignUpBtnType,
 } from "./types";
 import { RiKakaoTalkFill } from "react-icons/ri";
+import { AiOutlineUserDelete } from "react-icons/ai";
 import {
   BasicMsgColor,
   ErrorMsgColor,
@@ -137,5 +140,16 @@ export const UpdateInfoBtn = ({
     <CreateAccountContainer onClick={handleUpdateInfo}>
       확인
     </CreateAccountContainer>
+  );
+};
+
+// '내 정보 페이지' 내부의 팀 가입 신청 취소 버튼
+export const CancleTeamJoinBtn = ({
+  handleCancleTeamJoin,
+}: handleCancleTeamJoinType) => {
+  return (
+    <CancleTeamJoin onClick={handleCancleTeamJoin}>
+      <AiOutlineUserDelete size={"15"} color="black" />
+    </CancleTeamJoin>
   );
 };

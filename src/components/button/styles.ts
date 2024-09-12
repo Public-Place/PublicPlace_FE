@@ -155,3 +155,20 @@ export const FaContainer = styled.div`
 
   padding: 0.2rem 0.2rem;
 `;
+
+export const CancleTeamJoin = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;

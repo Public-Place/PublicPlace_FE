@@ -22,6 +22,7 @@ import {
 import { useEffect } from "react";
 import { useMyInfoEvent } from "./events";
 import { ClipLoader } from "react-spinners";
+import { CancleTeamJoinBtn } from "../../components/button/Button";
 
 export default function MyInfo() {
   const {
@@ -32,6 +33,7 @@ export default function MyInfo() {
     joinedTeams,
     GetJoinedTeamsInfo,
     navigator,
+    handleCancleTeamJoin,
   } = useMyInfoEvent();
 
   // 페이지 렌더링 시 회원 정보 & 소속 팀 정보 & 가입 신청 팀 정보 조회
@@ -213,6 +215,14 @@ export default function MyInfo() {
                         text={"위치 : " + appliedTeam.teamLocation}
                       />
                     </div>
+                    <CancleTeamJoinBtn
+                      handleCancleTeamJoin={() =>
+                        handleCancleTeamJoin(
+                          appliedTeam.teamId,
+                          appliedTeam.teamName
+                        )
+                      }
+                    />
                   </TeamBox>
                 ))
               ) : (

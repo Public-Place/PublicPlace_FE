@@ -31,3 +31,8 @@ export interface JoinedTeamsType {
   teamLocation: string;
   teamCreationDate: string;
 }
+
+export interface CancleJoinTeamType {
+  teamId: number;
+  teamName: string;
+}
