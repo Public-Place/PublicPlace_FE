@@ -4,5 +4,6 @@ export interface UpdateMyInfoDto {
   gender: string;
   foot: string;
   position: string;
-  profileImg: string;
+  profileImg?: string;
+  password?: string;
 }

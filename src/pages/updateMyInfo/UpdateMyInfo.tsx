@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   BasicBtn,
   ErrorBtn,
@@ -68,12 +68,20 @@ export const UpdateMyInfo = () => {
     getTelMsgColor,
   } = useUpdateMyInfoEvent();
 
+  // 일반 회원, 카카오 회원 구분을 위한 상태
+  const [isLocalUser, setIsLocalUser] = useState(true);
+
   useEffect(() => {
     GetUserInfo();
   }, []);
 
   useEffect(() => {
     if (user) {
+      if (user?.loginApproach === "Local-Login") {
+        setIsLocalUser(true);
+      } else if (user?.loginApproach === "Kakao-Login") {
+        setIsLocalUser(false);
+      }
       setProfileImage(user?.profileImg || "error");
       setNickname(user?.nickname);
       setTel(user?.phoneNumber);
@@ -158,23 +166,25 @@ export const UpdateMyInfo = () => {
             </SetInfo01>
           </SetInfoTop>
           <SetInfoBottom>
-            <SetInfo02>
-              <InfoTitle>
-                <InputTitle text={"비밀번호"} />
-              </InfoTitle>
-              <InfoInput>
-                <PasswordInput value={password} setValue={setPassword} />
-              </InfoInput>
-              <InfoTitle>
-                <InputTitle text={"비밀번호 확인"} />
-              </InfoTitle>
-              <InfoInput>
-                <PasswordCheckInput
-                  value={passwordCheck}
-                  setValue={setPasswordCheck}
-                />
-              </InfoInput>
-            </SetInfo02>
+            {isLocalUser && (
+              <SetInfo02>
+                <InfoTitle>
+                  <InputTitle text={"비밀번호"} />
+                </InfoTitle>
+                <InfoInput>
+                  <PasswordInput value={password} setValue={setPassword} />
+                </InfoInput>
+                <InfoTitle>
+                  <InputTitle text={"비밀번호 확인"} />
+                </InfoTitle>
+                <InfoInput>
+                  <PasswordCheckInput
+                    value={passwordCheck}
+                    setValue={setPasswordCheck}
+                  />
+                </InfoInput>
+              </SetInfo02>
+            )}
             <SetInfo03>
               <InfoSelect>
                 <InfoTitle>
