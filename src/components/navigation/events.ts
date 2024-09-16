@@ -33,6 +33,18 @@ export const useNavigationEvent = ({
     setIsSignUpModalOpen(true);
   };
 
+  // '게시판' 클릭 시
+  const handleGoToBoard = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      navigator("/board");
+      toggleNav();
+    } else {
+      alert("로그인 시 이용 가능합니다.");
+    }
+  };
+
   // '내 정보' 클릭 시
   const handleGoToMyInfo = () => {
     const token = localStorage.getItem("token");
@@ -65,6 +77,7 @@ export const useNavigationEvent = ({
     isSignUpModalOpen,
     setIsSignUpModalOpen,
     handleSignUp,
+    handleGoToBoard,
     handleGoToMyInfo,
     handleGoToUpdateMyInfo,
   };

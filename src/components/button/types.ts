@@ -27,3 +27,9 @@ export interface KakaoSignInType {
 export interface handleCancleTeamJoinType {
   handleCancleTeamJoin: () => void;
 }
+
+export interface CategoryBtnType {
+  text: string;
+  handleClick: () => void;
+  isClicked: boolean;
+}

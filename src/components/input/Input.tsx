@@ -1,4 +1,3 @@
-import { BtnColor } from "../../constants/FixValues";
 import {
   Email,
   Select,
@@ -8,9 +7,11 @@ import {
   PasswordCheck,
   Tel,
   Profile,
+  SearchContainer,
 } from "./styles";
 import { ProfileInputType, SignUpInputType } from "./types";
 import { LuRefreshCcw } from "react-icons/lu";
+import { MdSearch } from "react-icons/md";
 
 /* --------------------------------------------------------------- */
 
@@ -237,6 +238,24 @@ export const AgeRangeInput = ({ value, setValue }: SignUpInputType) => {
   );
 };
 
+// '게시판 페이지' 내부의 게시글 정렬 방식 선택 콤보박스
+export const SortPostInput = ({ value, setValue }: SignUpInputType) => {
+  return (
+    <Select
+      value={value}
+      onChange={(e) => {
+        if (setValue) {
+          setValue(e.target.value);
+        }
+      }}
+    >
+      <option value={"createdAt"}>최신 순</option>
+      <option value={"views"}>조회수 순</option>
+      <option value={"likes"}>추천 순</option>
+    </Select>
+  );
+};
+
 /* --------------------------------------------------------------- */
 
 // 현재 연도 구하기
@@ -340,5 +359,25 @@ export const ProfileInput = ({ src, handleProfileClick }: ProfileInputType) => {
     <Profile src={src} onClick={handleProfileClick}>
       <LuRefreshCcw size={"30"} color="darkgray" />
     </Profile>
+  );
+};
+
+/* --------------------------------------------------------------- */
+
+// 게시글 검색창
+export const SearchPost = () => {
+  return (
+    <div style={{ position: "relative" }}>
+      <SearchContainer />
+      <MdSearch
+        size={15}
+        style={{
+          position: "absolute",
+          top: "0.4rem",
+          right: "0.5rem",
+          cursor: "pointer",
+        }}
+      />
+    </div>
   );
 };

@@ -4,6 +4,7 @@ import Main from "../pages/main/Main";
 import Redirection from "../pages/redirection/Redirection";
 import MyInfo from "../pages/myinfo/MyInfo";
 import { UpdateMyInfo } from "../pages/updateMyInfo/UpdateMyInfo";
+import Board from "../pages/board/Board";
 
 /*
   페이지 경로 이름 작성 규칙
@@ -26,6 +27,11 @@ export const router = createBrowserRouter([
         // 카카오 로그인을 위한 리다이렉션 페이지
         path: "/api/v1/kakao/callback",
         element: <Redirection />,
+      },
+      {
+        // 게시판 페이지
+        path: "/board",
+        element: <Board />,
       },
       {
         // 내 정보 페이지

@@ -19,7 +19,7 @@ import {
   TeamSortArea,
   TeamBox,
 } from "./styles";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useMyInfoEvent } from "./events";
 import { ClipLoader } from "react-spinners";
 import { CancleTeamJoinBtn } from "../../components/button/Button";

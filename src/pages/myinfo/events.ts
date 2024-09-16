@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { GetUserAPI } from "../../services/api/user/GetUserAPI";
-import {
-  AppliedTeamsType,
-  CancleJoinTeamType,
-  JoinedTeamsType,
-  UserInfoType,
-} from "./types";
+import { AppliedTeamsType, JoinedTeamsType, UserInfoType } from "./types";
 import { GetAppliedTeamsAPI } from "../../services/api/user/GetAppliedTeamsAPI";
 import { GetJoinedTeamsAPI } from "../../services/api/user/GetJoinedTeamsAPI";
 import { useNavigate } from "react-router-dom";

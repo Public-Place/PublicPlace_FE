@@ -172,3 +172,46 @@ export const CancleTeamJoin = styled.div`
     cursor: pointer;
   }
 `;
+
+export const BoardRules = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  margin-left: 1rem;
+  margin-bottom: 1.3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.8rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const Category = styled.div<{ isClicked: boolean }>`
+  width: fit-content;
+  height: fit-content;
+
+  padding: 0.4rem 1rem;
+  margin-right: 0.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid white;
+  border-radius: 0.7rem;
+
+  font-size: 0.6rem;
+
+  color: white;
+
+  background-color: ${(props) => (props.isClicked ? "gray" : "#3c3c3c")};
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
