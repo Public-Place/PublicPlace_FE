@@ -1,6 +1,7 @@
 import {
   Msg,
   PageCenterTitle,
+  PageLeftTitle,
   SmallTitle,
   TeamDetail,
   TeamName,
@@ -47,4 +48,8 @@ export const TeamDetailText = ({ text }: { text: string }) => {
 
 export const PageCenterText = ({ text }: { text: string }) => {
   return <PageCenterTitle>{text}</PageCenterTitle>;
+};
+
+export const PageLeftText = ({ text }: { text: string }) => {
+  return <PageLeftTitle>{text}</PageLeftTitle>;
 };

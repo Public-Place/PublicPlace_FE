@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import { MobileScreen, ModalColor } from "../../constants/FixValues";
-import DefaultProfile from "../../assets/images/background.png";
-import { url } from "inspector";
 
 export const Email = styled.input.attrs({
   type: "email",
@@ -109,7 +107,7 @@ export const Select = styled.select`
   width: 100%;
   height: fit-content;
 
-  padding: 0.5rem 0.2rem;
+  padding: 0.3rem 0.2rem;
 
   color: white;
   background-color: ${ModalColor};
@@ -142,4 +140,29 @@ export const Profile = styled.div<{ src?: string }>`
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const SearchContainer = styled.input.attrs({
+  type: "text",
+  placeholder: "게시글 이름을 검색해주세요.",
+})`
+  width: calc(100% - 2rem);
+  height: 1rem;
+
+  padding: 0.3rem 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-direction: row;
+
+  position: relative;
+
+  font-size: 0.7rem;
+
+  border: 1px solid white;
+  border-radius: 1rem;
+
+  color: white;
+  background-color: transparent;
 `;

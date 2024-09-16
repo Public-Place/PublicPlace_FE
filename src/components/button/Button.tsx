@@ -8,10 +8,13 @@ import {
   CreateAccountContainer,
   FaContainer,
   CancleTeamJoin,
+  BoardRules,
+  Category,
 } from "./styles";
 import { FaBars, FaXmark, FaCheck, FaO } from "react-icons/fa6";
 import {
   CancleBtnType,
+  CategoryBtnType,
   CheckValues,
   HambergerBtnType,
   handleCancleTeamJoinType,
@@ -21,6 +24,7 @@ import {
 } from "./types";
 import { RiKakaoTalkFill } from "react-icons/ri";
 import { AiOutlineUserDelete } from "react-icons/ai";
+import { IoInformationCircleOutline } from "react-icons/io5";
 import {
   BasicMsgColor,
   ErrorMsgColor,
@@ -151,5 +155,28 @@ export const CancleTeamJoinBtn = ({
     <CancleTeamJoin onClick={handleCancleTeamJoin}>
       <AiOutlineUserDelete size={"15"} color="black" />
     </CancleTeamJoin>
+  );
+};
+
+// '게시판 페이지' 내부의 게시판 이용 수칙 버튼
+export const BoardRulesBtn = () => {
+  return (
+    <BoardRules>
+      <IoInformationCircleOutline size={16} style={{ marginRight: "0.2rem" }} />
+      게시판 이용 수칙
+    </BoardRules>
+  );
+};
+
+// '게시판 페이지' 내부의 카테고리 버튼
+export const CategoryBtn = ({
+  text,
+  handleClick,
+  isClicked,
+}: CategoryBtnType) => {
+  return (
+    <Category onClick={handleClick} isClicked={isClicked}>
+      {text}
+    </Category>
   );
 };

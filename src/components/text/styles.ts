@@ -117,3 +117,18 @@ export const PageCenterTitle = styled.div`
   font-size: 2rem;
   font-weight: bold;
 `;
+
+export const PageLeftTitle = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  padding-top: 1.5rem;
+  padding-bottom: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  font-size: 2rem;
+  font-weight: bold;
+`;
