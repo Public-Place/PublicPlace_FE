@@ -10,6 +10,11 @@ export const S3API = async (Profile: any) => {
     return blob;
   };
 
+  // 프로필 이미지가 URL일 경우 S3에 업로드하지 않고 바로 반환
+  if (Profile.startsWith("http")) {
+    return Profile;
+  }
+
   // userId를 사용하여 프로필 이미지 저장 서버에 유저별 고유 경로 확보
   const user = await GetUserAPI();
 
@@ -22,7 +27,7 @@ export const S3API = async (Profile: any) => {
     console.log("s3 이미지 변환 성공", response.data);
     return response.data;
   } catch (error) {
-    // console.log("s3 이미지 변환 실패", error);
+    console.log("s3 이미지 변환 실패", error);
   }
 };
 
