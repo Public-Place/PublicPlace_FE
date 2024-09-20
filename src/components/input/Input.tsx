@@ -10,7 +10,7 @@ import {
   SearchContainer,
   CommentInputContainer,
 } from "./styles";
-import { ProfileInputType, SignUpInputType } from "./types";
+import { ProfileInputType, SearchPostType, SignUpInputType } from "./types";
 import { LuRefreshCcw } from "react-icons/lu";
 import { MdSearch } from "react-icons/md";
 
@@ -366,10 +366,21 @@ export const ProfileInput = ({ src, handleProfileClick }: ProfileInputType) => {
 /* --------------------------------------------------------------- */
 
 // 게시글 검색창
-export const SearchPost = () => {
+export const SearchPost = ({
+  value,
+  setValue,
+  handleGetPosts,
+}: SearchPostType) => {
   return (
     <div style={{ position: "relative" }}>
-      <SearchContainer />
+      <SearchContainer
+        value={value}
+        onChange={(e) => {
+          if (setValue) {
+            setValue(e.target.value);
+          }
+        }}
+      />
       <MdSearch
         size={15}
         style={{
@@ -378,6 +389,7 @@ export const SearchPost = () => {
           right: "0.5rem",
           cursor: "pointer",
         }}
+        onClick={handleGetPosts}
       />
     </div>
   );

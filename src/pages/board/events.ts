@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { PostType } from "./types";
+import { GetPostsAPI } from "../../services/api/post/GetPostsAPI";
 
 export const useBoardEvent = () => {
   const navigate = useNavigate();
@@ -11,6 +13,8 @@ export const useBoardEvent = () => {
   const [isWatchingGameClicked, setIsWatchingGameClicked] = useState(false);
   const [sortBy, setSortBy] = useState("");
   const [category, setCategory] = useState("");
+
+  const [postName, setPostName] = useState("");
 
   const [pageNum, setPageNum] = useState(1); // 현재 선택된 페이지 번호
 
@@ -69,6 +73,20 @@ export const useBoardEvent = () => {
     navigate("/post", { state: postId });
   };
 
+  // 조회된 게시글들 담는 상태
+  const [posts, setPosts] = useState<PostType[]>([]);
+
+  // 게시글 조회
+  const handleGetPosts = async () => {
+    const postArray = await GetPostsAPI({
+      category,
+      sortBy,
+      pageNum,
+      postName,
+    });
+    setPosts(postArray);
+  };
+
   return {
     sortBy,
     setSortBy,
@@ -87,5 +105,9 @@ export const useBoardEvent = () => {
     pageNum,
     setPageNum,
     handleClickPost,
+    posts,
+    handleGetPosts,
+    postName,
+    setPostName,
   };
 };
