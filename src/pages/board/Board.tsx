@@ -46,6 +46,7 @@ export default function Board() {
     handleClickWatchingGame,
     pageNum,
     setPageNum,
+    handleClickPost,
   } = useBoardEvent();
 
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -128,7 +129,10 @@ export default function Board() {
           <PostContainer>
             {posts.map((post, index) => (
               <>
-                <Post key={post.postId}>
+                <Post
+                  key={post.postId}
+                  onClick={() => handleClickPost(post.postId)}
+                >
                   <PostIndex>{post.postId}</PostIndex>
                   <PostInfo>
                     <PostMainInfo>

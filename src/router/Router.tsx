@@ -5,6 +5,7 @@ import Redirection from "../pages/redirection/Redirection";
 import MyInfo from "../pages/myinfo/MyInfo";
 import { UpdateMyInfo } from "../pages/updateMyInfo/UpdateMyInfo";
 import Board from "../pages/board/Board";
+import Post from "../pages/post/Post";
 
 /*
   페이지 경로 이름 작성 규칙
@@ -32,6 +33,11 @@ export const router = createBrowserRouter([
         // 게시판 페이지
         path: "/board",
         element: <Board />,
+      },
+      {
+        // 게시글 페이지
+        path: "/post",
+        element: <Post />,
       },
       {
         // 내 정보 페이지

@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const useBoardEvent = () => {
+  const navigate = useNavigate();
+
   const [isAllClicked, setIsAllClicked] = useState(false);
   const [isFreeClicked, setIsFreeClicked] = useState(false);
   const [isWFootballClicked, setIsWFootballClicked] = useState(false);
@@ -61,6 +64,11 @@ export const useBoardEvent = () => {
     setIsWatchingGameClicked(true);
   };
 
+  // 특정 게시글 클릭 시
+  const handleClickPost = (postId: number) => {
+    navigate("/post", { state: postId });
+  };
+
   return {
     sortBy,
     setSortBy,
@@ -78,5 +86,6 @@ export const useBoardEvent = () => {
     handleClickWatchingGame,
     pageNum,
     setPageNum,
+    handleClickPost,
   };
 };
