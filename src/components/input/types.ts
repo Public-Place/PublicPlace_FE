@@ -8,3 +8,9 @@ export interface ProfileInputType {
   src: string;
   handleProfileClick: () => void;
 }
+
+export interface SearchPostType {
+  value?: string;
+  setValue?: (value: string) => void;
+  handleGetPosts: () => void;
+}

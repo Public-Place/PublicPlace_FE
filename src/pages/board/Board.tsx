@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BoardRulesBtn, CategoryBtn } from "../../components/button/Button";
 import { SearchPost, SortPostInput } from "../../components/input/Input";
 import { PageLeftText } from "../../components/text/Text";
@@ -26,8 +26,6 @@ import {
   Wrapper,
 } from "./styles";
 import { Paging } from "../../components/pagination/Paging";
-import { GetPostsAPI } from "../../services/api/post/GetPostsAPI";
-import { PostType } from "./types";
 
 export default function Board() {
   const {
@@ -47,9 +45,11 @@ export default function Board() {
     pageNum,
     setPageNum,
     handleClickPost,
+    posts,
+    handleGetPosts,
+    postName,
+    setPostName,
   } = useBoardEvent();
-
-  const [posts, setPosts] = useState<PostType[]>([]);
 
   // 기본 카테고리는 '전체'로 설정
   // 기본 정렬 방식은 '최신 순'으로 설정
@@ -61,16 +61,13 @@ export default function Board() {
   // 테스트 코드
   useEffect(() => {
     if (category && sortBy && pageNum) {
-      const getPosts = async () => {
-        const postArray = await GetPostsAPI({ category, sortBy, pageNum });
-        // console.log("postArray : ", postArray);
-        setPosts(postArray);
-      };
-
-      getPosts();
-      // console.log("posts : ", posts);
+      handleGetPosts();
+      // console.log("category : ", category);
+      // console.log("sortBy : ", sortBy);
+      // console.log("pageNum : ", pageNum);
+      // console.log("postName : ", postName);
     }
-  }, [category, sortBy, pageNum]);
+  }, [category, sortBy, pageNum, postName]);
 
   return (
     <Container>
@@ -94,7 +91,11 @@ export default function Board() {
                 width: "20rem",
               }}
             >
-              <SearchPost />
+              <SearchPost
+                value={postName}
+                setValue={setPostName}
+                handleGetPosts={handleGetPosts}
+              />
             </div>
           </SearchLayer>
           <CategoryLayer>
@@ -127,7 +128,7 @@ export default function Board() {
         </Filter>
         <div style={{ width: "100%", padding: "0rem 2rem" }}>
           <PostContainer>
-            {posts.map((post, index) => (
+            {(posts || []).map((post, index) => (
               <>
                 <Post
                   key={post.postId}
