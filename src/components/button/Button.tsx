@@ -10,6 +10,7 @@ import {
   CancleTeamJoin,
   BoardRules,
   Category,
+  WriteComment,
 } from "./styles";
 import { FaBars, FaXmark, FaCheck, FaO } from "react-icons/fa6";
 import {
@@ -179,4 +180,13 @@ export const CategoryBtn = ({
       {text}
     </Category>
   );
+};
+
+// '게시글 페이지' 내부의 댓글 작성 버튼
+export const WriteCommentBtn = ({
+  handleCreateComment,
+}: {
+  handleCreateComment: () => void;
+}) => {
+  return <WriteComment onClick={handleCreateComment}>작성</WriteComment>;
 };

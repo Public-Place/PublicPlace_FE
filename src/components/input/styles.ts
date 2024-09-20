@@ -166,3 +166,25 @@ export const SearchContainer = styled.input.attrs({
   color: white;
   background-color: transparent;
 `;
+
+export const CommentInputContainer = styled.input.attrs({
+  type: "text",
+  placeholder: "댓글을 입력해주세요.",
+})`
+  width: 100%;
+  height: 1rem;
+
+  padding: 0.5rem 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.7rem;
+
+  border: 1px solid white;
+  border-radius: 0.5rem;
+
+  color: white;
+  background-color: transparent;
+`;

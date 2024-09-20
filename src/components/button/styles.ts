@@ -215,3 +215,26 @@ export const Category = styled.div<{ isClicked: boolean }>`
     cursor: pointer;
   }
 `;
+
+export const WriteComment = styled.div`
+  width: 100%;
+  height: fit-content;
+
+  padding: 0.5rem 0.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid white;
+  border-radius: 0.5rem;
+
+  font-size: 0.7rem;
+  font-weight: bold;
+
+  background-color: ${BtnColor};
+
+  &:hover {
+    cursor: pointer;
+  }
+`;

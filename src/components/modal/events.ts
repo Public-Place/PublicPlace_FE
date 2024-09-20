@@ -14,7 +14,7 @@ import {
 import { NickNameCheckAPI } from "../../services/api/checkDuplication/NickNameCheckAPI";
 import { TelCheckAPI } from "../../services/api/checkDuplication/TelCheckAPI";
 import Profile from "../../assets/images/Profile.png";
-import { S3API } from "../../services/api/s3/S3API";
+import { DefaultProfileS3API, S3API } from "../../services/api/s3/S3API";
 import { SignUpDto } from "../../dtos/signUp/SignUpDto";
 import { SignUpAPI } from "../../services/api/signUp/SignUpAPI";
 import { LocalSignInAPI } from "../../services/api/signIn/LocalSignInAPI";
@@ -114,7 +114,7 @@ export const useSignUpModalEvent = ({
 
   // s3 이미지 변환 로직
   const handleTransformImg = async () => {
-    const defaultProfile = await S3API(Profile);
+    const defaultProfile = await DefaultProfileS3API(Profile);
     return defaultProfile;
   };
 

@@ -22,7 +22,10 @@ export const Paging = ({ pageNum, setPageNum }: PagingType) => {
           <SpecificPage
             key={num}
             onClick={() => handlePageClick(num)}
-            style={{ fontWeight: pageNum === num ? "bold" : "normal" }}
+            style={{
+              fontWeight: pageNum === num ? "bold" : "normal",
+              fontSize: pageNum === num ? "1.3rem" : "1rem",
+            }}
           >
             {num}
           </SpecificPage>

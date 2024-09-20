@@ -8,6 +8,7 @@ import {
   Tel,
   Profile,
   SearchContainer,
+  CommentInputContainer,
 } from "./styles";
 import { ProfileInputType, SignUpInputType } from "./types";
 import { LuRefreshCcw } from "react-icons/lu";
@@ -379,5 +380,19 @@ export const SearchPost = () => {
         }}
       />
     </div>
+  );
+};
+
+// 댓글 입력창
+export const CommentInput = ({ value, setValue }: SignUpInputType) => {
+  return (
+    <CommentInputContainer
+      value={value}
+      onChange={(e) => {
+        if (setValue) {
+          setValue(e.target.value);
+        }
+      }}
+    />
   );
 };

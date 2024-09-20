@@ -82,7 +82,7 @@ export const UpdateMyInfo = () => {
       } else if (user?.loginApproach === "Kakao-Login") {
         setIsLocalUser(false);
       }
-      setProfileImage(user?.profileImg || "error");
+      setProfileImage(user?.profileImg);
       setNickname(user?.nickname);
       setTel(user?.phoneNumber);
       setGender(user?.gender);
