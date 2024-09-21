@@ -28,6 +28,7 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
     setIsSignUpModalOpen,
     handleSignUp,
     handleGoToBoard,
+    handleGoToWritePost,
     handleGoToMyInfo,
     handleGoToUpdateMyInfo,
   } = useNavigationEvent({ setIsSignIn, toggleNav });
@@ -57,7 +58,7 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
           <Summary>&nbsp;&nbsp;Board</Summary>
           <Ul>
             <Li onClick={handleGoToBoard}>게시판</Li>
-            <Li>게시글 작성</Li>
+            <Li onClick={handleGoToWritePost}>게시글 작성</Li>
           </Ul>
         </Details>
         <Details open>

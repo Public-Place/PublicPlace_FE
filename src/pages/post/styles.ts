@@ -383,3 +383,79 @@ export const CommentBtnArea = styled.div`
 
   background-color: transparent;
 `;
+
+export const WriteInfo = styled.div<{ align?: string }>`
+  width: 100%;
+  height: fit-content;
+
+  padding: 1rem 0rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: ${(props) => props.align || "start"};
+  flex-direction: row;
+
+  background-color: transparent;
+`;
+
+export const WriteCategory = styled.div`
+  width: 7rem;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: transparent;
+`;
+
+export const WriteName = styled.div`
+  width: 10rem;
+  height: fit-content;
+
+  margin-left: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: transparent;
+`;
+
+export const WriteTitle = styled.div`
+  width: 100%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+
+  background-color: transparent;
+`;
+
+export const WriteContent = styled.div`
+  width: 55%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+
+  background-color: transparent;
+`;
+
+export const WriteImage = styled.div`
+  width: 40%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+
+  background-color: transparent;
+`;

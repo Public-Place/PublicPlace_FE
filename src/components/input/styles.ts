@@ -107,7 +107,7 @@ export const Select = styled.select`
   width: 100%;
   height: fit-content;
 
-  padding: 0.3rem 0.2rem;
+  padding: 0.4rem 0.2rem;
 
   color: white;
   background-color: ${ModalColor};
@@ -187,4 +187,61 @@ export const CommentInputContainer = styled.input.attrs({
 
   color: white;
   background-color: transparent;
+`;
+
+export const Title = styled.input.attrs({
+  type: "text",
+  placeholder: "제목을 작성해주세요.",
+})`
+  width: calc(100% - 1.4rem);
+  height: fit-content;
+
+  padding: 0.5rem 0.7rem;
+
+  color: white;
+  background-color: ${ModalColor};
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+
+  font-size: 0.7rem;
+`;
+
+export const Content = styled.textarea.attrs({
+  placeholder: "내용을 작성해주세요.",
+})`
+  width: calc(100% - 1.4rem);
+  height: 13rem;
+
+  padding: 0.5rem 0.7rem;
+
+  color: white;
+  background-color: ${ModalColor};
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+
+  font-size: 0.7rem;
+  resize: none; // 크기 조절을 막고 싶을 경우 사용
+`;
+
+export const PostImage = styled.div<{ src?: string }>`
+  width: calc(100% - 1.4rem);
+  height: 13rem;
+
+  padding: 0.5rem 0.7rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+
+  background-image: ${(props) => `url(${props.src})`};
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

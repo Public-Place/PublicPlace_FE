@@ -6,6 +6,7 @@ import MyInfo from "../pages/myinfo/MyInfo";
 import { UpdateMyInfo } from "../pages/updateMyInfo/UpdateMyInfo";
 import Board from "../pages/board/Board";
 import Post from "../pages/post/Post";
+import WritePost from "../pages/post/WritePost";
 
 /*
   페이지 경로 이름 작성 규칙
@@ -33,6 +34,11 @@ export const router = createBrowserRouter([
         // 게시판 페이지
         path: "/board",
         element: <Board />,
+      },
+      {
+        // 게시글 작성 페이지
+        path: "/writepost",
+        element: <WritePost />,
       },
       {
         // 게시글 페이지
