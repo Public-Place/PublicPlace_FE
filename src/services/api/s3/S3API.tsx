@@ -1,7 +1,11 @@
+import { useEffect, useState } from "react";
+import { PostType } from "../../../pages/board/types";
 import { axios } from "../../utils/axios";
+import { GetPostsAPI } from "../post/GetPostsAPI";
 import { GetUserAPI } from "../user/GetUserAPI";
+import { useBoardEvent } from "../../../pages/board/events";
 
-// .png -> url
+// 프로필 이미지 수정
 export const S3API = async (Profile: any) => {
   // 이미지 파일을 Blob으로 변환
   const getFileBlob = async (url: string): Promise<Blob> => {
@@ -24,14 +28,14 @@ export const S3API = async (Profile: any) => {
 
   try {
     const response = await axios.post(`/api/files/upload`, formData);
-    console.log("s3 이미지 변환 성공", response.data);
+    // console.log("s3 이미지 변환 성공", response.data);
     return response.data;
   } catch (error) {
-    console.log("s3 이미지 변환 실패", error);
+    // console.log("s3 이미지 변환 실패", error);
   }
 };
 
-// .png -> url (회원가입 시에만 사용)
+// 회원가입 시 기본 프로필 이미지 설정
 export const DefaultProfileS3API = async (Profile: any) => {
   // 이미지 파일을 Blob으로 변환
   const getFileBlob = async (url: string): Promise<Blob> => {
@@ -43,6 +47,45 @@ export const DefaultProfileS3API = async (Profile: any) => {
   const profileBlob = await getFileBlob(Profile);
   const formData = new FormData();
   formData.append("file", profileBlob, "DefaultProfile.png");
+
+  try {
+    const response = await axios.post(`/api/files/upload`, formData);
+    // console.log("s3 이미지 변환 성공", response.data);
+    return response.data;
+  } catch (error) {
+    // console.log("s3 이미지 변환 실패", error);
+  }
+};
+
+// 게시글 작성 시 이미지 설정
+export const PostImageS3API = async (Profile: any) => {
+  // 이미지 파일을 Blob으로 변환
+  const getFileBlob = async (url: string): Promise<Blob> => {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return blob;
+  };
+
+  const category = "전체";
+  const sortBy = "createdAt";
+  const pageNum = 1;
+
+  const postArray = await GetPostsAPI({ category, sortBy, pageNum });
+
+  // postArray에서 가장 큰 postId 찾기
+  const maxPostId = postArray.reduce(
+    (maxId: number, post: { postId: number }) => {
+      return post.postId > maxId ? post.postId : maxId;
+    },
+    0
+  ); // 초기값 0 설정
+
+  // postId + 1을 파일 이름으로 설정
+  const newPostId = maxPostId + 1;
+
+  const postBlob = await getFileBlob(Profile);
+  const formData = new FormData();
+  formData.append("file", postBlob, `post_image_${newPostId}.png`);
 
   try {
     const response = await axios.post(`/api/files/upload`, formData);

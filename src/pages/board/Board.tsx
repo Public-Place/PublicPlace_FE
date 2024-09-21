@@ -62,10 +62,6 @@ export default function Board() {
   useEffect(() => {
     if (category && sortBy && pageNum) {
       handleGetPosts();
-      // console.log("category : ", category);
-      // console.log("sortBy : ", sortBy);
-      // console.log("pageNum : ", pageNum);
-      // console.log("postName : ", postName);
     }
   }, [category, sortBy, pageNum, postName]);
 

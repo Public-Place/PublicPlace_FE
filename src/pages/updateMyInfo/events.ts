@@ -33,7 +33,6 @@ export const useUpdateMyInfoEvent = () => {
       reader.onload = () => {
         if (typeof reader.result === "string") {
           setProfileImage(reader.result);
-          console.log("reader.result :", reader.result);
         }
       };
       reader.readAsDataURL(file);
@@ -173,13 +172,6 @@ export const useUpdateMyInfoEvent = () => {
 
   // '내 정보 수정 페이지' 내부의 확인 버튼 클릭 시
   const handleUpdateInfo = async () => {
-    // console.log("닉네임 : " + nickname);
-    // console.log("전화번호 : " + tel);
-    // console.log("성별 : " + gender);
-    // console.log("주발 : " + foot);
-    // console.log("선호 포지션 : " + position);
-    // console.log("프로필 이미지 : " + profileImage);
-
     // 기본 프로필 이미지일 경우 S3에 업로드하지 않음
     const isDefaultProfileImage =
       profileImage ===

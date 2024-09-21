@@ -9,6 +9,11 @@ export interface ProfileInputType {
   handleProfileClick: () => void;
 }
 
+export interface PostImageInputType {
+  src: string;
+  handlePostImageClick: () => void;
+}
+
 export interface SearchPostType {
   value?: string;
   setValue?: (value: string) => void;

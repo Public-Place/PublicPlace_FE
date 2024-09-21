@@ -45,6 +45,18 @@ export const useNavigationEvent = ({
     }
   };
 
+  // '게시글 작성' 클릭 시
+  const handleGoToWritePost = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      navigator("/writepost");
+      toggleNav();
+    } else {
+      alert("로그인 시 이용 가능합니다.");
+    }
+  };
+
   // '내 정보' 클릭 시
   const handleGoToMyInfo = () => {
     const token = localStorage.getItem("token");
@@ -78,6 +90,7 @@ export const useNavigationEvent = ({
     setIsSignUpModalOpen,
     handleSignUp,
     handleGoToBoard,
+    handleGoToWritePost,
     handleGoToMyInfo,
     handleGoToUpdateMyInfo,
   };
