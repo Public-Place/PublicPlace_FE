@@ -4,3 +4,7 @@ export interface GetPostsAPIType {
   pageNum: number;
   postName?: string;
 }
+
+export interface PostIdType {
+  postId: number;
+}

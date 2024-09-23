@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MobileScreen } from "../../constants/FixValues";
+import { MobileScreen, ModalColor } from "../../constants/FixValues";
 
 export const ModalTitle = styled.div`
   width: 20rem;
@@ -57,5 +57,50 @@ export const ModalButton = styled.div`
 
   @media (max-width: ${MobileScreen}) {
     width: 15rem;
+  }
+`;
+
+export const KebabContainer = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  padding: 0.5rem 0.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  gap: 0.5rem;
+
+  background-color: ${ModalColor};
+  color: white;
+
+  border: 1px solid white;
+  border-radius: 1rem;
+
+  position: absolute;
+  top: 35px;
+  right: 0px;
+`;
+
+export const KebabContent = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  padding: 0.5rem 1rem;
+
+  white-space: nowrap;
+
+  background-color: transparent;
+
+  font-weight: bold;
+
+  &:hover {
+    cursor: pointer;
+
+    border-radius: 0.5rem;
+
+    background-color: gray;
   }
 `;

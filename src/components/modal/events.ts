@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { KakaoSignInAPI } from "../../services/api/signIn/KakaoSignInAPI";
 import {
   CheckDuplicationType,
+  KebabModalType,
   SignUpModalType,
   useSignInModalEventType,
 } from "./types";
@@ -14,10 +15,12 @@ import {
 import { NickNameCheckAPI } from "../../services/api/checkDuplication/NickNameCheckAPI";
 import { TelCheckAPI } from "../../services/api/checkDuplication/TelCheckAPI";
 import Profile from "../../assets/images/Profile.png";
-import { DefaultProfileS3API, S3API } from "../../services/api/s3/S3API";
+import { DefaultProfileS3API } from "../../services/api/s3/S3API";
 import { SignUpDto } from "../../dtos/signUp/SignUpDto";
 import { SignUpAPI } from "../../services/api/signUp/SignUpAPI";
 import { LocalSignInAPI } from "../../services/api/signIn/LocalSignInAPI";
+import { DeletePostAPI } from "../../services/api/post/DeletePostAPI";
+import { useNavigate } from "react-router-dom";
 
 // 로그인 창 내부 상태 및 핸들러
 export const useSignInModalEvent = ({
@@ -321,4 +324,25 @@ export const useSignUpModalEvent = ({
     telMsg,
     getTelMsgColor,
   };
+};
+
+// 케밥 버튼 Modal 내부 상태 및 핸들러
+export const useKebabModalEvent = () => {
+  const navigate = useNavigate();
+  const handleClickDelete = async ({ postId }: KebabModalType) => {
+    if (window.confirm("정말로 게시글을 삭제하시겠습니까?")) {
+      const result = await DeletePostAPI({ postId });
+      if (result.success) {
+        alert(result.msg);
+        navigate("/board");
+        window.location.reload();
+      } else {
+        alert(result.msg);
+      }
+    } else {
+      return;
+    }
+  };
+
+  return { handleClickDelete };
 };

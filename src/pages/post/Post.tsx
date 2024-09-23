@@ -40,6 +40,7 @@ import { CommentInput } from "../../components/input/Input";
 import { WriteCommentBtn } from "../../components/button/Button";
 import { usePostEvent } from "./events";
 import { useEffect } from "react";
+import { KebabModal } from "../../components/modal/Modal";
 
 export default function Post() {
   // 클릭한 게시글의 postId
@@ -53,6 +54,8 @@ export default function Post() {
     setNewComment,
     handleCreateComment,
     handleDeleteComment,
+    isKebabOpen,
+    handleClickKebab,
   } = usePostEvent({ postId });
 
   useEffect(() => {
@@ -69,7 +72,12 @@ export default function Post() {
             <PostTitle>{postInfo?.title}</PostTitle>
           </PostHeaderLeft>
           <PostHeaderRight>
-            <FaEllipsisVertical size={25} style={{ cursor: "pointer" }} />
+            <FaEllipsisVertical
+              size={25}
+              style={{ cursor: "pointer" }}
+              onClick={handleClickKebab}
+            />
+            {isKebabOpen && <KebabModal postId={postId} />}
           </PostHeaderRight>
         </PostHeader>
         <PostDetail>
@@ -108,7 +116,14 @@ export default function Post() {
             <PostComments>댓글 수 {postInfo?.commentCount}</PostComments>
           </PostDetailRight>
         </PostDetail>
-        <PostContent>{postInfo?.content}</PostContent>
+        <PostContent>
+          {postInfo?.content?.split("\n").map((line, index) => (
+            <span key={index} style={{ margin: "0.25rem 0rem" }}>
+              {line}
+              <br />
+            </span>
+          ))}
+        </PostContent>
         <PostImage>
           {postInfo?.postImg && postInfo.postImg.startsWith("http") ? (
             <img

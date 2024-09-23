@@ -66,13 +66,15 @@ export const PostHeaderLeft = styled.div`
 `;
 
 export const PostHeaderRight = styled.div`
-  width: 10%;
+  width: fit-content;
   height: fit-content;
 
   display: flex;
   align-items: center;
   justify-content: end;
   flex-direction: row;
+
+  position: relative;
 
   background-color: transparent;
 `;
@@ -85,6 +87,8 @@ export const PostCategory = styled.div`
 
   font-size: 1.8rem;
   font-weight: bold;
+
+  white-space: nowrap;
 
   background-color: transparent;
 `;
@@ -212,9 +216,12 @@ export const PostContent = styled.div`
 
   padding: 1.5rem 0rem;
 
+  white-space: "pre-wrap";
+
   display: flex;
   align-items: start;
   justify-content: start;
+  flex-direction: column;
 
   background-color: transparent;
 `;

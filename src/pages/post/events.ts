@@ -6,8 +6,6 @@ import { DeletePostCommentAPI } from "../../services/api/comment/DeletePostComme
 import { PostImageS3API } from "../../services/api/s3/S3API";
 import { CreatePostDto } from "../../dtos/post/CreatePostDto";
 import { useNavigate } from "react-router-dom";
-import { PostType } from "../board/types";
-import { GetPostsAPI } from "../../services/api/post/GetPostsAPI";
 import { CreatePostAPI } from "../../services/api/post/CreatePostAPI";
 
 export const usePostEvent = ({ postId }: { postId: number }) => {
@@ -43,6 +41,14 @@ export const usePostEvent = ({ postId }: { postId: number }) => {
     }
   };
 
+  // 케밥 Modal 관리 상태
+  const [isKebabOpen, setIsKebabOpen] = useState(false);
+
+  // 케밥 버튼 클릭 시
+  const handleClickKebab = () => {
+    setIsKebabOpen((prev) => !prev);
+  };
+
   return {
     postInfo,
     handleGetPostInfo,
@@ -50,6 +56,8 @@ export const usePostEvent = ({ postId }: { postId: number }) => {
     setNewComment,
     handleCreateComment,
     handleDeleteComment,
+    isKebabOpen,
+    handleClickKebab,
   };
 };
 
@@ -115,9 +123,15 @@ export const useWritePostEvent = () => {
           title: postTitle,
         };
 
-        CreatePostAPI(CreatePostData);
-        navigator("/board");
-        window.location.reload();
+        const result = await CreatePostAPI(CreatePostData);
+
+        if (result.success) {
+          alert("게시글 작성 완료");
+          navigator("/board");
+          // window.location.reload();
+        } else {
+          alert("게시글 작성 실패");
+        }
       } else {
         return;
       }
