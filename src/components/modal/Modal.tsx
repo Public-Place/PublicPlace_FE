@@ -1,7 +1,14 @@
 import Modal from "react-modal";
-import { SignInModalType, SignUpModalType } from "./types";
+import { KebabModalType, SignInModalType, SignUpModalType } from "./types";
 import { InputTitle, SignInTitle, SignUpTitle } from "../text/Text";
-import { ModalButton, ModalInput, ModalSelect, ModalTitle } from "./styles";
+import {
+  KebabContainer,
+  KebabContent,
+  ModalButton,
+  ModalInput,
+  ModalSelect,
+  ModalTitle,
+} from "./styles";
 import { ModalColor } from "../../constants/FixValues";
 import {
   AgeRangeInput,
@@ -24,7 +31,11 @@ import {
   SignUpBtnInModal,
   SuccessBtn,
 } from "../button/Button";
-import { useSignInModalEvent, useSignUpModalEvent } from "./events";
+import {
+  useKebabModalEvent,
+  useSignInModalEvent,
+  useSignUpModalEvent,
+} from "./events";
 
 // 로그인 창
 export const SignInModal = ({
@@ -286,5 +297,19 @@ export const SignUpModal = ({
         </ModalButton>
       </div>
     </Modal>
+  );
+};
+
+/* -------------------------------------------------------------------------------- */
+// 게시글 페이지 케밥 버튼
+export const KebabModal = ({ postId }: KebabModalType) => {
+  const { handleClickDelete } = useKebabModalEvent();
+  return (
+    <KebabContainer>
+      <KebabContent>수정하기</KebabContent>
+      <KebabContent onClick={() => handleClickDelete({ postId })}>
+        삭제하기
+      </KebabContent>
+    </KebabContainer>
   );
 };

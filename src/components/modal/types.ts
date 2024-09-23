@@ -21,3 +21,7 @@ export interface useSignInModalEventType {
   setIsSignInModalOpen: Dispatch<SetStateAction<boolean>>; // 상태 관리 Type
   setIsSignIn: Dispatch<SetStateAction<boolean>>;
 }
+
+export interface KebabModalType {
+  postId: number;
+}
