@@ -3,10 +3,16 @@ import { GetPostDetailAPI } from "../../services/api/post/GetPostDetailAPI";
 import { newCommentType, PostInfoType } from "./types";
 import { CreatePostCommentAPI } from "../../services/api/comment/CreatePostCommentAPI";
 import { DeletePostCommentAPI } from "../../services/api/comment/DeletePostCommentAPI";
-import { PostImageS3API } from "../../services/api/s3/S3API";
-import { CreatePostDto } from "../../dtos/post/CreatePostDto";
+import {
+  CreatePostImageS3API,
+  UpdatePostImageS3API,
+} from "../../services/api/s3/S3API";
+import { PostDto } from "../../dtos/post/PostDto";
 import { useNavigate } from "react-router-dom";
 import { CreatePostAPI } from "../../services/api/post/CreatePostAPI";
+import { UpdatePostAPI } from "../../services/api/post/UpdatePostAPI";
+import { GetUserAPI } from "../../services/api/user/GetUserAPI";
+import { LikePostAPI } from "../../services/api/post/LikePostAPI";
 
 export const usePostEvent = ({ postId }: { postId: number }) => {
   const [postInfo, setPostInfo] = useState<PostInfoType>();
@@ -49,6 +55,39 @@ export const usePostEvent = ({ postId }: { postId: number }) => {
     setIsKebabOpen((prev) => !prev);
   };
 
+  // 작성자 본인 인증 여부
+  const [isWriter, setIsWriter] = useState(true);
+
+  // 작성자 본인 인증 로직 (중복 불가능한 닉네임을 활용)
+  const handleAuthWriter = async () => {
+    const userInfo = await GetUserAPI();
+    if (userInfo.nickname === postInfo?.authorNickname) {
+      setIsWriter(true);
+    } else {
+      setIsWriter(false);
+    }
+  };
+
+  // 추천 버튼 클릭 상태
+  const [isClickedLike, setIsClickedLike] = useState(false);
+
+  // 추천 버튼 클릭 로직
+  const handleClickLike = async () => {
+    const result = await LikePostAPI({ postId });
+    console.log("result : ", result);
+    if (result.msg === "좋아요가 추가되었습니다.") {
+      setIsClickedLike(true);
+      setTimeout(() => {
+        setIsClickedLike(false);
+        window.location.reload();
+      }, 100);
+    } else if (result.msg === "좋아요가 취소되었습니다") {
+      alert("이미 좋아요를 누른 게시글입니다. 좋아요가 취소되었습니다.");
+      setIsClickedLike(false);
+      window.location.reload();
+    }
+  };
+
   return {
     postInfo,
     handleGetPostInfo,
@@ -58,6 +97,10 @@ export const usePostEvent = ({ postId }: { postId: number }) => {
     handleDeleteComment,
     isKebabOpen,
     handleClickKebab,
+    isWriter,
+    handleAuthWriter,
+    isClickedLike,
+    handleClickLike,
   };
 };
 
@@ -114,9 +157,9 @@ export const useWritePostEvent = () => {
     } else {
       if (window.confirm("게시글을 작성하시겠습니까?")) {
         // 게시글 이미지를 선택하지 않았다면 S3API 사용 X
-        const postImg = postImage ? await PostImageS3API(postImage) : "";
+        const postImg = postImage ? await CreatePostImageS3API(postImage) : "";
 
-        const CreatePostData: CreatePostDto = {
+        const CreatePostData: PostDto = {
           category: postCategory,
           content: postContent,
           postImg: postImg,
@@ -128,13 +171,59 @@ export const useWritePostEvent = () => {
         if (result.success) {
           alert("게시글 작성 완료");
           navigator("/board");
-          // window.location.reload();
+          window.location.reload();
         } else {
           alert("게시글 작성 실패");
         }
       } else {
         return;
       }
+    }
+  };
+
+  // '수정' 클릭 시
+  const handleClickUpdatePostBtn = async ({ postId }: { postId: number }) => {
+    if (!CheckEssentialValues) {
+      return;
+    } else {
+      if (window.confirm("게시글을 수정하시겠습니까?")) {
+        // 게시글 이미지를 선택하지 않았다면 S3API 사용 X
+        const postImg = postImage
+          ? await UpdatePostImageS3API(postImage, postId)
+          : "";
+
+        const UpdatePostData: PostDto = {
+          category: postCategory,
+          content: postContent,
+          postImg: postImg,
+          title: postTitle,
+        };
+
+        const result = await UpdatePostAPI({ postId, UpdatePostData });
+        if (result.success) {
+          alert("게시글 수정 완료");
+          navigator("/post", { state: postId });
+          window.location.reload();
+        } else {
+          alert("게시글 수정 실패");
+        }
+      } else {
+        return;
+      }
+    }
+  };
+
+  const [AboveText, setAboveText] = useState("");
+  const [btnValue, setBtnValue] = useState("");
+
+  // 게시글 상단 text와 버튼 value 값
+  const handleToggleValue = ({ postId }: { postId: number }) => {
+    if (postId) {
+      setAboveText("게시글 수정");
+      setBtnValue("수정");
+    } else {
+      setAboveText("게시글 작성");
+      setBtnValue("작성");
     }
   };
 
@@ -151,5 +240,9 @@ export const useWritePostEvent = () => {
     handlePostImageClick,
     handleFileChange,
     handleClickWritePostBtn,
+    handleClickUpdatePostBtn,
+    AboveText,
+    btnValue,
+    handleToggleValue,
   };
 };

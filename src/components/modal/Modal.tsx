@@ -303,10 +303,12 @@ export const SignUpModal = ({
 /* -------------------------------------------------------------------------------- */
 // 게시글 페이지 케밥 버튼
 export const KebabModal = ({ postId }: KebabModalType) => {
-  const { handleClickDelete } = useKebabModalEvent();
+  const { handleClickUpdate, handleClickDelete } = useKebabModalEvent();
   return (
     <KebabContainer>
-      <KebabContent>수정하기</KebabContent>
+      <KebabContent onClick={() => handleClickUpdate({ postId })}>
+        수정하기
+      </KebabContent>
       <KebabContent onClick={() => handleClickDelete({ postId })}>
         삭제하기
       </KebabContent>

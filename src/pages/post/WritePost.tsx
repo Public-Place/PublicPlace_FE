@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { InputTitle, PageCenterText } from "../../components/text/Text";
 import {
   Advertisement,
@@ -19,11 +19,16 @@ import {
   TitleInput,
 } from "../../components/input/Input";
 import { WritePostBtn } from "../../components/button/Button";
-import { useWritePostEvent } from "./events";
+import { usePostEvent, useWritePostEvent } from "./events";
 import { useMyInfoEvent } from "../myinfo/events";
+import { useLocation } from "react-router-dom";
 
 export default function WritePost() {
+  const location = useLocation();
+  const postId = location.state;
+
   const { user, GetUserInfo } = useMyInfoEvent();
+
   const {
     postCategory,
     setpostCategory,
@@ -32,21 +37,42 @@ export default function WritePost() {
     postContent,
     setPostContent,
     postImage,
+    setPostImage,
     postImageRef,
     handlePostImageClick,
     handleFileChange,
     handleClickWritePostBtn,
+    handleClickUpdatePostBtn,
+    AboveText,
+    btnValue,
+    handleToggleValue,
   } = useWritePostEvent();
+
+  const { postInfo, handleGetPostInfo } = usePostEvent({ postId });
 
   useEffect(() => {
     GetUserInfo();
+    handleToggleValue({ postId });
+
+    if (postId) {
+      handleGetPostInfo();
+    }
   }, []);
+
+  useEffect(() => {
+    if (postInfo) {
+      setpostCategory(postInfo.category);
+      setPostTitle(postInfo.title);
+      setPostContent(postInfo.content);
+      setPostImage(postInfo.postImg);
+    }
+  }, [postInfo]);
 
   return (
     <Container>
       <Advertisement></Advertisement>
       <Wrapper>
-        <PageCenterText text={"게시글 작성"} />
+        <PageCenterText text={AboveText} />
         <hr
           style={{ width: "100%", margin: "0rem 0rem", marginBottom: "1rem" }}
         />
@@ -90,8 +116,12 @@ export default function WritePost() {
         </WriteInfo>
         <WriteInfo align="center">
           <WritePostBtn
-            text={"작성"}
-            handleClickWritePostBtn={handleClickWritePostBtn}
+            text={btnValue}
+            handleClickPostBtn={
+              btnValue === "작성"
+                ? handleClickWritePostBtn
+                : () => handleClickUpdatePostBtn({ postId })
+            }
           />
         </WriteInfo>
       </Wrapper>

@@ -219,6 +219,8 @@ export const Content = styled.textarea.attrs({
   border: 1px solid lightgray;
   border-radius: 0.3rem;
 
+  font-family: inherit; /* 동일한 글씨체 */
+
   font-size: 0.7rem;
   resize: none; // 크기 조절을 막고 싶을 경우 사용
 `;

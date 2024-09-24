@@ -34,6 +34,7 @@ import {
   WriteComment,
 } from "./styles";
 import { FaEllipsisVertical } from "react-icons/fa6";
+import { MdThumbUpAlt, MdThumbUpOffAlt } from "react-icons/md";
 import { GoTrash } from "react-icons/go";
 import { InputTitle } from "../../components/text/Text";
 import { CommentInput } from "../../components/input/Input";
@@ -56,11 +57,19 @@ export default function Post() {
     handleDeleteComment,
     isKebabOpen,
     handleClickKebab,
+    isWriter,
+    handleAuthWriter,
+    isClickedLike,
+    handleClickLike,
   } = usePostEvent({ postId });
 
   useEffect(() => {
     handleGetPostInfo();
   }, []);
+
+  useEffect(() => {
+    handleAuthWriter();
+  }, [postInfo]);
 
   return (
     <Container>
@@ -71,14 +80,32 @@ export default function Post() {
             <PostCategory>{postInfo?.category}</PostCategory>
             <PostTitle>{postInfo?.title}</PostTitle>
           </PostHeaderLeft>
-          <PostHeaderRight>
-            <FaEllipsisVertical
-              size={25}
-              style={{ cursor: "pointer" }}
-              onClick={handleClickKebab}
-            />
-            {isKebabOpen && <KebabModal postId={postId} />}
-          </PostHeaderRight>
+          {isWriter ? (
+            <PostHeaderRight>
+              <FaEllipsisVertical
+                size={25}
+                style={{ cursor: "pointer" }}
+                onClick={handleClickKebab}
+              />
+              {isKebabOpen && <KebabModal postId={postId} />}
+            </PostHeaderRight>
+          ) : (
+            <PostHeaderRight>
+              {isClickedLike ? (
+                <MdThumbUpAlt
+                  size={25}
+                  style={{ cursor: "pointer" }}
+                  onClick={handleClickLike}
+                />
+              ) : (
+                <MdThumbUpOffAlt
+                  size={25}
+                  style={{ cursor: "pointer" }}
+                  onClick={handleClickLike}
+                />
+              )}
+            </PostHeaderRight>
+          )}
         </PostHeader>
         <PostDetail>
           <PostDetailLeft>

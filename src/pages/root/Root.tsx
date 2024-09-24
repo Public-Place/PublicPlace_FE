@@ -12,11 +12,6 @@ export default function Root() {
   // 내비게이션 관련 함수 및 상태
   const { toggleNav, isClosing, isNavOpen } = useRootEvents();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    console.log("token : ", token);
-  }, []);
-
   return (
     <Container>
       {!isNavOpen && <HambergerBtn toggleNav={toggleNav} />}

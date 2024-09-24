@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
-import { PostType } from "../../../pages/board/types";
 import { axios } from "../../utils/axios";
 import { GetPostsAPI } from "../post/GetPostsAPI";
 import { GetUserAPI } from "../user/GetUserAPI";
-import { useBoardEvent } from "../../../pages/board/events";
 
 // 프로필 이미지 수정
 export const S3API = async (Profile: any) => {
@@ -58,7 +55,7 @@ export const DefaultProfileS3API = async (Profile: any) => {
 };
 
 // 게시글 작성 시 이미지 설정
-export const PostImageS3API = async (Profile: any) => {
+export const CreatePostImageS3API = async (PostImage: any) => {
   // 이미지 파일을 Blob으로 변환
   const getFileBlob = async (url: string): Promise<Blob> => {
     const response = await fetch(url);
@@ -71,6 +68,7 @@ export const PostImageS3API = async (Profile: any) => {
   const pageNum = 1;
 
   const postArray = await GetPostsAPI({ category, sortBy, pageNum });
+  console.log(postArray);
 
   // postArray에서 가장 큰 postId 찾기
   const maxPostId = postArray.reduce(
@@ -83,9 +81,36 @@ export const PostImageS3API = async (Profile: any) => {
   // postId + 1을 파일 이름으로 설정
   const newPostId = maxPostId + 1;
 
-  const postBlob = await getFileBlob(Profile);
+  const postBlob = await getFileBlob(PostImage);
   const formData = new FormData();
   formData.append("file", postBlob, `post_image_${newPostId}.png`);
+
+  try {
+    const response = await axios.post(`/api/files/upload`, formData);
+    // console.log("s3 이미지 변환 성공", response.data);
+    return response.data;
+  } catch (error) {
+    // console.log("s3 이미지 변환 실패", error);
+  }
+};
+
+// 게시글 수정 시 이미지 설정
+export const UpdatePostImageS3API = async (PostImage: any, postId: number) => {
+  // 이미지 파일을 Blob으로 변환
+  const getFileBlob = async (url: string): Promise<Blob> => {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return blob;
+  };
+
+  // 게시글 이미지가 URL일 경우 S3에 업로드하지 않고 바로 반환
+  if (PostImage.startsWith("http")) {
+    return PostImage;
+  }
+
+  const postBlob = await getFileBlob(PostImage);
+  const formData = new FormData();
+  formData.append("file", postBlob, `post_image_${postId}.png`);
 
   try {
     const response = await axios.post(`/api/files/upload`, formData);
