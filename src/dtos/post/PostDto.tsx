@@ -1,4 +1,4 @@
-export interface CreatePostDto {
+export interface PostDto {
   category: string;
   content: string;
   postImg: string;

@@ -329,6 +329,13 @@ export const useSignUpModalEvent = ({
 // 케밥 버튼 Modal 내부 상태 및 핸들러
 export const useKebabModalEvent = () => {
   const navigate = useNavigate();
+
+  // 수정하기 버튼 클릭 시
+  const handleClickUpdate = ({ postId }: KebabModalType) => {
+    navigate("/writepost", { state: postId });
+  };
+
+  // 삭제하기 버튼 클릭 시
   const handleClickDelete = async ({ postId }: KebabModalType) => {
     if (window.confirm("정말로 게시글을 삭제하시겠습니까?")) {
       const result = await DeletePostAPI({ postId });
@@ -344,5 +351,5 @@ export const useKebabModalEvent = () => {
     }
   };
 
-  return { handleClickDelete };
+  return { handleClickUpdate, handleClickDelete };
 };

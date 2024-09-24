@@ -194,13 +194,13 @@ export const WriteCommentBtn = ({
 // '게시글 작성 페이지' 내부의 작성하기 버튼
 export const WritePostBtn = ({
   text,
-  handleClickWritePostBtn,
+  handleClickPostBtn,
 }: {
   text: string;
-  handleClickWritePostBtn: () => void;
+  handleClickPostBtn: () => void;
 }) => {
   return (
-    <CreateAccountContainer onClick={handleClickWritePostBtn}>
+    <CreateAccountContainer onClick={handleClickPostBtn}>
       {text}
     </CreateAccountContainer>
   );

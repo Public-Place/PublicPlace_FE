@@ -64,14 +64,14 @@ export const KebabContainer = styled.div`
   width: fit-content;
   height: fit-content;
 
-  padding: 0.5rem 0.5rem;
+  padding: 0.3rem 0.3rem;
 
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 
-  gap: 0.5rem;
+  gap: 0.3rem;
 
   background-color: ${ModalColor};
   color: white;
@@ -94,12 +94,13 @@ export const KebabContent = styled.div`
 
   background-color: transparent;
 
+  font-size: 0.8rem;
   font-weight: bold;
 
   &:hover {
     cursor: pointer;
 
-    border-radius: 0.5rem;
+    border-radius: 0.7rem;
 
     background-color: gray;
   }
