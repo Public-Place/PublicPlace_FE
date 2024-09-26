@@ -11,6 +11,7 @@ import {
   BoardRules,
   Category,
   WriteComment,
+  Write,
 } from "./styles";
 import { FaBars, FaXmark, FaCheck, FaO } from "react-icons/fa6";
 import {
@@ -31,6 +32,7 @@ import {
   ErrorMsgColor,
   SuccessMsgColor,
 } from "../../constants/FixValues";
+import { LuPencilLine } from "react-icons/lu";
 
 // 햄버거 버튼
 export const HambergerBtn = ({ toggleNav }: HambergerBtnType) => {
@@ -160,9 +162,13 @@ export const CancleTeamJoinBtn = ({
 };
 
 // '게시판 페이지' 내부의 게시판 이용 수칙 버튼
-export const BoardRulesBtn = () => {
+export const BoardRulesBtn = ({
+  handleClickBoardRules,
+}: {
+  handleClickBoardRules: () => void;
+}) => {
   return (
-    <BoardRules>
+    <BoardRules onClick={handleClickBoardRules}>
       <IoInformationCircleOutline size={16} style={{ marginRight: "0.2rem" }} />
       게시판 이용 수칙
     </BoardRules>
@@ -179,6 +185,19 @@ export const CategoryBtn = ({
     <Category onClick={handleClick} isClicked={isClicked}>
       {text}
     </Category>
+  );
+};
+
+// '게시판 페이지' 내부의 게시글 작성 버튼
+export const WriteBtn = ({
+  handleGoToWritePost,
+}: {
+  handleGoToWritePost: () => void;
+}) => {
+  return (
+    <Write>
+      <LuPencilLine size={20} onClick={handleGoToWritePost} />
+    </Write>
   );
 };
 

@@ -52,6 +52,8 @@ export const Information = styled.div`
 
   border-bottom: 1px solid white;
   background-color: transparent;
+
+  position: relative;
 `;
 
 export const Filter = styled.div`

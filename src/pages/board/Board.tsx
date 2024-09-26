@@ -1,5 +1,9 @@
 import { useEffect } from "react";
-import { BoardRulesBtn, CategoryBtn } from "../../components/button/Button";
+import {
+  BoardRulesBtn,
+  CategoryBtn,
+  WriteBtn,
+} from "../../components/button/Button";
 import { SearchPost, SortPostInput } from "../../components/input/Input";
 import { PageLeftText } from "../../components/text/Text";
 import { useBoardEvent } from "./events";
@@ -26,6 +30,7 @@ import {
   Wrapper,
 } from "./styles";
 import { Paging } from "../../components/pagination/Paging";
+import { BoardRules } from "../../components/modal/Modal";
 
 export default function Board() {
   const {
@@ -49,6 +54,10 @@ export default function Board() {
     handleGetPosts,
     postName,
     setPostName,
+    handleGoToWritePost,
+    isBoardRulesOpen,
+    setIsBoardRulesOpen,
+    handleClickBoardRules,
   } = useBoardEvent();
 
   // 기본 카테고리는 '전체'로 설정
@@ -71,7 +80,12 @@ export default function Board() {
       <Wrapper>
         <Information>
           <PageLeftText text={"게시판"} />
-          <BoardRulesBtn />
+          <BoardRulesBtn handleClickBoardRules={handleClickBoardRules} />
+          <WriteBtn handleGoToWritePost={handleGoToWritePost} />
+          <BoardRules
+            isBoardRulesOpen={isBoardRulesOpen}
+            setIsBoardRulesOpen={setIsBoardRulesOpen}
+          />
         </Information>
         <Filter>
           <SearchLayer>

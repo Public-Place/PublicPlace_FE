@@ -105,3 +105,12 @@ export const KebabContent = styled.div`
     background-color: gray;
   }
 `;
+
+export const RulesDetail = styled.div`
+  width: 100%;
+  height: fit-content;
+
+  background-color: transparent;
+
+  font-size: 0.8rem;
+`;

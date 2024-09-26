@@ -68,7 +68,6 @@ export const CreatePostImageS3API = async (PostImage: any) => {
   const pageNum = 1;
 
   const postArray = await GetPostsAPI({ category, sortBy, pageNum });
-  console.log(postArray);
 
   // postArray에서 가장 큰 postId 찾기
   const maxPostId = postArray.reduce(

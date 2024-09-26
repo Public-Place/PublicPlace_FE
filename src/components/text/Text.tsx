@@ -10,6 +10,7 @@ import {
   UserInfo,
 } from "./styles";
 import { InputTitleType } from "./types";
+import { TbAlertSquareRounded } from "react-icons/tb";
 
 export const SignInTitle = () => {
   return <Title>로그인</Title>;
@@ -17,6 +18,15 @@ export const SignInTitle = () => {
 
 export const SignUpTitle = () => {
   return <Title>회원가입</Title>;
+};
+
+export const RulesTitle = () => {
+  return (
+    <Title>
+      <TbAlertSquareRounded size={25} />
+      <>게시판 이용 수칙</>
+    </Title>
+  );
 };
 
 export const InputTitle = ({ text, msg, msgColor }: InputTitleType) => {

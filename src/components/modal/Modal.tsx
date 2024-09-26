@@ -1,6 +1,11 @@
 import Modal from "react-modal";
-import { KebabModalType, SignInModalType, SignUpModalType } from "./types";
-import { InputTitle, SignInTitle, SignUpTitle } from "../text/Text";
+import {
+  BoardRulesType,
+  KebabModalType,
+  SignInModalType,
+  SignUpModalType,
+} from "./types";
+import { InputTitle, RulesTitle, SignInTitle, SignUpTitle } from "../text/Text";
 import {
   KebabContainer,
   KebabContent,
@@ -8,6 +13,7 @@ import {
   ModalInput,
   ModalSelect,
   ModalTitle,
+  RulesDetail,
 } from "./styles";
 import { ModalColor } from "../../constants/FixValues";
 import {
@@ -36,6 +42,7 @@ import {
   useSignInModalEvent,
   useSignUpModalEvent,
 } from "./events";
+import { useBoardEvent } from "../../pages/board/events";
 
 // 로그인 창
 export const SignInModal = ({
@@ -313,5 +320,112 @@ export const KebabModal = ({ postId }: KebabModalType) => {
         삭제하기
       </KebabContent>
     </KebabContainer>
+  );
+};
+
+// 게시판 이용 수칙 Modal
+export const BoardRules = ({
+  isBoardRulesOpen,
+  setIsBoardRulesOpen,
+}: BoardRulesType) => {
+  return (
+    <Modal
+      isOpen={isBoardRulesOpen}
+      onRequestClose={() => setIsBoardRulesOpen(false)}
+      style={{
+        overlay: {
+          backgroundColor: "rgba(0, 0, 0, 0.7)",
+        },
+        content: {
+          top: "50%",
+          left: "50%",
+          right: "auto",
+          bottom: "auto",
+          transform: "translate(-50%, -50%)",
+          width: "fit-content",
+          height: "30rem",
+          backgroundColor: ModalColor,
+          color: "white",
+          border: "1px solid lightgray",
+          borderRadius: "1rem",
+          padding: "1rem 2rem",
+        },
+      }}
+    >
+      <ModalTitle>
+        <RulesTitle />
+      </ModalTitle>
+      <ModalInput width={"25rem"}>
+        <InputTitle text="1. 예의 및 존중" />
+        <RulesDetail>
+          모든 사용자들은 서로를 존중하며 예의 있게 대화해야 합니다. 비방, 욕설,
+          차별적 발언, 혐오 표현은 금지됩니다.
+        </RulesDetail>
+      </ModalInput>
+      <ModalInput width={"25rem"}>
+        <InputTitle text="2. 불법 광고 및 스팸 금지" />
+        <RulesDetail>
+          광고, 스팸, 불법 홍보 행위는 허용되지 않습니다. 이를 위반할 경우 경고
+          없이 게시글이 삭제되거나 계정이 차단될 수 있습니다.
+        </RulesDetail>
+      </ModalInput>
+      <ModalInput width={"25rem"}>
+        <InputTitle text="3. 개인정보 보호" />
+        <RulesDetail>
+          본인이나 타인의 개인정보(주소, 전화번호, 이메일 등)를 게시하지 마세요.
+          개인정보 유출로 인한 피해는 본인이 책임져야 합니다.
+        </RulesDetail>
+      </ModalInput>
+      <ModalInput width={"25rem"}>
+        <InputTitle text="4. 저작권 준수" />
+        <RulesDetail>
+          저작권이 있는 콘텐츠(이미지, 음악, 글 등)를 무단으로 게시하지 마세요.
+          저작권 위반 시 법적 책임이 따를 수 있습니다.
+        </RulesDetail>
+      </ModalInput>
+      <ModalInput width={"25rem"}>
+        <InputTitle text="5. 게시물 주제 준수" />
+        <RulesDetail>
+          각 게시판에 맞는 주제로 글을 작성해 주세요.
+          <br />
+          주제에 맞지 않는 게시물은 예고 없이 이동되거나 삭제될 수 있습니다.
+        </RulesDetail>
+      </ModalInput>
+      <ModalInput width={"25rem"}>
+        <InputTitle text="6. 불법 행위 금지" />
+        <RulesDetail>
+          불법 행위(해킹, 불법 다운로드, 개인정보 도용 등)를 조장하거나 관련
+          정보를 공유하는 행위는 절대 금지됩니다.
+        </RulesDetail>
+      </ModalInput>
+      <ModalInput width={"25rem"}>
+        <InputTitle text="7. 중복 및 도배 금지" />
+        <RulesDetail>
+          같은 내용의 게시물을 반복적으로 올리거나 게시판을 도배하는 행위는
+          금지됩니다.
+        </RulesDetail>
+      </ModalInput>
+      <ModalInput width={"25rem"}>
+        <InputTitle text="8. 게시글 신고" />
+        <RulesDetail>
+          부적절한 게시물이나 댓글은 관리자에게 신고할 수 있습니다. 신고 시 빠른
+          시일 내에 적절한 조치를 취할 예정입니다.
+        </RulesDetail>
+      </ModalInput>
+      <ModalInput width={"25rem"}>
+        <InputTitle text="9. 운영 방침 준수" />
+        <RulesDetail>
+          운영진의 결정 및 공지사항을 존중하고 따르세요 규칙 위반 시 경고 또는
+          계정 차단 조치가 있을 수 있습니다.
+        </RulesDetail>
+      </ModalInput>
+      <ModalInput width={"25rem"}>
+        <InputTitle text="10. 이용 수칙 변경" />
+        <RulesDetail>
+          본 이용 수칙은 필요에 따라 사전 예고 없이 변경될 수 있으며, 변경된
+          내용은 게시판 공지사항을 통해 안내됩니다.
+        </RulesDetail>
+      </ModalInput>
+    </Modal>
   );
 };
