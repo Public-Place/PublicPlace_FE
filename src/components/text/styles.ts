@@ -4,6 +4,13 @@ export const Title = styled.div`
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row;
+
+  gap: 0.5rem;
 `;
 
 export const SmallTitle = styled.div`

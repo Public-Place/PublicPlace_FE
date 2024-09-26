@@ -25,3 +25,8 @@ export interface useSignInModalEventType {
 export interface KebabModalType {
   postId: number;
 }
+
+export interface BoardRulesType {
+  isBoardRulesOpen: boolean;
+  setIsBoardRulesOpen: Dispatch<SetStateAction<boolean>>;
+}

@@ -238,3 +238,22 @@ export const WriteComment = styled.div`
     cursor: pointer;
   }
 `;
+
+export const Write = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+
+  position: absolute;
+  bottom: 1.2rem;
+  right: 2rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;

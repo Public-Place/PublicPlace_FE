@@ -193,7 +193,7 @@ export default function MyInfo() {
                       style={{
                         width: "100%",
                         minWidth: "100%",
-                        height: "4rem",
+                        height: "6rem",
                         minHeight: "4rem",
                         objectFit: "cover",
                         borderRadius: "0.5rem",

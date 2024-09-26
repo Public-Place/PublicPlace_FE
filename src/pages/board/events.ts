@@ -87,6 +87,19 @@ export const useBoardEvent = () => {
     setPosts(postArray);
   };
 
+  // 우측 상단 게시글 작성 버튼 클릭 시
+  const handleGoToWritePost = () => {
+    navigate("/writepost");
+  };
+
+  // 게시판 이용 수칙 Modal show & hide 상태 관리
+  const [isBoardRulesOpen, setIsBoardRulesOpen] = useState(false);
+
+  // 게시판 이용 수칙 버튼 클릭 시
+  const handleClickBoardRules = () => {
+    setIsBoardRulesOpen(true);
+  };
+
   return {
     sortBy,
     setSortBy,
@@ -109,5 +122,9 @@ export const useBoardEvent = () => {
     handleGetPosts,
     postName,
     setPostName,
+    handleGoToWritePost,
+    isBoardRulesOpen,
+    setIsBoardRulesOpen,
+    handleClickBoardRules,
   };
 };
