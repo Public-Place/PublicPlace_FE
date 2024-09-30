@@ -60,3 +60,19 @@ export const SpecificPage = styled.span`
     cursor: pointer;
   }
 `;
+
+export const TeamPagination = styled.div`
+  width: 10rem;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 5rem);
+
+  background-color: transparent;
+`;

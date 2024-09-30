@@ -67,7 +67,6 @@ export default function Board() {
     setSortBy("createdAt");
   }, []);
 
-  // 테스트 코드
   useEffect(() => {
     if (category && sortBy && pageNum) {
       handleGetPosts();
@@ -104,7 +103,8 @@ export default function Board() {
               <SearchPost
                 value={postName}
                 setValue={setPostName}
-                handleGetPosts={handleGetPosts}
+                handler={handleGetPosts}
+                placeholder={"게시글 이름을 검색해주세요."}
               />
             </div>
           </SearchLayer>

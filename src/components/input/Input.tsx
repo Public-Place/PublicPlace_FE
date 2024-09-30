@@ -320,6 +320,25 @@ export const CategoryInput = ({ value, setValue }: SignUpInputType) => {
   );
 };
 
+// '팀 정렬 방식' 선택 콤보박스
+export const TeamSortInput = ({ value, setValue }: SignUpInputType) => {
+  return (
+    <Select
+      value={value}
+      onChange={(e) => {
+        if (setValue) {
+          setValue(e.target.value);
+        }
+      }}
+    >
+      <option value={"newest"}>최근 창단한 팀</option>
+      <option value={"oldest"}>가장 오래된 팀</option>
+      <option value={"averageAge"}>평균 연령대</option>
+      <option value={"memberCount"}>최다 회원 팀</option>
+    </Select>
+  );
+};
+
 /* --------------------------------------------------------------- */
 
 // 프로필 이미지 선택 버튼
@@ -349,7 +368,7 @@ export const PostImageInput = ({
 export const SearchPost = ({
   value,
   setValue,
-  handleGetPosts,
+  placeholder,
 }: SearchPostType) => {
   return (
     <div style={{ position: "relative" }}>
@@ -360,6 +379,7 @@ export const SearchPost = ({
             setValue(e.target.value);
           }
         }}
+        placeholder={placeholder}
       />
       <MdSearch
         size={15}
@@ -369,7 +389,6 @@ export const SearchPost = ({
           right: "0.5rem",
           cursor: "pointer",
         }}
-        onClick={handleGetPosts}
       />
     </div>
   );

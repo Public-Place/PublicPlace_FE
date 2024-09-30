@@ -33,6 +33,18 @@ export const useNavigationEvent = ({
     setIsSignUpModalOpen(true);
   };
 
+  // '팀 찾기' 클릭 시
+  const handleGoToSearchTeam = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      navigator("/searchteam");
+      toggleNav();
+    } else {
+      alert("로그인 시 이용 가능합니다.");
+    }
+  };
+
   // '게시판' 클릭 시
   const handleGoToBoard = () => {
     const token = localStorage.getItem("token");
@@ -90,6 +102,7 @@ export const useNavigationEvent = ({
     isSignUpModalOpen,
     setIsSignUpModalOpen,
     handleSignUp,
+    handleGoToSearchTeam,
     handleGoToBoard,
     handleGoToWritePost,
     handleGoToMyInfo,
