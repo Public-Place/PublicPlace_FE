@@ -142,10 +142,10 @@ export const Profile = styled.div<{ src?: string }>`
   }
 `;
 
-export const SearchContainer = styled.input.attrs({
+export const SearchContainer = styled.input.attrs((props) => ({
   type: "text",
-  placeholder: "게시글 이름을 검색해주세요.",
-})`
+  placeholder: props.placeholder,
+}))`
   width: calc(100% - 2rem);
   height: 1rem;
 

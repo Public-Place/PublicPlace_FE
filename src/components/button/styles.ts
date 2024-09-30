@@ -9,9 +9,11 @@ export const BtnContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  position: fixed;
+  position: absolute;
   top: 1rem;
   left: 1rem;
+
+  z-index: 9999;
 
   &:hover {
     cursor: pointer;
@@ -128,6 +130,30 @@ export const CreateAccountContainer = styled.div`
 
   padding: 0.5rem 2rem;
   margin-top: 1rem;
+
+  color: white;
+  background-color: ${BtnColor};
+  font-weight: bold;
+
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const ChatBotContainer = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  padding: 0.3rem 1rem;
 
   color: white;
   background-color: ${BtnColor};

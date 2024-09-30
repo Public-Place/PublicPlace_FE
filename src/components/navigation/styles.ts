@@ -22,20 +22,26 @@ const fadeOut = keyframes`
 
 export const Container = styled.div<{ isClosing?: boolean }>`
   width: 17rem;
-  height: 100%;
+  height: calc(100% - 1rem);
 
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+
   position: fixed;
   top: 0;
   left: 0;
 
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.4);
+  z-index: 9999;
+
+  /* border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem; */
+  border-radius: 0.5rem;
+  background-color: rgba(200, 200, 200, 0.9);
   color: black;
   box-shadow: 3px 0 10px 0;
 

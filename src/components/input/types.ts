@@ -17,5 +17,6 @@ export interface PostImageInputType {
 export interface SearchPostType {
   value?: string;
   setValue?: (value: string) => void;
-  handleGetPosts: () => void;
+  handler?: () => void;
+  placeholder: string;
 }

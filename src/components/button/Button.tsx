@@ -12,6 +12,7 @@ import {
   Category,
   WriteComment,
   Write,
+  ChatBotContainer,
 } from "./styles";
 import { FaBars, FaXmark, FaCheck, FaO } from "react-icons/fa6";
 import {
@@ -33,6 +34,7 @@ import {
   SuccessMsgColor,
 } from "../../constants/FixValues";
 import { LuPencilLine } from "react-icons/lu";
+import { VscRobot } from "react-icons/vsc";
 
 // 햄버거 버튼
 export const HambergerBtn = ({ toggleNav }: HambergerBtnType) => {
@@ -222,5 +224,19 @@ export const WritePostBtn = ({
     <CreateAccountContainer onClick={handleClickPostBtn}>
       {text}
     </CreateAccountContainer>
+  );
+};
+
+// 초록색 색상의 기본 버튼
+export const GreenBtn = ({ text }: { text: string }) => {
+  return <CreateAccountContainer>{text}</CreateAccountContainer>;
+};
+
+// Chat Bot 버튼
+export const ChatBotBtn = () => {
+  return (
+    <ChatBotContainer>
+      <VscRobot size={17} />
+    </ChatBotContainer>
   );
 };

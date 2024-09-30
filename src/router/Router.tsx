@@ -7,6 +7,7 @@ import { UpdateMyInfo } from "../pages/updateMyInfo/UpdateMyInfo";
 import Board from "../pages/board/Board";
 import Post from "../pages/post/Post";
 import WritePost from "../pages/post/WritePost";
+import SearchTeam from "../pages/team/SearchTeam";
 
 /*
   페이지 경로 이름 작성 규칙
@@ -29,6 +30,11 @@ export const router = createBrowserRouter([
         // 카카오 로그인을 위한 리다이렉션 페이지
         path: "/api/v1/kakao/callback",
         element: <Redirection />,
+      },
+      {
+        // 팀 찾기 페이지
+        path: "/searchteam",
+        element: <SearchTeam />,
       },
       {
         // 게시판 페이지

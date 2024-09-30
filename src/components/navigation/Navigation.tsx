@@ -27,6 +27,7 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
     isSignUpModalOpen,
     setIsSignUpModalOpen,
     handleSignUp,
+    handleGoToSearchTeam,
     handleGoToBoard,
     handleGoToWritePost,
     handleGoToMyInfo,
@@ -50,7 +51,7 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
         <Details open>
           <Summary>&nbsp;&nbsp;Team</Summary>
           <Ul>
-            <Li>팀 찾기</Li>
+            <Li onClick={handleGoToSearchTeam}>팀 찾기</Li>
             <Li>팀 생성</Li>
           </Ul>
         </Details>

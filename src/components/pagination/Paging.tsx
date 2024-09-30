@@ -3,8 +3,10 @@ import {
   PageRange,
   PaginationContainer,
   SpecificPage,
+  TeamPagination,
 } from "./styles";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import { GoDotFill, GoDot } from "react-icons/go";
 import { usePagingEvent } from "./events";
 import { PagingType } from "./types";
 
@@ -35,5 +37,21 @@ export const Paging = ({ pageNum, setPageNum }: PagingType) => {
         <FaAngleRight size={"1.5rem"} />
       </LeftAndRightBtn>
     </PaginationContainer>
+  );
+};
+
+export const TeamPaging = ({ currentIndex }: { currentIndex: number }) => {
+  const totalDots = 5;
+
+  return (
+    <TeamPagination>
+      {Array.from({ length: totalDots }, (_, index) =>
+        index === currentIndex ? (
+          <GoDotFill key={index} style={{ cursor: "pointer" }} />
+        ) : (
+          <GoDot key={index} style={{ cursor: "pointer" }} />
+        )
+      )}
+    </TeamPagination>
   );
 };
