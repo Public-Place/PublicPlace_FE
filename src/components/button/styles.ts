@@ -133,6 +133,7 @@ export const CreateAccountContainer = styled.div`
 
   color: white;
   background-color: ${BtnColor};
+  font-size: 0.8rem;
   font-weight: bold;
 
   border: 1px solid lightgray;

@@ -130,3 +130,74 @@ export const TeamBoxArea = styled.div`
 
   background-color: transparent;
 `;
+
+/* ------------------------------------------------ */
+export const TeamName = styled.div`
+  width: 100%;
+  height: fit-content;
+
+  margin-top: 2rem;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  background-color: transparent;
+`;
+
+export const TeamInformation = styled.div`
+  width: 100%;
+  height: fit-content;
+
+  margin-top: 2rem;
+
+  gap: 1rem;
+
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-direction: row;
+
+  background-color: transparent;
+`;
+
+export const TeamIntroduceBox = styled.div`
+  width: 80%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: transparent;
+`;
+
+export const TeamActivityDay = styled.div`
+  width: 20%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: transparent;
+`;
+
+export const TeamStadium = styled.div`
+  width: 50%;
+  height: fit-content;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: transparent;
+`;

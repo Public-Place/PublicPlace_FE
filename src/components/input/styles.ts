@@ -225,7 +225,83 @@ export const Content = styled.textarea.attrs({
   resize: none; // 크기 조절을 막고 싶을 경우 사용
 `;
 
+export const TeamName = styled.input.attrs({
+  type: "text",
+  placeholder: "팀 이름을 작성해주세요.",
+})`
+  width: calc(100% - 1.4rem);
+  height: fit-content;
+
+  padding: 0.5rem 0.7rem;
+
+  color: white;
+  background-color: ${ModalColor};
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+
+  font-size: 0.7rem;
+`;
+
+export const TeamIntroduce = styled.textarea.attrs({
+  placeholder: "팀을 한 줄로 소개해주세요.",
+})<{ height?: string }>`
+  width: calc(100% - 1.4rem);
+  height: ${(props) => props.height || "13rem"};
+
+  padding: 0.5rem 0.7rem;
+
+  color: white;
+  background-color: ${ModalColor};
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+
+  font-family: inherit; /* 동일한 글씨체 */
+
+  font-size: 0.7rem;
+  resize: none; // 크기 조절을 막고 싶을 경우 사용
+`;
+
+export const TeamStadium = styled.input.attrs({
+  type: "text",
+  placeholder: "팀 활동 장소를 작성해주세요.",
+})`
+  width: calc(100% - 1.4rem);
+  height: fit-content;
+
+  padding: 0.5rem 0.7rem;
+
+  color: white;
+  background-color: ${ModalColor};
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+
+  font-size: 0.7rem;
+`;
+
 export const PostImage = styled.div<{ src?: string }>`
+  width: calc(100% - 1.4rem);
+  height: 13rem;
+
+  padding: 0.5rem 0.7rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid lightgray;
+  border-radius: 0.3rem;
+
+  background-image: ${(props) => `url(${props.src})`};
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const TeamImage = styled.div<{ src?: string }>`
   width: calc(100% - 1.4rem);
   height: 13rem;
 

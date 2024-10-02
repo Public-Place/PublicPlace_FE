@@ -38,6 +38,7 @@ export default function SearchTeam() {
     teamName,
     setTeamName,
     currentTeams,
+    setCurrentPage,
     handleNextPage,
     handlePrevPage,
   } = useSearchTeamEvent();
@@ -48,6 +49,7 @@ export default function SearchTeam() {
   }, []);
 
   useEffect(() => {
+    setCurrentPage(0);
     handleGetTeamSorted();
   }, [sortBy, teamName]);
 
@@ -197,7 +199,7 @@ export default function SearchTeam() {
                 justifyContent: "center",
               }}
             >
-              <ClipLoader color="white" />
+              조건에 맞는 팀이 없습니다
             </div>
           )}
         </TeamBoxArea>

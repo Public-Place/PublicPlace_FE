@@ -119,3 +119,33 @@ export const UpdatePostImageS3API = async (PostImage: any, postId: number) => {
     // console.log("s3 이미지 변환 실패", error);
   }
 };
+
+// 팀 생성 시 팀 대표 이미지 설정
+export const CreateTeamImageS3API = async (
+  teamImage: any,
+  teamName: string
+) => {
+  // 이미지 파일을 Blob으로 변환
+  const getFileBlob = async (url: string): Promise<Blob> => {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return blob;
+  };
+
+  // 게시글 이미지가 URL일 경우 S3에 업로드하지 않고 바로 반환
+  if (teamImage.startsWith("http")) {
+    return teamImage;
+  }
+
+  const postBlob = await getFileBlob(teamImage);
+  const formData = new FormData();
+  formData.append("file", postBlob, `${teamName}.png`);
+
+  try {
+    const response = await axios.post(`/api/files/upload`, formData);
+    // console.log("s3 이미지 변환 성공", response.data);
+    return response.data;
+  } catch (error) {
+    // console.log("s3 이미지 변환 실패", error);
+  }
+};

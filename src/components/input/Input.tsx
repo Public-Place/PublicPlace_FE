@@ -12,6 +12,10 @@ import {
   Title,
   Content,
   PostImage,
+  TeamName,
+  TeamIntroduce,
+  TeamStadium,
+  TeamImage,
 } from "./styles";
 import {
   PostImageInputType,
@@ -183,6 +187,49 @@ export const ContentInput = ({ value, setValue }: SignUpInputType) => {
   );
 };
 
+// 팀 이름 입력창
+export const TeamNameInput = ({ value, setValue }: SignUpInputType) => {
+  return (
+    <TeamName
+      value={value}
+      onChange={(e) => {
+        if (setValue) {
+          setValue(e.target.value);
+        }
+      }}
+    />
+  );
+};
+
+// 팀 활동 장소 입력창
+export const TeamStadiumInput = ({ value, setValue }: SignUpInputType) => {
+  return (
+    <TeamStadium
+      value={value}
+      onChange={(e) => {
+        if (setValue) {
+          setValue(e.target.value);
+        }
+      }}
+    />
+  );
+};
+
+// 팀 한 줄 소개 입력창
+export const TeamIntroduceInput = ({ value, setValue }: SignUpInputType) => {
+  return (
+    <TeamIntroduce
+      height={"3rem"}
+      value={value}
+      onChange={(e) => {
+        if (setValue) {
+          setValue(e.target.value);
+        }
+      }}
+    />
+  );
+};
+
 /* --------------------------------------------------------------- */
 
 // 성별 선택 콤보박스
@@ -339,6 +386,31 @@ export const TeamSortInput = ({ value, setValue }: SignUpInputType) => {
   );
 };
 
+// 팀 활동 요일 선택 콤보박스
+export const TeamActivityDayInput = ({ value, setValue }: SignUpInputType) => {
+  return (
+    <Select
+      value={value}
+      onChange={(e) => {
+        if (setValue) {
+          setValue(e.target.value);
+        }
+      }}
+    >
+      <option value={"선택"} selected>
+        선택
+      </option>
+      <option value={"monday"}>월요일</option>
+      <option value={"tuesday"}>화요일</option>
+      <option value={"wednesday"}>수요일</option>
+      <option value={"thursday"}>목요일</option>
+      <option value={"friday"}>금요일</option>
+      <option value={"saturday"}>토요일</option>
+      <option value={"sunday"}>일요일</option>
+    </Select>
+  );
+};
+
 /* --------------------------------------------------------------- */
 
 // 프로필 이미지 선택 버튼
@@ -359,6 +431,18 @@ export const PostImageInput = ({
     <PostImage src={src} onClick={handlePostImageClick}>
       <LuRefreshCcw size={"30"} color="darkgray" />
     </PostImage>
+  );
+};
+
+// 팀 대표 이미지 선택 버튼
+export const TeamImageInput = ({
+  src,
+  handleProfileClick,
+}: ProfileInputType) => {
+  return (
+    <TeamImage src={src} onClick={handleProfileClick}>
+      <LuRefreshCcw size={"30"} color="darkgray" />
+    </TeamImage>
   );
 };
 

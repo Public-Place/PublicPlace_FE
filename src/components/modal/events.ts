@@ -221,13 +221,17 @@ export const useSignUpModalEvent = ({
 
   // 이메일 중복 확인 버튼 클릭 시
   const handleCheckEmail = async ({ value: email }: CheckDuplicationType) => {
-    if (!email.includes("@")) {
-      alert("이메일 형식에 맞게 작성해주세요.");
+    if (!email) {
+      alert("이메일을 작성한 후 중복 여부를 확인해주세요.");
     } else {
-      const checkEmailResult = await EmailCheckAPI({ email });
+      if (!email.includes("@")) {
+        alert("이메일 형식에 맞게 작성해주세요.");
+      } else {
+        const checkEmailResult = await EmailCheckAPI({ email });
 
-      setEmailSuccess(checkEmailResult.success);
-      setEmailMsg(checkEmailResult.msg);
+        setEmailSuccess(checkEmailResult.success);
+        setEmailMsg(checkEmailResult.msg);
+      }
     }
   };
 
@@ -235,17 +239,25 @@ export const useSignUpModalEvent = ({
   const handleCheckNickName = async ({
     value: nickname,
   }: CheckDuplicationType) => {
-    const checkNickNameResult = await NickNameCheckAPI({ nickname });
-    setNickNameSuccess(checkNickNameResult.success);
-    setNickNameMsg(checkNickNameResult.msg);
+    if (!nickname) {
+      alert("닉네임을 작성한 후 중복 여부를 확인해주세요.");
+    } else {
+      const checkNickNameResult = await NickNameCheckAPI({ nickname });
+      setNickNameSuccess(checkNickNameResult.success);
+      setNickNameMsg(checkNickNameResult.msg);
+    }
   };
 
   // 전화번호 중복 확인 버튼 클릭 시
   const handleCheckTel = async ({ value: tel }: CheckDuplicationType) => {
-    const checkTelResult = await TelCheckAPI({ tel });
+    if (!tel) {
+      alert("전화번호를 작성한 후 중복 여부를 확인해주세요.");
+    } else {
+      const checkTelResult = await TelCheckAPI({ tel });
 
-    setTelSuccess(checkTelResult.success);
-    setTelMsg(checkTelResult.msg);
+      setTelSuccess(checkTelResult.success);
+      setTelMsg(checkTelResult.msg);
+    }
   };
 
   // 중복 여부에 따른 메시지 색상 결정 로직 (이메일)

@@ -28,6 +28,7 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
     setIsSignUpModalOpen,
     handleSignUp,
     handleGoToSearchTeam,
+    handleGoToCreateTeam,
     handleGoToBoard,
     handleGoToWritePost,
     handleGoToMyInfo,
@@ -52,7 +53,7 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
           <Summary>&nbsp;&nbsp;Team</Summary>
           <Ul>
             <Li onClick={handleGoToSearchTeam}>팀 찾기</Li>
-            <Li>팀 생성</Li>
+            <Li onClick={handleGoToCreateTeam}>팀 생성</Li>
           </Ul>
         </Details>
         <Details open>
