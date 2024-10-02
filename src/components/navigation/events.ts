@@ -45,6 +45,18 @@ export const useNavigationEvent = ({
     }
   };
 
+  // '팀 생성' 클릭 시
+  const handleGoToCreateTeam = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      navigator("/createteam");
+      toggleNav();
+    } else {
+      alert("로그인 시 이용 가능합니다.");
+    }
+  };
+
   // '게시판' 클릭 시
   const handleGoToBoard = () => {
     const token = localStorage.getItem("token");
@@ -103,6 +115,7 @@ export const useNavigationEvent = ({
     setIsSignUpModalOpen,
     handleSignUp,
     handleGoToSearchTeam,
+    handleGoToCreateTeam,
     handleGoToBoard,
     handleGoToWritePost,
     handleGoToMyInfo,

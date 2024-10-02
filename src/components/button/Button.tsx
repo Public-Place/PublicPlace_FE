@@ -228,8 +228,16 @@ export const WritePostBtn = ({
 };
 
 // 초록색 색상의 기본 버튼
-export const GreenBtn = ({ text }: { text: string }) => {
-  return <CreateAccountContainer>{text}</CreateAccountContainer>;
+export const GreenBtn = ({
+  text,
+  onClick,
+}: {
+  text: string;
+  onClick?: () => void;
+}) => {
+  return (
+    <CreateAccountContainer onClick={onClick}>{text}</CreateAccountContainer>
+  );
 };
 
 // Chat Bot 버튼

@@ -8,6 +8,7 @@ import Board from "../pages/board/Board";
 import Post from "../pages/post/Post";
 import WritePost from "../pages/post/WritePost";
 import SearchTeam from "../pages/team/SearchTeam";
+import CreateTeam from "../pages/team/CreateTeam";
 
 /*
   페이지 경로 이름 작성 규칙
@@ -35,6 +36,11 @@ export const router = createBrowserRouter([
         // 팀 찾기 페이지
         path: "/searchteam",
         element: <SearchTeam />,
+      },
+      {
+        // 팀 생성 페이지
+        path: "/createteam",
+        element: <CreateTeam />,
       },
       {
         // 게시판 페이지
