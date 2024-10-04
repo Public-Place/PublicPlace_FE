@@ -1,4 +1,6 @@
 import {
+  LeftMiddleTitle,
+  LeftSmallTitle,
   Msg,
   PageCenterTitle,
   PageLeftTitle,
@@ -62,4 +64,12 @@ export const PageCenterText = ({ text }: { text: string }) => {
 
 export const PageLeftText = ({ text }: { text: string }) => {
   return <PageLeftTitle>{text}</PageLeftTitle>;
+};
+
+export const LeftMiddleText = ({ text }: { text: string }) => {
+  return <LeftMiddleTitle>{text}</LeftMiddleTitle>;
+};
+
+export const LeftSmallText = ({ text }: { text: string }) => {
+  return <LeftSmallTitle>{text}</LeftSmallTitle>;
 };

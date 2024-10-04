@@ -139,3 +139,34 @@ export const PageLeftTitle = styled.div`
   font-size: 2rem;
   font-weight: bold;
 `;
+
+export const LeftMiddleTitle = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  padding: 0.3rem 0rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  color: white;
+
+  font-size: 1.2rem;
+  font-weight: bold;
+`;
+
+export const LeftSmallTitle = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  padding: 0.1rem 0rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+  color: white;
+
+  font-size: 0.8rem;
+`;
