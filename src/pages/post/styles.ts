@@ -10,6 +10,8 @@ export const Container = styled.div`
   align-items: start;
   justify-content: center;
 
+  color: white;
+
   background-color: ${DefaultBackgroundColor};
 `;
 

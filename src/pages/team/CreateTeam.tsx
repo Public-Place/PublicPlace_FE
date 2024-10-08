@@ -114,6 +114,7 @@ export default function CreateTeam() {
           <TeamStadium>
             <InputTitle text={"팀 활동 장소"} />
             <TeamStadiumInput value={activityAddr} />
+            <div style={{ width: "100%", height: "1rem" }}>{/* 간격 */}</div>
             <KakaoMap handler={handleAddressChange} />
           </TeamStadium>
           <TeamStadium>
