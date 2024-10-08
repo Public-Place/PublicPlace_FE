@@ -66,10 +66,10 @@ export const PageLeftText = ({ text }: { text: string }) => {
   return <PageLeftTitle>{text}</PageLeftTitle>;
 };
 
-export const LeftMiddleText = ({ text }: { text: string }) => {
+export const LeftMiddleText = ({ text }: { text?: string }) => {
   return <LeftMiddleTitle>{text}</LeftMiddleTitle>;
 };
 
-export const LeftSmallText = ({ text }: { text: string }) => {
+export const LeftSmallText = ({ text }: { text?: string }) => {
   return <LeftSmallTitle>{text}</LeftSmallTitle>;
 };

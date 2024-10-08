@@ -41,6 +41,7 @@ export default function SearchTeam() {
     setCurrentPage,
     handleNextPage,
     handlePrevPage,
+    handleGoToTeam,
   } = useSearchTeamEvent();
 
   useEffect(() => {
@@ -100,7 +101,10 @@ export default function SearchTeam() {
                 randomTeam[currentIndex]?.teamLocation || "정보 없음"
               }`}
             />
-            <GreenBtn text={"팀 페이지로 이동"} />
+            <GreenBtn
+              text={"팀 페이지로 이동"}
+              onClick={() => handleGoToTeam(randomTeam[currentIndex]?.teamId)}
+            />
             <TeamPaging currentIndex={currentIndex} />
           </TeamInfo>
         )}
@@ -115,6 +119,7 @@ export default function SearchTeam() {
                 borderBottomLeftRadius: "1rem",
                 borderLeft: "1px solid white",
                 borderBottom: "1px solid white",
+                objectFit: "cover",
               }}
             />
           )}
@@ -153,7 +158,7 @@ export default function SearchTeam() {
           />
           {currentTeams && currentTeams.length > 0 ? (
             currentTeams.map((team, index) => (
-              <TeamBox key={index}>
+              <TeamBox key={index} onClick={() => handleGoToTeam(team.teamId)}>
                 <img
                   src={team.teamImg || TeamImg}
                   alt="이미지 없음"
@@ -162,7 +167,7 @@ export default function SearchTeam() {
                     minWidth: "100%",
                     height: "10rem",
                     minHeight: "10rem",
-                    objectFit: "cover",
+                    objectFit: "contain",
                     borderRadius: "0.5rem",
                     border: "1px solid black",
                   }}

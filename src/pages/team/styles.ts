@@ -322,7 +322,7 @@ export const EditTeamBtn = styled.div`
 `;
 
 export const SideInfoBox = styled.div`
-  width: 21rem;
+  width: 70%;
   height: fit-content;
 
   padding: 1.5rem 2rem;

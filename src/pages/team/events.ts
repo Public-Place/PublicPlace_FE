@@ -13,8 +13,11 @@ import {
   ErrorMsgColor,
   SuccessMsgColor,
 } from "../../constants/FixValues";
+import { GetTeamByIdAPI } from "../../services/api/team/GetTeamByIdAPI";
 
 export const useSearchTeamEvent = () => {
+  const navigator = useNavigate();
+
   const [teamList, setTeamList] = useState<TeamListType[]>();
   const [randomTeam, setRandomTeam] = useState<TeamListType[]>();
   const [currentIndex, setCurrentIndex] = useState(0); // 현재 팀 인덱스 관리
@@ -90,6 +93,11 @@ export const useSearchTeamEvent = () => {
     (currentPage + 1) * teamsPerPage
   );
 
+  // 특정 팀 클릭 시
+  const handleGoToTeam = (teamId: number) => {
+    navigator("/team", { state: teamId });
+  };
+
   return {
     teamList,
     randomTeam,
@@ -109,6 +117,7 @@ export const useSearchTeamEvent = () => {
     handlePrevPage,
     currentPage,
     teamsPerPage,
+    handleGoToTeam,
   };
 };
 
@@ -174,9 +183,19 @@ export const useCreateTeamEvent = () => {
           // teamImage를 S3API로 가공 작업
           const teamImg = await CreateTeamImageS3API(teamImage, teamName);
 
+          // activityDays 필드 조건에 따른 처리 (select의 value는 맨 처음에 ""로 설정)
+          let activityDaysArray;
+          if (teamSecondActDay === "") {
+            // teamSecondActDay가 "선택"일 경우, teamFirstActDay 값만 저장
+            activityDaysArray = [teamFirstActDay];
+          } else {
+            // teamSecondActDay가 "선택"이 아닌 경우, 배열로 두 값을 저장
+            activityDaysArray = [teamFirstActDay, teamSecondActDay];
+          }
+
           // DTO 생성 후 필드 별로 매핑 작업
           const CreateTeamData: CreateTeamDto = {
-            activityDays: [teamFirstActDay, teamSecondActDay],
+            activityDays: activityDaysArray,
             teamImg: teamImg,
             teamInfo: teamIntroduce,
             teamLocation: activityAddr,
@@ -271,5 +290,99 @@ export const useCreateTeamEvent = () => {
     teamNameMsg,
     handleCheckTeamName,
     getNickNameMsgColor,
+  };
+};
+
+/* ------------------------------------------------------------------ */
+
+export const useTeamEvent = () => {
+  const [team, setTeam] = useState<TeamListType>();
+
+  // 팀 정보 조회
+  const handleGetTeam = async (teamId: number) => {
+    const teamInfo = await GetTeamByIdAPI(teamId);
+    setTeam(teamInfo);
+  };
+
+  // 요일 한글 매핑
+  const dayToKorean = (day: string) => {
+    switch (day) {
+      case "monday":
+        return "월요일";
+      case "tuesday":
+        return "화요일";
+      case "wednesday":
+        return "수요일";
+      case "thursday":
+        return "목요일";
+      case "friday":
+        return "금요일";
+      case "saturday":
+        return "토요일";
+      case "sunday":
+        return "일요일";
+      default:
+        return "";
+    }
+  };
+
+  // 연령대 별 상태 관리
+  const [age10, setAge10] = useState(0);
+  const [age20, setAge20] = useState(0);
+  const [age30, setAge30] = useState(0);
+  const [age40, setAge40] = useState(0);
+  const [age50, setAge50] = useState(0);
+  const [ageEtc, setAgeEtc] = useState(0);
+
+  // 팀 회원 연령대 집계
+  const handleExtractAgeRange = ({ team }: { team: TeamListType }) => {
+    // 연령대 카운트 초기화
+    let count10 = 0;
+    let count20 = 0;
+    let count30 = 0;
+    let count40 = 0;
+    let count50 = 0;
+    let countEtc = 0;
+
+    // 각 멤버의 연령대를 분류하여 카운트
+    team.members.forEach((member) => {
+      const ageRange = member.ageRange;
+
+      if (ageRange === "10~19") {
+        count10 += 1;
+      } else if (ageRange === "20~29") {
+        count20 += 1;
+      } else if (ageRange === "30~39") {
+        count30 += 1;
+      } else if (ageRange === "40~49") {
+        count40 += 1;
+      } else if (ageRange === "50~59") {
+        count50 += 1;
+      } else {
+        // '0~9', '60~69', '70~79', '80~89', '90~99'은 ageEtc로 처리
+        countEtc += 1;
+      }
+    });
+
+    // 상태 업데이트
+    setAge10(count10);
+    setAge20(count20);
+    setAge30(count30);
+    setAge40(count40);
+    setAge50(count50);
+    setAgeEtc(countEtc);
+  };
+
+  return {
+    team,
+    handleGetTeam,
+    dayToKorean,
+    handleExtractAgeRange,
+    age10,
+    age20,
+    age30,
+    age40,
+    age50,
+    ageEtc,
   };
 };
