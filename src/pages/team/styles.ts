@@ -378,9 +378,6 @@ export const WriterProfileImg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  border: 1px solid white;
-  border-radius: 50%;
 `;
 
 export const WriterName = styled.div`
