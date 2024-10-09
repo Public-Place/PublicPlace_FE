@@ -46,6 +46,11 @@ export const useMyInfoEvent = () => {
     }
   };
 
+  // 소속 팀, 가입 신청 팀 클릭 시
+  const handleGoToTeam = (teamId: number) => {
+    navigator("/team", { state: teamId });
+  };
+
   return {
     user,
     GetUserInfo,
@@ -55,5 +60,6 @@ export const useMyInfoEvent = () => {
     GetJoinedTeamsInfo,
     navigator,
     handleCancleTeamJoin,
+    handleGoToTeam,
   };
 };

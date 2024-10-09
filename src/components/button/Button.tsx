@@ -35,6 +35,7 @@ import {
 } from "../../constants/FixValues";
 import { LuPencilLine } from "react-icons/lu";
 import { VscRobot } from "react-icons/vsc";
+import { FaRegSadTear } from "react-icons/fa";
 
 // 햄버거 버튼
 export const HambergerBtn = ({ toggleNav }: HambergerBtnType) => {
@@ -247,4 +248,9 @@ export const ChatBotBtn = () => {
       <VscRobot size={17} />
     </ChatBotContainer>
   );
+};
+
+// 데이터 대체 버튼
+export const NoDataBtn = () => {
+  return <FaRegSadTear size={50} />;
 };

@@ -402,15 +402,17 @@ export const useTeamEvent = () => {
     setAgeEtc(countEtc);
   };
 
-  // 팀 게시글
+  // 팀 게시글 리스트
   const [teamPostList, setTeamPostList] = useState<TeamPostListType[]>([]);
+
+  // 팀 게시글 검색 조건
   const [page, setPage] = useState(1);
+  const [content, setContent] = useState("");
 
   // 팀 게시글 조회
   const handleGetTeamPostList = async (teamId: number) => {
-    const result = await GetTeamPostListAPI({ teamId, page });
-    setTeamPostList((prev) => [...prev, ...result]); // 기존 게시글에 추가
-    setPage((prev) => prev + 1); // 페이지 증가
+    const result = await GetTeamPostListAPI({ teamId, page, content });
+    setTeamPostList(result);
   };
 
   return {
@@ -426,5 +428,7 @@ export const useTeamEvent = () => {
     isShow,
     teamPostList,
     handleGetTeamPostList,
+    content,
+    setContent,
   };
 };

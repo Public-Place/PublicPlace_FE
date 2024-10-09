@@ -34,6 +34,7 @@ export default function MyInfo() {
     GetJoinedTeamsInfo,
     navigator,
     handleCancleTeamJoin,
+    handleGoToTeam,
   } = useMyInfoEvent();
 
   // 페이지 렌더링 시 회원 정보 & 소속 팀 정보 & 가입 신청 팀 정보 조회
@@ -129,7 +130,10 @@ export default function MyInfo() {
             <TeamSortArea>
               {joinedTeams && joinedTeams.length > 0 ? (
                 joinedTeams.map((joinedTeam, index) => (
-                  <TeamBox key={index}>
+                  <TeamBox
+                    key={index}
+                    onClick={() => handleGoToTeam(joinedTeam.teamId)}
+                  >
                     <img
                       src={joinedTeam.teamImg}
                       alt="이미지 없음"
@@ -186,7 +190,10 @@ export default function MyInfo() {
             <TeamSortArea>
               {appliedTeams && appliedTeams.length > 0 ? (
                 appliedTeams.map((appliedTeam, index) => (
-                  <TeamBox key={index}>
+                  <TeamBox
+                    key={index}
+                    onClick={() => handleGoToTeam(appliedTeam.teamId)}
+                  >
                     <img
                       src={appliedTeam.teamImg}
                       alt="이미지 없음"
