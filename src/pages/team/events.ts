@@ -11,9 +11,13 @@ import { TeamNameCheckAPI } from "../../services/api/checkDuplication/TeamNameCh
 import {
   BasicMsgColor,
   ErrorMsgColor,
+  KakaoLat,
+  KakaoLng,
   SuccessMsgColor,
 } from "../../constants/FixValues";
 import { GetTeamByIdAPI } from "../../services/api/team/GetTeamByIdAPI";
+import { GetTeamPostListAPI } from "../../services/api/teamPost/GetTeamPostListAPI";
+import { TeamPostListType } from "./types";
 
 export const useSearchTeamEvent = () => {
   const navigator = useNavigate();
@@ -143,6 +147,10 @@ export const useCreateTeamEvent = () => {
   // 팀 활동 장소
   const [activityAddr, setActivityAddr] = useState("");
 
+  // 팀 활동 장소 위도/경도 (기본 좌표 : 판교 카카오 본사)
+  const [activityLat, setActivityLat] = useState(KakaoLat);
+  const [activityLng, setActivityLng] = useState(KakaoLng);
+
   // 중복 확인 관련 상태
   const [teamNameSuccess, setTeamNameSuccess] = useState<boolean | null>(null);
   const [teamNameMsg, setTeamNameMsg] = useState("");
@@ -150,6 +158,12 @@ export const useCreateTeamEvent = () => {
   // Kakao Map ChangeEventHandler
   const handleAddressChange = (addr: string) => {
     setActivityAddr(addr);
+  };
+
+  // 위도/경도 저장
+  const handleSetLatLng = (Lat: number, Lng: number) => {
+    setActivityLat(Lat);
+    setActivityLng(Lng);
   };
 
   // 팀 이미지 변경 시 실행되는 함수
@@ -200,13 +214,15 @@ export const useCreateTeamEvent = () => {
             teamInfo: teamIntroduce,
             teamLocation: activityAddr,
             teamName: teamName,
+            latitude: activityLat,
+            longitude: activityLng,
           };
 
           // POST Mapping 작업
           const result = await CreateTeamAPI(CreateTeamData);
 
           if (!result) {
-            alert("중복된 팀 이름입니다.");
+            alert("팀 생성을 실패하였습니다.");
           } else if (result.success) {
             navigator("/searchteam");
             window.location.reload();
@@ -250,10 +266,14 @@ export const useCreateTeamEvent = () => {
       alert("팀 이름을 입력한 후 중복 여부를 확인해주세요.");
     } else {
       const result = await TeamNameCheckAPI(teamName);
-      console.log("result : ", result);
 
-      setTeamNameSuccess(result.success);
-      setTeamNameMsg(result.msg);
+      if (result.success) {
+        setTeamNameSuccess(result.success);
+        setTeamNameMsg(result.msg);
+      } else {
+        setTeamNameSuccess(result.response.data.success);
+        setTeamNameMsg(result.response.data.msg);
+      }
     }
   };
 
@@ -280,7 +300,10 @@ export const useCreateTeamEvent = () => {
     teamSecondActDay,
     setTeamSecondActDay,
     activityAddr,
+    activityLat,
+    activityLng,
     handleAddressChange,
+    handleSetLatLng,
     handleClickCreateTeam,
     teamImage,
     teamImageRef,
@@ -297,6 +320,13 @@ export const useCreateTeamEvent = () => {
 
 export const useTeamEvent = () => {
   const [team, setTeam] = useState<TeamListType>();
+
+  // 팀 활동 장소 위도/경도 관리
+  const [teamLat, setTeamLat] = useState(KakaoLat);
+  const [teamLng, setTeamLng] = useState(KakaoLng);
+
+  // 팀 활동 장소 변경 방지
+  const isShow = true;
 
   // 팀 정보 조회
   const handleGetTeam = async (teamId: number) => {
@@ -334,9 +364,11 @@ export const useTeamEvent = () => {
   const [age50, setAge50] = useState(0);
   const [ageEtc, setAgeEtc] = useState(0);
 
+  // BarCharts로 넘겨줘야하는 연령대 데이터
+  const ageData = [age10, age20, age30, age40, age50, ageEtc];
+
   // 팀 회원 연령대 집계
   const handleExtractAgeRange = ({ team }: { team: TeamListType }) => {
-    // 연령대 카운트 초기화
     let count10 = 0;
     let count20 = 0;
     let count30 = 0;
@@ -344,7 +376,6 @@ export const useTeamEvent = () => {
     let count50 = 0;
     let countEtc = 0;
 
-    // 각 멤버의 연령대를 분류하여 카운트
     team.members.forEach((member) => {
       const ageRange = member.ageRange;
 
@@ -359,12 +390,10 @@ export const useTeamEvent = () => {
       } else if (ageRange === "50~59") {
         count50 += 1;
       } else {
-        // '0~9', '60~69', '70~79', '80~89', '90~99'은 ageEtc로 처리
         countEtc += 1;
       }
     });
 
-    // 상태 업데이트
     setAge10(count10);
     setAge20(count20);
     setAge30(count30);
@@ -373,16 +402,29 @@ export const useTeamEvent = () => {
     setAgeEtc(countEtc);
   };
 
+  // 팀 게시글
+  const [teamPostList, setTeamPostList] = useState<TeamPostListType[]>([]);
+  const [page, setPage] = useState(1);
+
+  // 팀 게시글 조회
+  const handleGetTeamPostList = async (teamId: number) => {
+    const result = await GetTeamPostListAPI({ teamId, page });
+    setTeamPostList((prev) => [...prev, ...result]); // 기존 게시글에 추가
+    setPage((prev) => prev + 1); // 페이지 증가
+  };
+
   return {
     team,
     handleGetTeam,
     dayToKorean,
     handleExtractAgeRange,
-    age10,
-    age20,
-    age30,
-    age40,
-    age50,
-    ageEtc,
+    ageData,
+    teamLat,
+    teamLng,
+    setTeamLat,
+    setTeamLng,
+    isShow,
+    teamPostList,
+    handleGetTeamPostList,
   };
 };

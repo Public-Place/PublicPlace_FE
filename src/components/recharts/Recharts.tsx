@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
-import {
-  BarChart,
-  Bar,
-  ResponsiveContainer,
-  XAxis,
-  Tooltip,
-  LabelList,
-} from "recharts";
-import { AgeData, DataType } from "./types";
+import { BarChart, Bar, ResponsiveContainer, XAxis, Tooltip } from "recharts";
+import { AgeData, CustomTooltipProps, DataType } from "./types";
 import { useReChartsEvent } from "./events";
 import { Tooptip } from "./styles";
 
@@ -38,12 +31,7 @@ export const BarCharts = ({ ageData }: AgeData) => {
   );
 };
 
-// 커스텀 Tooltip 컴포넌트
-interface CustomTooltipProps {
-  active?: boolean;
-  payload?: { name: string; value: number }[];
-}
-
+// 막대 그래프 hover 시 출력되는 텍스트 박스
 const CustomTooltip: React.FC<CustomTooltipProps> = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return <Tooptip>{`${payload[0].value} 명`}</Tooptip>;

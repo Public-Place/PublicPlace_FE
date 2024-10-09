@@ -1,3 +1,7 @@
 export interface KakaoMapType {
-  handler: (addr: string) => void;
+  handleAddressChange?: (addr: string) => void;
+  handleSetLatLng?: (Lat: number, Lng: number) => void;
+  Lat?: number;
+  Lng?: number;
+  isShow?: boolean;
 }

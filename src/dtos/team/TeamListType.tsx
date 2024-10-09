@@ -8,6 +8,8 @@ export interface TeamListType {
   activityDays: string[];
   teamMemberCount: number;
   members: MembersType[];
+  latitude: number;
+  longitude: number;
 }
 
 export interface MembersType {

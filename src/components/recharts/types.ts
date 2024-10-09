@@ -6,3 +6,8 @@ export interface DataType {
 export interface AgeData {
   ageData: number[];
 }
+
+export interface CustomTooltipProps {
+  active?: boolean;
+  payload?: { name: string; value: number }[];
+}

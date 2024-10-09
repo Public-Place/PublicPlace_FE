@@ -22,6 +22,7 @@ export const TeamDetail = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
   flex-direction: row;
 
   position: relative;
@@ -54,7 +55,6 @@ export const TeamImage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
 
   background-color: transparent;
 `;
@@ -237,16 +237,13 @@ export const SideInfoLeft = styled.div`
 
 export const LeftInfoTop = styled.div`
   width: 15rem;
-  height: 15rem;
+  height: fit-content;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   margin-bottom: 1rem;
-
-  border: 1px solid white;
-  border-radius: 1rem;
 
   background-color: transparent;
 `;
@@ -429,7 +426,6 @@ export const TeamPostContent = styled.div`
 export const TeamPostImage = styled.div`
   width: 100%;
   height: fit-content;
-  min-height: 10rem;
 
   border: 1px solid white;
 

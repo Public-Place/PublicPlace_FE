@@ -21,3 +21,9 @@ export const ErrorMsgColor = "rgb(233, 51, 35)";
 
 // 모든 페이지 기본 배경 색상
 export const DefaultBackgroundColor = "#1C1C1C";
+
+// 카카오 본사 (판교) 위도
+export const KakaoLat = 37.395422906049305;
+
+// 카카오 본사 (판교) 경도
+export const KakaoLng = 127.1104534300779;

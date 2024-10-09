@@ -35,7 +35,10 @@ export default function CreateTeam() {
     teamSecondActDay,
     setTeamSecondActDay,
     activityAddr,
+    activityLat,
+    activityLng,
     handleAddressChange,
+    handleSetLatLng,
     handleClickCreateTeam,
     teamImage,
     teamImageRef,
@@ -115,7 +118,12 @@ export default function CreateTeam() {
             <InputTitle text={"팀 활동 장소"} />
             <TeamStadiumInput value={activityAddr} />
             <div style={{ width: "100%", height: "1rem" }}>{/* 간격 */}</div>
-            <KakaoMap handler={handleAddressChange} />
+            <KakaoMap
+              handleAddressChange={handleAddressChange}
+              handleSetLatLng={handleSetLatLng}
+              Lat={activityLat}
+              Lng={activityLng}
+            />
           </TeamStadium>
           <TeamStadium>
             <InputTitle text={"팀 대표 이미지"} />

@@ -23,7 +23,6 @@ import { SearchPost, TeamSortInput } from "../../components/input/Input";
 import { TeamBox } from "../myinfo/styles";
 import { useEffect } from "react";
 import { useSearchTeamEvent } from "./events";
-import { ClipLoader } from "react-spinners";
 
 export default function SearchTeam() {
   const {
@@ -167,7 +166,7 @@ export default function SearchTeam() {
                     minWidth: "100%",
                     height: "10rem",
                     minHeight: "10rem",
-                    objectFit: "contain",
+                    objectFit: "cover",
                     borderRadius: "0.5rem",
                     border: "1px solid black",
                   }}

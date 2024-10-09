@@ -25,6 +25,5 @@ export const KakaoSignInRedirectionAPI = async ({
     return response.data.body;
   } catch (error) {
     // console.log("카카오 로그인 Redirection 실패", error);
-    alert("카카오 로그인 오류");
   }
 };

@@ -9,7 +9,13 @@ declare global {
   }
 }
 
-export default function KakaoMap({ handler }: KakaoMapType) {
+export default function KakaoMap({
+  handleAddressChange,
+  handleSetLatLng,
+  Lat,
+  Lng,
+  isShow,
+}: KakaoMapType) {
   const [map, setMap] = useState<any>();
   const [marker, setMarker] = useState<any>();
 
@@ -18,20 +24,20 @@ export default function KakaoMap({ handler }: KakaoMapType) {
       window.kakao.maps.load(() => {
         const container = document.getElementById("map");
         const options = {
-          center: new window.kakao.maps.LatLng(
-            37.273629699499,
-            127.12928668205
-          ),
+          center: new window.kakao.maps.LatLng(Lat, Lng),
           level: 5,
         };
 
         const newMap = new window.kakao.maps.Map(container, options);
-        const newMarker = new window.kakao.maps.Marker();
+        const newMarker = new window.kakao.maps.Marker({
+          position: new window.kakao.maps.LatLng(Lat, Lng),
+          map: newMap,
+        });
         setMap(newMap);
         setMarker(newMarker);
       });
     }
-  }, []);
+  }, [Lat, Lng]);
 
   useDidMountEffect(() => {
     if (map && window.kakao && window.kakao.maps) {
@@ -50,13 +56,25 @@ export default function KakaoMap({ handler }: KakaoMapType) {
                   ? result[0].road_address.address_name
                   : result[0].address.address_name;
 
-                // 주소 값 상위 컴포넌트로 전달
-                handler(addr);
+                // 팀 페이지에서는 팀 활동 장소 마커 변경 불가능
+                if (!isShow) {
+                  if (handleAddressChange) {
+                    // 주소 값 상위 컴포넌트로 전달
+                    handleAddressChange(addr);
+                  }
 
-                // 기존 마커 제거 후 새로운 마커 적용
-                marker.setMap(null);
-                marker.setPosition(mouseEvent.latLng);
-                marker.setMap(map);
+                  // 기존 마커 제거 후 새로운 마커 적용
+                  marker.setMap(null);
+                  marker.setPosition(mouseEvent.latLng);
+                  marker.setMap(map);
+
+                  // 위도/경도 값을 상위 컴포넌트로 전달
+                  if (handleSetLatLng) {
+                    const lat = mouseEvent.latLng.getLat();
+                    const lng = mouseEvent.latLng.getLng();
+                    handleSetLatLng(lat, lng);
+                  }
+                }
               }
             }
           );
@@ -65,5 +83,5 @@ export default function KakaoMap({ handler }: KakaoMapType) {
     }
   }, [map, marker]); // map과 marker가 정의된 후 실행
 
-  return <KakaoMapContainer id="map"></KakaoMapContainer>;
+  return <KakaoMapContainer id="map" />;
 }
