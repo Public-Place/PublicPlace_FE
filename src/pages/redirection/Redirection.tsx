@@ -23,7 +23,7 @@ export default function Redirection() {
       // 카카오 로그인 완료 후 0.3초 뒤에 메인 페이지로 이동
       setTimeout(() => {
         navigator("/");
-      }, 100);
+      }, 300);
     }
   }, [code, navigator]);
 

@@ -4,4 +4,6 @@ export interface CreateTeamDto {
   teamInfo: string;
   teamLocation: string;
   teamName: string;
+  latitude: number;
+  longitude: number;
 }
