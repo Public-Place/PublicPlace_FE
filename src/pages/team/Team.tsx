@@ -169,11 +169,13 @@ export const Team = () => {
               <TeamPostWriter>
                 <WriterProfileImg>
                   <img
-                    src={DefaultProfile}
+                    src={post.userProfileImage}
                     alt="Error"
                     style={{
                       width: "2rem",
                       height: "2rem",
+                      borderRadius: "50%",
+                      border: "1px solid white",
                     }}
                   />
                 </WriterProfileImg>
@@ -191,7 +193,19 @@ export const Team = () => {
                   }}
                 >
                   <WriterName>{post.userName}</WriterName>
-                  <PostingDay>{post.createdDate}</PostingDay>
+                  <PostingDay>
+                    {post.createdDate
+                      ? `${new Date(post.createdDate).getFullYear()}년 ${String(
+                          new Date(post.createdDate).getMonth() + 1
+                        ).padStart(2, "0")}월 ${String(
+                          new Date(post.createdDate).getDate()
+                        ).padStart(2, "0")}일 ${String(
+                          new Date(post.createdDate).getHours()
+                        ).padStart(2, "0")}:${String(
+                          new Date(post.createdDate).getMinutes()
+                        ).padStart(2, "0")}`
+                      : "정보 없음"}
+                  </PostingDay>
                 </div>
               </TeamPostWriter>
               <TeamPostContent>{post.content}</TeamPostContent>
@@ -213,7 +227,7 @@ export const Team = () => {
                     marginLeft: "0.5rem",
                   }}
                 >
-                  댓글 수 출력
+                  {post.commentCount}
                 </span>
               </TeamPostComment>
             </TeamPostBox>
