@@ -28,12 +28,12 @@ import { LuPencilLine } from "react-icons/lu";
 import { LuUserPlus } from "react-icons/lu";
 import KakaoMap from "../../components/map/KakaoMap";
 import { SearchPost } from "../../components/input/Input";
-import DefaultProfile from "../../assets/images/Profile.png";
 import { AiOutlineComment } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useTeamEvent } from "./events";
 import { BarCharts } from "../../components/recharts/Recharts";
+import { NoDataBtn } from "../../components/button/Button";
 
 export const Team = () => {
   const location = useLocation();
@@ -52,6 +52,8 @@ export const Team = () => {
     isShow,
     teamPostList,
     handleGetTeamPostList,
+    content,
+    setContent,
   } = useTeamEvent();
 
   useEffect(() => {
@@ -69,7 +71,7 @@ export const Team = () => {
       setTeamLat(team.latitude);
       setTeamLng(team.longitude);
     }
-  }, [team]);
+  }, [team, content]);
 
   return (
     <TeamContainer>
@@ -156,83 +158,106 @@ export const Team = () => {
       </SideInfoLeft>
       <Wrapper>
         <PageCenterText text={"팀 게시글"} />
-        <SearchPost placeholder={"게시글 내용을 검색하세요."} />
+        <SearchPost
+          value={content}
+          setValue={setContent}
+          placeholder={"게시글 내용을 검색하세요."}
+        />
         <div
           style={{
             height: "1.5rem",
           }}
         ></div>
-
-        {teamPostList?.map((post, index) => (
-          <div key={index}>
-            <TeamPostBox>
-              <TeamPostWriter>
-                <WriterProfileImg>
+        {teamPostList && teamPostList.length > 0 ? (
+          teamPostList.map((post, index) => (
+            <div key={index}>
+              <TeamPostBox>
+                <TeamPostWriter>
+                  <WriterProfileImg>
+                    <img
+                      src={post.userProfileImage}
+                      alt="Error"
+                      style={{
+                        width: "2rem",
+                        height: "2rem",
+                        borderRadius: "50%",
+                        border: "1px solid white",
+                      }}
+                    />
+                  </WriterProfileImg>
+                  <div
+                    style={{
+                      width: "fit-content",
+                      height: "fit-content",
+                      display: "flex",
+                      alignItems: "start",
+                      justifyContent: "space-between",
+                      flexDirection: "column",
+                      marginLeft: "1rem",
+                      backgroundColor: "transparent",
+                      gap: "0.2rem",
+                    }}
+                  >
+                    <WriterName>{post.userName}</WriterName>
+                    <PostingDay>
+                      {post.createdDate
+                        ? `${new Date(
+                            post.createdDate
+                          ).getFullYear()}년 ${String(
+                            new Date(post.createdDate).getMonth() + 1
+                          ).padStart(2, "0")}월 ${String(
+                            new Date(post.createdDate).getDate()
+                          ).padStart(2, "0")}일 ${String(
+                            new Date(post.createdDate).getHours()
+                          ).padStart(2, "0")}:${String(
+                            new Date(post.createdDate).getMinutes()
+                          ).padStart(2, "0")}`
+                        : "정보 없음"}
+                    </PostingDay>
+                  </div>
+                </TeamPostWriter>
+                <TeamPostContent>{post.content}</TeamPostContent>
+                <TeamPostImage>
                   <img
-                    src={post.userProfileImage}
+                    src={post.image}
                     alt="Error"
                     style={{
-                      width: "2rem",
-                      height: "2rem",
-                      borderRadius: "50%",
-                      border: "1px solid white",
+                      width: "100%",
+                      height: "fit-content",
+                      objectFit: "cover",
                     }}
                   />
-                </WriterProfileImg>
-                <div
-                  style={{
-                    width: "fit-content",
-                    height: "fit-content",
-                    display: "flex",
-                    alignItems: "start",
-                    justifyContent: "space-between",
-                    flexDirection: "column",
-                    marginLeft: "1rem",
-                    backgroundColor: "transparent",
-                    gap: "0.2rem",
-                  }}
-                >
-                  <WriterName>{post.userName}</WriterName>
-                  <PostingDay>
-                    {post.createdDate
-                      ? `${new Date(post.createdDate).getFullYear()}년 ${String(
-                          new Date(post.createdDate).getMonth() + 1
-                        ).padStart(2, "0")}월 ${String(
-                          new Date(post.createdDate).getDate()
-                        ).padStart(2, "0")}일 ${String(
-                          new Date(post.createdDate).getHours()
-                        ).padStart(2, "0")}:${String(
-                          new Date(post.createdDate).getMinutes()
-                        ).padStart(2, "0")}`
-                      : "정보 없음"}
-                  </PostingDay>
-                </div>
-              </TeamPostWriter>
-              <TeamPostContent>{post.content}</TeamPostContent>
-              <TeamPostImage>
-                <img
-                  src={post.image}
-                  alt="Error"
-                  style={{
-                    width: "100%",
-                    height: "fit-content",
-                    objectFit: "cover",
-                  }}
-                />
-              </TeamPostImage>
-              <TeamPostComment>
-                <AiOutlineComment size={20} />
-                <span
-                  style={{
-                    marginLeft: "0.5rem",
-                  }}
-                >
-                  {post.commentCount}
-                </span>
-              </TeamPostComment>
-            </TeamPostBox>
+                </TeamPostImage>
+                <TeamPostComment>
+                  <AiOutlineComment size={20} />
+                  <span
+                    style={{
+                      marginLeft: "0.5rem",
+                    }}
+                  >
+                    {post.commentCount}
+                  </span>
+                </TeamPostComment>
+              </TeamPostBox>
+            </div>
+          ))
+        ) : (
+          <div
+            style={{
+              width: "100%",
+              height: "70%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+              backgroundColor: "transparent",
+            }}
+          >
+            <NoDataBtn />
+            <br />
+            <strong>게시글이 존재하지 않습니다.</strong>
           </div>
-        ))}
+        )}
       </Wrapper>
       <SideInfoRight>
         <SideInfoBox>
