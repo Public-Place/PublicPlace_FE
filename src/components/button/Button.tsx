@@ -13,6 +13,7 @@ import {
   WriteComment,
   Write,
   ChatBotContainer,
+  MorePostBtnContainer,
 } from "./styles";
 import { FaBars, FaXmark, FaCheck, FaO } from "react-icons/fa6";
 import {
@@ -22,6 +23,7 @@ import {
   HambergerBtnType,
   handleCancleTeamJoinType,
   KakaoSignInType,
+  MorePostBtnType,
   SignInBtnType,
   SignUpBtnType,
 } from "./types";
@@ -36,6 +38,7 @@ import {
 import { LuPencilLine } from "react-icons/lu";
 import { VscRobot } from "react-icons/vsc";
 import { FaRegSadTear } from "react-icons/fa";
+import { MdExpandMore } from "react-icons/md";
 
 // 햄버거 버튼
 export const HambergerBtn = ({ toggleNav }: HambergerBtnType) => {
@@ -253,4 +256,14 @@ export const ChatBotBtn = () => {
 // 데이터 대체 버튼
 export const NoDataBtn = () => {
   return <FaRegSadTear size={50} />;
+};
+
+// 더 보기 버튼
+export const MorePostBtn = ({ onClick }: MorePostBtnType) => {
+  return (
+    <MorePostBtnContainer onClick={onClick}>
+      <span>더 보기</span>
+      <MdExpandMore size={17} />
+    </MorePostBtnContainer>
+  );
 };
