@@ -284,3 +284,22 @@ export const Write = styled.div`
     cursor: pointer;
   }
 `;
+
+export const MorePostBtnContainer = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.3rem;
+
+  font-size: 0.7rem;
+
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;

@@ -48,11 +48,19 @@ export default function CreateTeam() {
     teamNameMsg,
     handleCheckTeamName,
     getNickNameMsgColor,
+    location,
   } = useCreateTeamEvent();
 
   useEffect(() => {
     setTeamFirstActDay("선택");
   }, []);
+
+  // 위치 정보가 로드되면 activityLat, activityLng 값을 업데이트
+  useEffect(() => {
+    if (location.loaded && location.coordinates) {
+      handleSetLatLng(location.coordinates.lat, location.coordinates.lng);
+    }
+  }, [location, handleSetLatLng]);
 
   return (
     <Container>

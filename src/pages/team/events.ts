@@ -18,6 +18,8 @@ import {
 import { GetTeamByIdAPI } from "../../services/api/team/GetTeamByIdAPI";
 import { GetTeamPostListAPI } from "../../services/api/teamPost/GetTeamPostListAPI";
 import { TeamPostListType } from "./types";
+import { useGeolocation } from "../../hooks/UseGeolocation";
+import { TeamAuthCheckAPI } from "../../services/api/team/teamAuthCheckAPI";
 
 export const useSearchTeamEvent = () => {
   const navigator = useNavigate();
@@ -146,6 +148,9 @@ export const useCreateTeamEvent = () => {
 
   // 팀 활동 장소
   const [activityAddr, setActivityAddr] = useState("");
+
+  // 위치 정보를 가져오기 위해 커스텀 훅 호출
+  const location = useGeolocation();
 
   // 팀 활동 장소 위도/경도 (기본 좌표 : 판교 카카오 본사)
   const [activityLat, setActivityLat] = useState(KakaoLat);
@@ -313,12 +318,13 @@ export const useCreateTeamEvent = () => {
     teamNameMsg,
     handleCheckTeamName,
     getNickNameMsgColor,
+    location,
   };
 };
 
 /* ------------------------------------------------------------------ */
 
-export const useTeamEvent = () => {
+export const useTeamEvent = (teamId: number) => {
   const [team, setTeam] = useState<TeamListType>();
 
   // 팀 활동 장소 위도/경도 관리
@@ -409,10 +415,48 @@ export const useTeamEvent = () => {
   const [page, setPage] = useState(1);
   const [content, setContent] = useState("");
 
+  const [noMorePosts, setNoMorePosts] = useState(false);
+
   // 팀 게시글 조회
-  const handleGetTeamPostList = async (teamId: number) => {
+  const handleGetTeamPostList = async (teamId: number, resetList = false) => {
     const result = await GetTeamPostListAPI({ teamId, page, content });
-    setTeamPostList(result);
+
+    // 게시글 수가 10개 미만일 경우 더 이상 게시글이 없다는 표시
+    if (result.length < 10) {
+      setNoMorePosts(true);
+    } else {
+      setNoMorePosts(false);
+    }
+
+    // 검색어가 변경되었거나 페이지가 1일 경우 게시글 리스트 초기화
+    if (resetList) {
+      setTeamPostList(result); // 리스트 초기화 후 새로운 결과로 대체
+    } else {
+      setTeamPostList((prevPosts) => [...prevPosts, ...result]); // 기존 리스트에 결과 추가
+    }
+  };
+
+  // 더 보기 버튼 클릭
+  const handleClickMorePostBtn = () => {
+    setPage((prevState) => prevState + 1);
+  };
+
+  // 팀 자격 상태
+  const [teamAuth, setTeamAuth] = useState("");
+
+  // 팀 자격 증명 로직
+  const handleCheckTeamAuth = async () => {
+    const auth = await TeamAuthCheckAPI(teamId);
+
+    if (auth.role) {
+      if (auth.leader) {
+        setTeamAuth("leader");
+      } else if (!auth.leader) {
+        setTeamAuth("member");
+      }
+    } else {
+      setTeamAuth("guest");
+    }
   };
 
   return {
@@ -430,5 +474,11 @@ export const useTeamEvent = () => {
     handleGetTeamPostList,
     content,
     setContent,
+    page,
+    setPage,
+    handleClickMorePostBtn,
+    noMorePosts,
+    teamAuth,
+    handleCheckTeamAuth,
   };
 };

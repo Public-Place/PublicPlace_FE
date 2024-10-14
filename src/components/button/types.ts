@@ -33,3 +33,7 @@ export interface CategoryBtnType {
   handleClick: () => void;
   isClicked: boolean;
 }
+
+export interface MorePostBtnType {
+  onClick: () => void;
+}

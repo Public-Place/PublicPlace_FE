@@ -131,6 +131,33 @@ export const TeamBoxArea = styled.div`
   background-color: transparent;
 `;
 
+export const MorePost = styled.div`
+  width: 100%;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  background-color: transparent;
+`;
+
+export const Filter = styled.div<{ auth: boolean }>`
+  width: 100%;
+  height: fit-content;
+  min-height: 70%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  filter: ${(props) => (props.auth ? "blur(6px)" : "none")};
+
+  background-color: transparent;
+`;
+
 /* ------------------------------------------------ */
 export const TeamName = styled.div`
   width: 100%;
@@ -340,7 +367,7 @@ export const TeamPostBox = styled.div`
   height: fit-content;
 
   padding: 1rem 1rem;
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1.5rem; */
 
   display: flex;
   align-items: center;
