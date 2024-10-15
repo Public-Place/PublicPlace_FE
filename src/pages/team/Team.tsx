@@ -62,6 +62,7 @@ export const Team = () => {
     noMorePosts,
     teamAuth,
     handleCheckTeamAuth,
+    handleGoToUpdateTeam,
   } = useTeamEvent(teamId);
 
   useEffect(() => {
@@ -130,6 +131,7 @@ export const Team = () => {
                     flexDirection: "row",
                     gap: "0.5rem",
                   }}
+                  onClick={handleGoToUpdateTeam}
                 >
                   <IoSettingsOutline />
                   <LeftSmallText text="팀 정보 수정" />
@@ -282,15 +284,20 @@ export const Team = () => {
                     </TeamPostWriter>
                     <TeamPostContent>{post.content}</TeamPostContent>
                     <TeamPostImage>
-                      <img
-                        src={post.image}
-                        alt="Error"
-                        style={{
-                          width: "100%",
-                          height: "fit-content",
-                          objectFit: "cover",
-                        }}
-                      />
+                      {post.image && post.image.startsWith("http") ? (
+                        <img
+                          src={post.image}
+                          alt="Error"
+                          style={{
+                            width: "100%",
+                            height: "fit-content",
+                            objectFit: "cover",
+                            border: "1px solid white",
+                          }}
+                        />
+                      ) : (
+                        <></>
+                      )}
                     </TeamPostImage>
                     <TeamPostComment>
                       <AiOutlineComment size={20} />
@@ -315,11 +322,12 @@ export const Team = () => {
             <div
               style={{
                 width: "100%",
-                height: "100%",
+                height: "fit-content",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 flexDirection: "column",
+                marginTop: "40%",
                 backgroundColor: "transparent",
               }}
             >

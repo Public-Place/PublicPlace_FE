@@ -92,7 +92,7 @@ export default function SearchTeam() {
             />
             <UserInfoText
               text={`팀원 수: ${
-                randomTeam[currentIndex]?.members.length || "정보 없음"
+                randomTeam[currentIndex]?.teamMemberCount || "정보 없음"
               }명`}
             />
             <UserInfoText

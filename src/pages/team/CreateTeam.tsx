@@ -23,6 +23,8 @@ import {
   TeamName,
   TeamStadium,
 } from "./styles";
+import { useLocation } from "react-router-dom";
+import { KakaoLat, KakaoLng } from "../../constants/FixValues";
 
 export default function CreateTeam() {
   const {
@@ -35,12 +37,16 @@ export default function CreateTeam() {
     teamSecondActDay,
     setTeamSecondActDay,
     activityAddr,
+    setActivityAddr,
     activityLat,
+    setActivityLat,
     activityLng,
+    setActivityLng,
     handleAddressChange,
     handleSetLatLng,
     handleClickCreateTeam,
     teamImage,
+    setTeamImage,
     teamImageRef,
     handleFileChange,
     handleTeamImageClick,
@@ -48,32 +54,59 @@ export default function CreateTeam() {
     teamNameMsg,
     handleCheckTeamName,
     getNickNameMsgColor,
-    location,
+    geoLocation,
+    teamInfo,
+    handleGetTeamInfo,
+    handleClickUpdateTeam,
   } = useCreateTeamEvent();
+
+  const location = useLocation();
+  const teamId = location.state;
 
   useEffect(() => {
     setTeamFirstActDay("선택");
+    handleGetTeamInfo(teamId);
   }, []);
 
   // 위치 정보가 로드되면 activityLat, activityLng 값을 업데이트
   useEffect(() => {
-    if (location.loaded && location.coordinates) {
-      handleSetLatLng(location.coordinates.lat, location.coordinates.lng);
+    // geoLocation이 로드되고, 좌표 정보가 존재할 때만 사용자 위치로 좌표를 설정
+    if (
+      geoLocation.loaded &&
+      geoLocation.coordinates &&
+      !teamInfo &&
+      activityLat === KakaoLat && // 초기값과 비교하여 기본 좌표인 경우만 업데이트
+      activityLng === KakaoLng
+    ) {
+      handleSetLatLng(geoLocation.coordinates.lat, geoLocation.coordinates.lng);
     }
-  }, [location, handleSetLatLng]);
+  }, [geoLocation, handleSetLatLng, teamInfo, activityLat, activityLng]);
+
+  useEffect(() => {
+    if (teamInfo) {
+      setTeamName(teamInfo.teamName);
+      setTeamIntroduce(teamInfo.teamInfo);
+      setTeamFirstActDay(teamInfo.activityDays[0]);
+      setTeamSecondActDay(teamInfo.activityDays[1] || "선택");
+      setActivityAddr(teamInfo.teamLocation);
+      setActivityLat(teamInfo.latitude);
+      setActivityLng(teamInfo.longitude);
+      setTeamImage(teamInfo.teamImg);
+    }
+  }, [teamInfo]);
 
   return (
     <Container>
       <Advertisement></Advertisement>
       <Wrapper>
-        <PageCenterText text={"새 팀 생성 "} />
+        <PageCenterText text={teamId ? "팀 정보 수정" : "새 팀 생성"} />
         <TeamName>
           <InputTitle
             text={"팀 이름"}
             msg={teamNameMsg || "※ 중복 여부를 확인해주세요"}
             msgColor={getNickNameMsgColor()}
           />
-          <div onClick={() => handleCheckTeamName({ value: teamName })}>
+          <div onClick={() => handleCheckTeamName({ value: teamName, teamId })}>
             {teamNameSuccess === true ? (
               <SuccessBtn />
             ) : teamNameSuccess === false ? (
@@ -157,7 +190,10 @@ export default function CreateTeam() {
             marginTop: "1rem",
           }}
         >
-          <GreenBtn text={"팀 생성하기"} onClick={handleClickCreateTeam} />
+          <GreenBtn
+            text={teamId ? "수정하기" : "팀 생성하기"}
+            onClick={teamId ? handleClickUpdateTeam : handleClickCreateTeam}
+          />
         </div>
       </Wrapper>
       <Advertisement></Advertisement>

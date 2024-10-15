@@ -150,7 +150,7 @@ export const useCreateTeamEvent = () => {
   const [activityAddr, setActivityAddr] = useState("");
 
   // 위치 정보를 가져오기 위해 커스텀 훅 호출
-  const location = useGeolocation();
+  const geoLocation = useGeolocation();
 
   // 팀 활동 장소 위도/경도 (기본 좌표 : 판교 카카오 본사)
   const [activityLat, setActivityLat] = useState(KakaoLat);
@@ -201,6 +201,7 @@ export const useCreateTeamEvent = () => {
         if (window.confirm(`${teamName} 팀을 생성하시겠습니까?`)) {
           // teamImage를 S3API로 가공 작업
           const teamImg = await CreateTeamImageS3API(teamImage, teamName);
+          alert(teamImg);
 
           // activityDays 필드 조건에 따른 처리 (select의 value는 맨 처음에 ""로 설정)
           let activityDaysArray;
@@ -266,18 +267,40 @@ export const useCreateTeamEvent = () => {
   // 팀 이름 중복 확인 버튼 클릭 시
   const handleCheckTeamName = async ({
     value: teamName,
+    teamId,
   }: CheckDuplicationType) => {
     if (!teamName) {
       alert("팀 이름을 입력한 후 중복 여부를 확인해주세요.");
     } else {
-      const result = await TeamNameCheckAPI(teamName);
+      if (teamId) {
+        // 팀 이름 중복 확인 (팀 정보 수정 페이지)
+        const existingInfo = await GetTeamByIdAPI(teamId);
 
-      if (result.success) {
-        setTeamNameSuccess(result.success);
-        setTeamNameMsg(result.msg);
+        if (existingInfo.teamName === teamName) {
+          setTeamNameSuccess(true);
+          setTeamNameMsg("사용 가능한 팀 이름입니다. (기존과 동일)");
+        } else {
+          const result = await TeamNameCheckAPI(teamName);
+
+          if (result.success) {
+            setTeamNameSuccess(result.success);
+            setTeamNameMsg(result.msg);
+          } else {
+            setTeamNameSuccess(result.response.data.success);
+            setTeamNameMsg(result.response.data.msg);
+          }
+        }
       } else {
-        setTeamNameSuccess(result.response.data.success);
-        setTeamNameMsg(result.response.data.msg);
+        // 팀 이름 중복 확인 (팀 생성 페이지)
+        const result = await TeamNameCheckAPI(teamName);
+
+        if (result.success) {
+          setTeamNameSuccess(result.success);
+          setTeamNameMsg(result.msg);
+        } else {
+          setTeamNameSuccess(result.response.data.success);
+          setTeamNameMsg(result.response.data.msg);
+        }
       }
     }
   };
@@ -295,6 +318,20 @@ export const useCreateTeamEvent = () => {
     setTeamNameMsg("");
   }, [teamName]);
 
+  // 수정할 팀의 정보
+  const [teamInfo, setTeamInfo] = useState<TeamListType>();
+
+  // 수정할 팀 정보 조회
+  const handleGetTeamInfo = async (teamId: number) => {
+    const result = await GetTeamByIdAPI(teamId);
+    setTeamInfo(result);
+  };
+
+  // '수정하기' 클릭 시
+  const handleClickUpdateTeam = () => {
+    alert("수정하기 클릭");
+  };
+
   return {
     teamName,
     setTeamName,
@@ -305,12 +342,16 @@ export const useCreateTeamEvent = () => {
     teamSecondActDay,
     setTeamSecondActDay,
     activityAddr,
+    setActivityAddr,
     activityLat,
+    setActivityLat,
     activityLng,
+    setActivityLng,
     handleAddressChange,
     handleSetLatLng,
     handleClickCreateTeam,
     teamImage,
+    setTeamImage,
     teamImageRef,
     handleFileChange,
     handleTeamImageClick,
@@ -318,13 +359,18 @@ export const useCreateTeamEvent = () => {
     teamNameMsg,
     handleCheckTeamName,
     getNickNameMsgColor,
-    location,
+    geoLocation,
+    teamInfo,
+    handleGetTeamInfo,
+    handleClickUpdateTeam,
   };
 };
 
 /* ------------------------------------------------------------------ */
 
 export const useTeamEvent = (teamId: number) => {
+  const navigator = useNavigate();
+
   const [team, setTeam] = useState<TeamListType>();
 
   // 팀 활동 장소 위도/경도 관리
@@ -459,6 +505,11 @@ export const useTeamEvent = (teamId: number) => {
     }
   };
 
+  // '팀 정보 수정' 클릭 시
+  const handleGoToUpdateTeam = () => {
+    navigator("/createteam", { state: teamId });
+  };
+
   return {
     team,
     handleGetTeam,
@@ -480,5 +531,6 @@ export const useTeamEvent = (teamId: number) => {
     noMorePosts,
     teamAuth,
     handleCheckTeamAuth,
+    handleGoToUpdateTeam,
   };
 };

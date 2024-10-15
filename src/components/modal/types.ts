@@ -14,6 +14,7 @@ export interface SignUpModalType {
 
 export interface CheckDuplicationType {
   value: string;
+  teamId?: number;
 }
 
 export interface useSignInModalEventType {
