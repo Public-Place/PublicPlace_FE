@@ -146,11 +146,11 @@ export const MorePost = styled.div`
 export const Filter = styled.div<{ auth: boolean }>`
   width: 100%;
   height: fit-content;
-  min-height: 70%;
+  min-height: 80%;
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   flex-direction: column;
 
   filter: ${(props) => (props.auth ? "blur(6px)" : "none")};
@@ -367,7 +367,6 @@ export const TeamPostBox = styled.div`
   height: fit-content;
 
   padding: 1rem 1rem;
-  /* margin-bottom: 1.5rem; */
 
   display: flex;
   align-items: center;
@@ -450,8 +449,6 @@ export const TeamPostContent = styled.div`
 export const TeamPostImage = styled.div`
   width: 100%;
   height: fit-content;
-
-  border: 1px solid white;
 
   background-color: transparent;
 `;

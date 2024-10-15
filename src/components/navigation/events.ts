@@ -52,6 +52,7 @@ export const useNavigationEvent = ({
     if (token) {
       navigator("/createteam");
       toggleNav();
+      window.location.reload();
     } else {
       alert("로그인 시 이용 가능합니다.");
     }
