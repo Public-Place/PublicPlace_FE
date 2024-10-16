@@ -232,6 +232,7 @@ export const useCreateTeamEvent = () => {
           } else if (result.success) {
             navigator("/searchteam");
             window.location.reload();
+            alert(`${teamName} 팀을 생성하였습니다.`);
           }
         } else {
           return;
@@ -329,15 +330,6 @@ export const useCreateTeamEvent = () => {
 
   // '수정하기' 클릭 시
   const handleClickUpdateTeam = async (teamId: number) => {
-    // console.log("teamName : ", teamName);
-    // console.log("teamIntroduce : ", teamIntroduce);
-    // console.log("teamFirstActDay : ", teamFirstActDay);
-    // console.log("teamSecondActDay : ", teamSecondActDay);
-    // console.log("activityAddr : ", activityAddr);
-    // console.log("activityLat : ", activityLat);
-    // console.log("activityLng : ", activityLng);
-    // console.log("teamImage : ", teamImage);
-
     if (!CheckTeamEssentialValues()) {
       return;
     } else {
@@ -562,6 +554,11 @@ export const useTeamEvent = (teamId: number) => {
     navigator("/createteam", { state: teamId });
   };
 
+  // 팀 게시글 클릭 시
+  const handleGoToTeamPost = (teamBoardId: number) => {
+    navigator("/teampost", { state: teamBoardId });
+  };
+
   return {
     team,
     handleGetTeam,
@@ -584,5 +581,6 @@ export const useTeamEvent = (teamId: number) => {
     teamAuth,
     handleCheckTeamAuth,
     handleGoToUpdateTeam,
+    handleGoToTeamPost,
   };
 };

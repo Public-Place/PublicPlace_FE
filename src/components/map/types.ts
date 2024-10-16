@@ -4,4 +4,5 @@ export interface KakaoMapType {
   Lat?: number;
   Lng?: number;
   isShow?: boolean;
+  height?: string;
 }

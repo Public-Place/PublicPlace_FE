@@ -38,12 +38,17 @@ export const usePostEvent = ({ postId }: { postId: number }) => {
   const handleDeleteComment = async (commentId: number) => {
     const result = await DeletePostCommentAPI({ commentId });
 
-    // 삭제 권한 확인 로직
-    if (result.success) {
-      alert("댓글이 삭제되었습니다.");
-      window.location.reload();
-    } else if (!result.success) {
-      alert("본인이 작성한 댓글만 삭제할 수 있습니다.");
+    if (!result) {
+      alert("오류로 인한 댓글 삭제 실패");
+      return;
+    } else {
+      // 삭제 권한 확인 로직
+      if (result.success) {
+        alert("댓글이 삭제되었습니다.");
+        window.location.reload();
+      } else if (!result.success) {
+        alert("본인이 작성한 댓글만 삭제할 수 있습니다.");
+      }
     }
   };
 
