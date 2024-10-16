@@ -15,6 +15,7 @@ export default function KakaoMap({
   Lat,
   Lng,
   isShow,
+  height,
 }: KakaoMapType) {
   const [map, setMap] = useState<any>();
   const [marker, setMarker] = useState<any>();
@@ -83,5 +84,5 @@ export default function KakaoMap({
     }
   }, [map, marker]); // map과 marker가 정의된 후 실행
 
-  return <KakaoMapContainer id="map" />;
+  return <KakaoMapContainer id="map" height={height} />;
 }

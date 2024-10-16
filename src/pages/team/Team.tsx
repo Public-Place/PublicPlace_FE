@@ -63,6 +63,7 @@ export const Team = () => {
     teamAuth,
     handleCheckTeamAuth,
     handleGoToUpdateTeam,
+    handleGoToTeamPost,
   } = useTeamEvent(teamId);
 
   useEffect(() => {
@@ -234,7 +235,7 @@ export const Team = () => {
                   <TeamPostBox
                     onClick={
                       teamAuth !== "guest"
-                        ? () => alert(`${post.teamBoardId}번 게시글 클릭`)
+                        ? () => handleGoToTeamPost(post.teamBoardId)
                         : () => alert("팀 가입 후 이용할 수 있습니다.")
                     }
                   >
