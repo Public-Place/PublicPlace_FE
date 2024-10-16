@@ -68,7 +68,11 @@ export default function SearchTeam() {
         />
         <FaAngleRight
           size={"2rem"}
-          style={{ position: "absolute", right: "2rem", cursor: "pointer" }}
+          style={{
+            position: "absolute",
+            right: "2rem",
+            cursor: "pointer",
+          }}
           onClick={handleNextTeam}
         />
         {randomTeam && randomTeam.length > 0 && (

@@ -20,6 +20,7 @@ import { GetTeamPostListAPI } from "../../services/api/teamPost/GetTeamPostListA
 import { TeamPostListType } from "./types";
 import { useGeolocation } from "../../hooks/UseGeolocation";
 import { TeamAuthCheckAPI } from "../../services/api/team/teamAuthCheckAPI";
+import { UpdateTeamAPI } from "../../services/api/team/UpdateTeamAPI";
 
 export const useSearchTeamEvent = () => {
   const navigator = useNavigate();
@@ -201,7 +202,6 @@ export const useCreateTeamEvent = () => {
         if (window.confirm(`${teamName} 팀을 생성하시겠습니까?`)) {
           // teamImage를 S3API로 가공 작업
           const teamImg = await CreateTeamImageS3API(teamImage, teamName);
-          alert(teamImg);
 
           // activityDays 필드 조건에 따른 처리 (select의 value는 맨 처음에 ""로 설정)
           let activityDaysArray;
@@ -328,8 +328,60 @@ export const useCreateTeamEvent = () => {
   };
 
   // '수정하기' 클릭 시
-  const handleClickUpdateTeam = () => {
-    alert("수정하기 클릭");
+  const handleClickUpdateTeam = async (teamId: number) => {
+    // console.log("teamName : ", teamName);
+    // console.log("teamIntroduce : ", teamIntroduce);
+    // console.log("teamFirstActDay : ", teamFirstActDay);
+    // console.log("teamSecondActDay : ", teamSecondActDay);
+    // console.log("activityAddr : ", activityAddr);
+    // console.log("activityLat : ", activityLat);
+    // console.log("activityLng : ", activityLng);
+    // console.log("teamImage : ", teamImage);
+
+    if (!CheckTeamEssentialValues()) {
+      return;
+    } else {
+      if (!teamNameSuccess) {
+        alert("팀 이름 중복 여부를 확인해주세요.");
+      } else {
+        if (window.confirm(`${teamName} 팀의 정보를 수정하시겠습니까?`)) {
+          const teamImg = await CreateTeamImageS3API(teamImage, teamName);
+
+          // activityDays 필드 조건에 따른 처리 (select의 value는 맨 처음에 ""로 설정)
+          let activityDaysArray;
+          if (teamSecondActDay === "") {
+            // teamSecondActDay가 "선택"일 경우, teamFirstActDay 값만 저장
+            activityDaysArray = [teamFirstActDay];
+          } else {
+            // teamSecondActDay가 "선택"이 아닌 경우, 배열로 두 값을 저장
+            activityDaysArray = [teamFirstActDay, teamSecondActDay];
+          }
+
+          // DTO 생성 후 필드 별로 매핑 작업
+          const UpdateTeamData: CreateTeamDto = {
+            activityDays: activityDaysArray,
+            teamImg: teamImg,
+            teamInfo: teamIntroduce,
+            teamLocation: activityAddr,
+            teamName: teamName,
+            latitude: activityLat,
+            longitude: activityLng,
+          };
+
+          const result = await UpdateTeamAPI(UpdateTeamData, teamId);
+
+          if (!result) {
+            alert("팀 정보 수정을 실패하였습니다.");
+          } else if (result.success) {
+            navigator("/team", { state: teamId });
+            window.location.reload();
+            alert("팀 정보 수정을 성공하였습니다.");
+          }
+        } else {
+          return;
+        }
+      }
+    }
   };
 
   return {
