@@ -139,7 +139,7 @@ export const CreateTeamImageS3API = async (
 
   const postBlob = await getFileBlob(teamImage);
   const formData = new FormData();
-  formData.append("file", postBlob, `${teamName}.png`);
+  formData.append("file", postBlob, `${teamName}_image.png`);
 
   try {
     const response = await axios.post(`/api/files/upload`, formData);

@@ -192,7 +192,11 @@ export default function CreateTeam() {
         >
           <GreenBtn
             text={teamId ? "수정하기" : "팀 생성하기"}
-            onClick={teamId ? handleClickUpdateTeam : handleClickCreateTeam}
+            onClick={
+              teamId
+                ? () => handleClickUpdateTeam(teamId)
+                : handleClickCreateTeam
+            }
           />
         </div>
       </Wrapper>
