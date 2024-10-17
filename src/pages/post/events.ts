@@ -31,23 +31,37 @@ export const usePostEvent = ({ postId }: { postId: number }) => {
   }: newCommentType) => {
     if (newComment === "") {
       alert("댓글을 작성해주세요.");
-    } else await CreatePostCommentAPI({ newComment, postId });
+    } else {
+      const result = await CreatePostCommentAPI({ newComment, postId });
+      console.log("result : ", result);
+
+      if (result.code === 200) {
+        window.location.reload();
+      } else {
+        if (result.response.data.code === 500) {
+          alert("예상하지 못 한 오류로 인해 댓글 작성을 실패하였습니다.");
+        } else if (result.response.data.code !== 500) {
+          alert(`에러 코드 : ${result.response.data.code}`);
+        }
+      }
+    }
   };
 
   // '삭제' 버튼 클릭 시
   const handleDeleteComment = async (commentId: number) => {
     const result = await DeletePostCommentAPI({ commentId });
+    console.log("result : ", result);
 
-    if (!result) {
-      alert("오류로 인한 댓글 삭제 실패");
-      return;
+    if (result.code === 200) {
+      alert("댓글이 삭제되었습니다.");
+      window.location.reload();
     } else {
-      // 삭제 권한 확인 로직
-      if (result.success) {
-        alert("댓글이 삭제되었습니다.");
-        window.location.reload();
-      } else if (!result.success) {
+      if (result.response.data.code === 500) {
+        alert("예상하지 못 한 오류로 인해 댓글 삭제를 실패하였습니다.");
+      } else if (result.response.data.code === 403) {
         alert("본인이 작성한 댓글만 삭제할 수 있습니다.");
+      } else {
+        alert(`에러 코드 : ${result.response.data.code}`);
       }
     }
   };
@@ -173,12 +187,15 @@ export const useWritePostEvent = () => {
 
         const result = await CreatePostAPI(CreatePostData);
 
-        if (result.success) {
-          alert("게시글 작성 완료");
+        if (result.code === 200) {
+          alert("게시글이 작성되었습니다.");
           navigator("/board");
-          window.location.reload();
         } else {
-          alert("게시글 작성 실패");
+          if (result.response.data.code === 500) {
+            alert("예상하지 못 한 오류로 인해 게시글 작성을 실패하였습니다.");
+          } else if (result.response.data.code !== 500) {
+            alert(`에러 코드 : ${result.response.data.code}`);
+          }
         }
       } else {
         return;
@@ -205,12 +222,16 @@ export const useWritePostEvent = () => {
         };
 
         const result = await UpdatePostAPI({ postId, UpdatePostData });
-        if (result.success) {
+
+        if (result.code === 200) {
           alert("게시글 수정 완료");
           navigator("/post", { state: postId });
-          window.location.reload();
         } else {
-          alert("게시글 수정 실패");
+          if (result.response.data.code === 500) {
+            alert("예상하지 못 한 오류로 인해 게시글 수정을 실패하였습니다.");
+          } else if (result.response.data.code !== 500) {
+            alert(`에러 코드 : ${result.response.data.code}`);
+          }
         }
       } else {
         return;

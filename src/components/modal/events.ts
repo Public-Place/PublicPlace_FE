@@ -59,12 +59,18 @@ export const useSignInModalEvent = ({
       return;
     } else {
       // 로그인 요청 API 들어가는 위치
-      await LocalSignInAPI({ email, password });
+      const result = await LocalSignInAPI({ email, password });
 
-      // 로그인 성공 시 로그인 창 없애고 "로그인" -> "로그아웃" 텍스트 변경
-      if (localStorage.getItem("token")) {
+      if (result.success && localStorage.getItem("token")) {
+        // 로그인 성공 시 로그인 창 없애고 "로그인" -> "로그아웃" 텍스트 변경
         setIsSignInModalOpen(false);
         setIsSignIn(true);
+      } else {
+        if (result.response.data.code === 500) {
+          alert("예상하지 못 한 이유로 로그인에 실패하였습니다.");
+        } else if (result.response.data.code === 401) {
+          alert("아이디와 비밀번호를 확인해주세요.");
+        }
       }
     }
   };
@@ -343,7 +349,7 @@ export const useSignUpModalEvent = ({
 export const useKebabModalEvent = () => {
   const navigate = useNavigate();
 
-  // 수정하기 버튼 클릭 시 (게시글)
+  // 수정하기 버튼 클릭 시
   const handleClickUpdate = ({ postId, isTeamPost }: KebabModalType) => {
     if (isTeamPost) {
       alert("팀 게시글 수정하기 클릭");
@@ -352,7 +358,7 @@ export const useKebabModalEvent = () => {
     }
   };
 
-  // 삭제하기 버튼 클릭 시 (게시글)
+  // 삭제하기 버튼 클릭 시
   const handleClickDelete = async ({ postId, isTeamPost }: KebabModalType) => {
     if (isTeamPost) {
       if (window.confirm("정말로 게시글을 삭제하시겠습니까?")) {
@@ -362,7 +368,13 @@ export const useKebabModalEvent = () => {
           alert("게시글이 삭제되었습니다.");
           navigate(-1);
         } else {
-          alert("예상하지 못 한 오류로 인해 게시글 삭제를 실패하였습니다.");
+          if (result.response.data.code === 500) {
+            alert("예상하지 못 한 오류로 인해 게시글 삭제를 실패하였습니다.");
+          } else if (result.response.data.code === 403) {
+            alert("본인이 작성한 게시글만 삭제할 수 있습니다.");
+          } else {
+            alert(`에러 코드 : ${result.response.data.code}`);
+          }
         }
       } else {
         return;
@@ -370,12 +382,19 @@ export const useKebabModalEvent = () => {
     } else if (!isTeamPost) {
       if (window.confirm("정말로 게시글을 삭제하시겠습니까?")) {
         const result = await DeletePostAPI({ postId });
-        if (result.success) {
-          alert(result.msg);
+        console.log("result : ", result);
+
+        if (result.code === 200) {
+          alert("게시글이 삭제되었습니다.");
           navigate("/board");
-          window.location.reload();
         } else {
-          alert(result.msg);
+          if (result.response.data.code === 500) {
+            alert("예상하지 못 한 오류로 인해 게시글 삭제를 실패하였습니다.");
+          } else if (result.response.data.code === 403) {
+            alert("본인이 작성한 게시글만 삭제할 수 있습니다.");
+          } else {
+            alert(`에러 코드 : ${result.response.data.code}`);
+          }
         }
       } else {
         return;

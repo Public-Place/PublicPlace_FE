@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const BASE_URL = "http://52.78.149.48:8080";
+const BASE_URL = "http://43.202.82.212:8080";
 
 // Axios 인스턴스 생성 (재사용성 ↑, 코드 간결성 ↑)
 export const axios = Axios.create({

@@ -17,5 +17,6 @@ export const UpdatePostAPI = async ({
     return response.data;
   } catch (error) {
     // console.log("게시글 수정 실패", error);
+    return error;
   }
 };
