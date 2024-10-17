@@ -51,7 +51,6 @@ export const Team = () => {
     teamLng,
     setTeamLat,
     setTeamLng,
-    isShow,
     teamPostList,
     handleGetTeamPostList,
     content,
@@ -283,7 +282,14 @@ export const Team = () => {
                         </PostingDay>
                       </div>
                     </TeamPostWriter>
-                    <TeamPostContent>{post.content}</TeamPostContent>
+                    <TeamPostContent>
+                      {post?.content?.split("\n").map((line, index) => (
+                        <span key={index} style={{ margin: "0.25rem 0rem" }}>
+                          {line}
+                          <br />
+                        </span>
+                      ))}
+                    </TeamPostContent>
                     <TeamPostImage>
                       {post.image && post.image.startsWith("http") ? (
                         <img
@@ -292,7 +298,8 @@ export const Team = () => {
                           style={{
                             width: "100%",
                             height: "fit-content",
-                            objectFit: "cover",
+                            maxHeight: "30rem",
+                            objectFit: "contain",
                             border: "1px solid white",
                           }}
                         />
@@ -382,7 +389,7 @@ export const Team = () => {
         </SideInfoBox>
         <SideInfoBox>
           <LeftMiddleText text={"팀 활동 장소"} />
-          <KakaoMap Lat={teamLat} Lng={teamLng} isShow={isShow} />
+          <KakaoMap Lat={teamLat} Lng={teamLng} isShow={true} />
         </SideInfoBox>
       </SideInfoRight>
     </TeamContainer>

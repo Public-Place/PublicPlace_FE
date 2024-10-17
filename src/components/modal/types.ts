@@ -25,6 +25,7 @@ export interface useSignInModalEventType {
 
 export interface KebabModalType {
   postId: number;
+  isTeamPost: boolean;
 }
 
 export interface BoardRulesType {

@@ -176,6 +176,9 @@ export default function Board() {
                   <hr
                     style={{
                       width: "100%",
+                      height: "0.5px",
+                      backgroundColor: "rgb(70, 70, 70)",
+                      border: "none",
                       padding: "0",
                       margin: "0.29rem 0rem",
                     }}

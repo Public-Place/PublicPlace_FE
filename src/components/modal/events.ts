@@ -21,6 +21,7 @@ import { SignUpAPI } from "../../services/api/signUp/SignUpAPI";
 import { LocalSignInAPI } from "../../services/api/signIn/LocalSignInAPI";
 import { DeletePostAPI } from "../../services/api/post/DeletePostAPI";
 import { useNavigate } from "react-router-dom";
+import { DeleteTeamPostAPI } from "../../services/api/teamPost/DeleteTeamPostAPI";
 
 // 로그인 창 내부 상태 및 핸들러
 export const useSignInModalEvent = ({
@@ -342,24 +343,43 @@ export const useSignUpModalEvent = ({
 export const useKebabModalEvent = () => {
   const navigate = useNavigate();
 
-  // 수정하기 버튼 클릭 시
-  const handleClickUpdate = ({ postId }: KebabModalType) => {
-    navigate("/writepost", { state: postId });
+  // 수정하기 버튼 클릭 시 (게시글)
+  const handleClickUpdate = ({ postId, isTeamPost }: KebabModalType) => {
+    if (isTeamPost) {
+      alert("팀 게시글 수정하기 클릭");
+    } else if (!isTeamPost) {
+      navigate("/writepost", { state: postId });
+    }
   };
 
-  // 삭제하기 버튼 클릭 시
-  const handleClickDelete = async ({ postId }: KebabModalType) => {
-    if (window.confirm("정말로 게시글을 삭제하시겠습니까?")) {
-      const result = await DeletePostAPI({ postId });
-      if (result.success) {
-        alert(result.msg);
-        navigate("/board");
-        window.location.reload();
+  // 삭제하기 버튼 클릭 시 (게시글)
+  const handleClickDelete = async ({ postId, isTeamPost }: KebabModalType) => {
+    if (isTeamPost) {
+      if (window.confirm("정말로 게시글을 삭제하시겠습니까?")) {
+        const result = await DeleteTeamPostAPI(postId);
+
+        if (result.code === 200) {
+          alert("게시글이 삭제되었습니다.");
+          navigate(-1);
+        } else {
+          alert("예상하지 못 한 오류로 인해 게시글 삭제를 실패하였습니다.");
+        }
       } else {
-        alert(result.msg);
+        return;
       }
-    } else {
-      return;
+    } else if (!isTeamPost) {
+      if (window.confirm("정말로 게시글을 삭제하시겠습니까?")) {
+        const result = await DeletePostAPI({ postId });
+        if (result.success) {
+          alert(result.msg);
+          navigate("/board");
+          window.location.reload();
+        } else {
+          alert(result.msg);
+        }
+      } else {
+        return;
+      }
     }
   };
 

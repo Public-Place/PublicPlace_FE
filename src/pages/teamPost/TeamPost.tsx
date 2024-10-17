@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Advertisement,
   CommentBtnArea,
@@ -23,7 +23,6 @@ import {
   Wrapper,
   WriteComment,
 } from "../post/styles";
-import DefaultProfile from "../../assets/images/Profile.png";
 import { TeamPostDetail, TeamPosterName, TeamPostingDay } from "./styles";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import KakaoMap from "../../components/map/KakaoMap";
@@ -33,22 +32,36 @@ import { CommentInput } from "../../components/input/Input";
 import { WriteCommentBtn } from "../../components/button/Button";
 import { useTeamPostEvent } from "./events";
 import { useEffect } from "react";
+import { KebabModal } from "../../components/modal/Modal";
 
 export default function TeamPost() {
   const location = useLocation();
   const teamBoardId = location.state;
 
-  const { teamPost, handleGetPostInfo } = useTeamPostEvent();
+  const {
+    teamPost,
+    handleGetPostInfo,
+    comment,
+    setComment,
+    handleClickWriteCommentBtn,
+    handleClickDeleteCommentBtn,
+    isWriter,
+    handleAuthWriter,
+    isKebabOpen,
+    handleClickKebab,
+  } = useTeamPostEvent();
 
   useEffect(() => {
-    handleGetPostInfo(teamBoardId);
+    if (!teamBoardId) {
+      alert("찾을 수 없는 게시글입니다.");
+    } else {
+      handleGetPostInfo(teamBoardId);
+    }
   }, []);
 
   useEffect(() => {
     if (teamPost) {
-      // console.log("위도 : ", teamPost?.latitude);
-      // console.log("경도 : ", teamPost?.longitude);
-      // console.log("팀 정보 : ", teamPost);
+      handleAuthWriter();
     }
   }, [teamPost]);
 
@@ -60,7 +73,7 @@ export default function TeamPost() {
           <PostHeaderLeft>
             <PosterImage>
               <img
-                src={DefaultProfile}
+                src={teamPost?.profileImg}
                 alt="error"
                 style={{
                   width: "4rem",
@@ -88,9 +101,22 @@ export default function TeamPost() {
               </TeamPostingDay>
             </TeamPostDetail>
           </PostHeaderLeft>
-          <PostHeaderRight>
-            <FaEllipsisVertical size={25} style={{ cursor: "pointer" }} />
-          </PostHeaderRight>
+          {isWriter ? (
+            <PostHeaderRight>
+              <FaEllipsisVertical
+                size={25}
+                style={{ cursor: "pointer" }}
+                onClick={handleClickKebab}
+              />
+              {isKebabOpen && (
+                <KebabModal postId={teamBoardId} isTeamPost={true} />
+              )}
+            </PostHeaderRight>
+          ) : (
+            <PostHeaderRight>
+              <></>
+            </PostHeaderRight>
+          )}
         </PostHeader>
         <PostContent>
           {teamPost?.content?.split("\n").map((line, index) => (
@@ -126,6 +152,7 @@ export default function TeamPost() {
           Lat={teamPost?.latitude}
           Lng={teamPost?.longitude}
           height={"20rem"}
+          isShow={true}
         />
         <hr
           style={{
@@ -175,9 +202,7 @@ export default function TeamPost() {
               <GoTrash
                 size={25}
                 style={{ cursor: "pointer" }}
-                onClick={() =>
-                  alert(`${comment.commentId}번 댓글 삭제 버튼 클릭`)
-                }
+                onClick={() => handleClickDeleteCommentBtn(comment.commentId)}
               />
             </CommenterRight>
           </Commenter>
@@ -186,18 +211,20 @@ export default function TeamPost() {
           tabIndex={0} // 키보드 입력을 받기 위한 tabIndex 설정
           onKeyUp={(e) => {
             if (e.key === "Enter") {
-              alert("Enter 클릭");
+              handleClickWriteCommentBtn(teamBoardId);
             }
           }}
         >
           <InputTitle text={"댓글 작성"} />
           <CommentInputAndBtn>
             <CommentInputArea>
-              <CommentInput value={""} setValue={() => {}} />
+              <CommentInput value={comment} setValue={setComment} />
             </CommentInputArea>
             <CommentBtnArea>
               <WriteCommentBtn
-                handleCreateComment={() => alert("댓글 작성 버튼 클릭")}
+                handleCreateComment={() =>
+                  handleClickWriteCommentBtn(teamBoardId)
+                }
               />
             </CommentBtnArea>
           </CommentInputAndBtn>

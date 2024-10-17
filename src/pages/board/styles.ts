@@ -95,7 +95,7 @@ export const CategoryLayer = styled.div`
 export const PostContainer = styled.div`
   width: calc(100% - 6rem);
   height: fit-content;
-  min-height: 38rem;
+  min-height: 37rem;
 
   padding: 0.2rem 1rem;
   padding-top: 0.5rem;
@@ -105,10 +105,10 @@ export const PostContainer = styled.div`
   justify-content: start;
   flex-direction: column;
 
-  border: 1px solid white;
   border-radius: 1rem;
 
-  background-color: #3c3c3c;
+  background-color: rgb(35, 35, 35);
+  box-shadow: 0 0 5px 1px rgb(10, 10, 10);
 `;
 
 export const Post = styled.div`

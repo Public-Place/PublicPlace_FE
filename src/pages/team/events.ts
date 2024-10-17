@@ -421,9 +421,6 @@ export const useTeamEvent = (teamId: number) => {
   const [teamLat, setTeamLat] = useState(KakaoLat);
   const [teamLng, setTeamLng] = useState(KakaoLng);
 
-  // 팀 활동 장소 변경 방지
-  const isShow = true;
-
   // 팀 정보 조회
   const handleGetTeam = async (teamId: number) => {
     const teamInfo = await GetTeamByIdAPI(teamId);
@@ -569,7 +566,6 @@ export const useTeamEvent = (teamId: number) => {
     teamLng,
     setTeamLat,
     setTeamLng,
-    isShow,
     teamPostList,
     handleGetTeamPostList,
     content,

@@ -1,7 +1,9 @@
 export interface TeamPostDto {
+  userId: number;
   teamBoardId: number;
   content: string;
   userName: string;
+  profileImg: string;
   matchLocation: string;
   longitude: number;
   latitude: number;

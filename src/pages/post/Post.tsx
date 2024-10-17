@@ -87,7 +87,7 @@ export default function Post() {
                 style={{ cursor: "pointer" }}
                 onClick={handleClickKebab}
               />
-              {isKebabOpen && <KebabModal postId={postId} />}
+              {isKebabOpen && <KebabModal postId={postId} isTeamPost={false} />}
             </PostHeaderRight>
           ) : (
             <PostHeaderRight>
