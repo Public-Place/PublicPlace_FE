@@ -8,5 +8,6 @@ export const CreateTeamAPI = async (CreateTeamData: CreateTeamDto) => {
     return response.data;
   } catch (error) {
     // console.log("팀 생성 실패", error);
+    return error;
   }
 };

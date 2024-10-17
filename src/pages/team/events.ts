@@ -227,12 +227,15 @@ export const useCreateTeamEvent = () => {
           // POST Mapping 작업
           const result = await CreateTeamAPI(CreateTeamData);
 
-          if (!result) {
-            alert("팀 생성을 실패하였습니다.");
-          } else if (result.success) {
-            navigator("/searchteam");
-            window.location.reload();
+          if (result.code === 200) {
             alert(`${teamName} 팀을 생성하였습니다.`);
+            navigator("/searchteam");
+          } else {
+            if (result.response.data.code === 500) {
+              alert("예상하지 못 한 오류로 인해 팀 생성을 실패하였습니다.");
+            } else if (result.response.data.code !== 500) {
+              alert(`에러 코드 : ${result.response.data.code}`);
+            }
           }
         } else {
           return;
@@ -362,12 +365,17 @@ export const useCreateTeamEvent = () => {
 
           const result = await UpdateTeamAPI(UpdateTeamData, teamId);
 
-          if (!result) {
-            alert("팀 정보 수정을 실패하였습니다.");
-          } else if (result.success) {
+          if (result.code === 200) {
+            alert("팀 정보를 수정하였습니다.");
             navigator("/team", { state: teamId });
-            window.location.reload();
-            alert("팀 정보 수정을 성공하였습니다.");
+          } else {
+            if (result.response.data.code === 500) {
+              alert(
+                "예상하지 못 한 오류로 인해 팀 정보 수정을 실패하였습니다."
+              );
+            } else if (result.response.data.code !== 500) {
+              alert(`에러 코드 : ${result.response.data.code}`);
+            }
           }
         } else {
           return;

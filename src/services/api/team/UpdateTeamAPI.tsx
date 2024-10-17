@@ -14,5 +14,6 @@ export const UpdateTeamAPI = async (
     return response.data;
   } catch (error) {
     // console.log("팀 정보 수정 실패", error);
+    return error;
   }
 };

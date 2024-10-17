@@ -10,10 +10,10 @@ export const UpdateLocalUserAPI = async (
       UpdateMyLocalInfoData
     );
     // console.log("일반 회원정보 수정 성공", response.data);
-    alert("회원정보 수정 완료");
     return response.data;
   } catch (error) {
     // console.log("일반 회원정보 수정 실패", error);
+    return error;
   }
 };
 
@@ -25,10 +25,10 @@ export const UpdateKakaoUserAPI = async (
       "api/v1/user/updateKakaoUser",
       UpdateMyKakaoInfoData
     );
-    console.log("카카오 회원정보 수정 성공", response.data);
-    alert("회원정보 수정 완료");
+    // console.log("카카오 회원정보 수정 성공", response.data);
     return response.data;
   } catch (error) {
-    console.log("카카오 회원정보 수정 실패", error);
+    // console.log("카카오 회원정보 수정 실패", error);
+    return error;
   }
 };

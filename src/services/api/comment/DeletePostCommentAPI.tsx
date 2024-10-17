@@ -11,5 +11,6 @@ export const DeletePostCommentAPI = async ({
     return response.data;
   } catch (error) {
     // console.log("게시글 댓글 삭제 실패", error);
+    return error;
   }
 };

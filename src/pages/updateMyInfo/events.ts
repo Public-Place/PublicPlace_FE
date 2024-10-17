@@ -204,9 +204,21 @@ export const useUpdateMyInfoEvent = () => {
             password: password,
           };
 
-          await UpdateLocalUserAPI(UpdateMyLocalInfoData);
-          navigator("/myinfo");
-          window.location.reload();
+          const result = await UpdateLocalUserAPI(UpdateMyLocalInfoData);
+          console.log("result : ", result);
+
+          if (result.code === 200) {
+            alert("회원정보 수정 완료");
+            navigator("/myinfo");
+          } else {
+            if (result.response.data.code === 500) {
+              alert(
+                "예상하지 못 한 오류로 인해 회원정보 수정을 실패하였습니다."
+              );
+            } else if (result.response.data.code !== 500) {
+              alert(`에러 코드 : ${result.response.data.code}`);
+            }
+          }
         }
       }
     } else if (approach.loginApproach === "Kakao-Login") {
@@ -228,9 +240,19 @@ export const useUpdateMyInfoEvent = () => {
             profileImg: profileImg, // 프로필 이미지가 기본 이미지면 그대로 유지
           };
 
-          await UpdateKakaoUserAPI(UpdateMyKakaoInfoData);
-          navigator("/myinfo");
-          window.location.reload();
+          const result = await UpdateKakaoUserAPI(UpdateMyKakaoInfoData);
+          if (result.code === 200) {
+            alert("회원정보 수정 완료");
+            navigator("/myinfo");
+          } else {
+            if (result.response.data.code === 500) {
+              alert(
+                "예상하지 못 한 오류로 인해 회원정보 수정을 실패하였습니다."
+              );
+            } else if (result.response.data.code !== 500) {
+              alert(`에러 코드 : ${result.response.data.code}`);
+            }
+          }
         }
       }
     }
