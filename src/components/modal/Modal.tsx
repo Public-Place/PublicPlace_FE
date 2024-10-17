@@ -43,6 +43,7 @@ import {
   useSignUpModalEvent,
 } from "./events";
 import { useBoardEvent } from "../../pages/board/events";
+import { useEffect } from "react";
 
 // 로그인 창
 export const SignInModal = ({
@@ -309,14 +310,15 @@ export const SignUpModal = ({
 
 /* -------------------------------------------------------------------------------- */
 // 게시글 페이지 케밥 버튼
-export const KebabModal = ({ postId }: KebabModalType) => {
+export const KebabModal = ({ postId, isTeamPost }: KebabModalType) => {
   const { handleClickUpdate, handleClickDelete } = useKebabModalEvent();
+
   return (
     <KebabContainer>
-      <KebabContent onClick={() => handleClickUpdate({ postId })}>
+      <KebabContent onClick={() => handleClickUpdate({ postId, isTeamPost })}>
         수정하기
       </KebabContent>
-      <KebabContent onClick={() => handleClickDelete({ postId })}>
+      <KebabContent onClick={() => handleClickDelete({ postId, isTeamPost })}>
         삭제하기
       </KebabContent>
     </KebabContainer>
