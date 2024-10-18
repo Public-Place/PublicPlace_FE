@@ -1,9 +1,20 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { GetTeamPostAPI } from "../../services/api/teamPost/GetTeamPostAPI";
-import { TeamPostDto } from "../../dtos/teamPost/TeamPostDto";
+import {
+  CreateTeamPostDto,
+  TeamPostDto,
+} from "../../dtos/teamPost/TeamPostDto";
 import { CreateTeamPostCommentAPI } from "../../services/api/comment/CreateTeamPostCommentAPI";
 import { DeleteTeamPostCommentAPI } from "../../services/api/comment/DeleteTeamPostCommentAPI";
 import { GetUserAPI } from "../../services/api/user/GetUserAPI";
+import { useNavigate } from "react-router-dom";
+import { KakaoLat, KakaoLng } from "../../constants/FixValues";
+import { useGeolocation } from "../../hooks/UseGeolocation";
+import { CreateTeamPostAPI } from "../../services/api/teamPost/CreateTeamPostAPI";
+import { GetTeamPostListAPI } from "../../services/api/teamPost/GetTeamPostListAPI";
+import { TeamPostListType } from "../team/types";
+import { CreateTeamPostImageS3API } from "../../services/api/s3/S3API";
+import { UpdateTeamPostAPI } from "../../services/api/teamPost/UpdateTeamPostAPI";
 
 export const useTeamPostEvent = () => {
   // 게시글
@@ -78,5 +89,124 @@ export const useTeamPostEvent = () => {
     handleAuthWriter,
     isKebabOpen,
     handleClickKebab,
+  };
+};
+
+/* ------------------------------------------------- */
+
+export const useWriteTeamPostEvent = () => {
+  const navigator = useNavigate();
+
+  // 팀 게시글 내용
+  const [content, setContent] = useState("");
+
+  // 활동 장소
+  const [activityAddr, setActivityAddr] = useState("");
+
+  // 활동 장소 위도
+  const [activityLat, setActivityLat] = useState(KakaoLat);
+
+  // 활동 장소 경도
+  const [activityLng, setActivityLng] = useState(KakaoLng);
+
+  // 첨부 이미지
+  const [attachImg, setAttachImg] = useState("");
+  const attachImgRef = useRef<HTMLInputElement>(null);
+
+  // 위치 정보를 가져오기 위해 커스텀 훅 호출
+  const geoLocation = useGeolocation();
+
+  // Kakao Map ChangeEventHandler
+  const handleAddressChange = (addr: string) => {
+    setActivityAddr(addr);
+  };
+
+  // 위도/경도 저장
+  const handleSetLatLng = (Lat: number, Lng: number) => {
+    setActivityLat(Lat);
+    setActivityLng(Lng);
+  };
+
+  // 파일 탐색기 열기
+  const handleTeamImageClick = () => {
+    attachImgRef.current?.click();
+  };
+
+  // 팀 이미지 변경 시 실행되는 함수
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === "string") {
+          setAttachImg(reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // 작성하기 버튼 클릭 시
+  const handleClickWriteTeamPost = async (teamId: number) => {
+    if (!CheckTeamPostEssentialValues()) {
+      return;
+    } else {
+      if (window.confirm("게시글을 작성하시겠습니까?")) {
+        const teamPostImg = attachImg
+          ? await CreateTeamPostImageS3API(attachImg, teamId)
+          : "";
+
+        const CreateTeamPost: CreateTeamPostDto = {
+          content: content,
+          image: teamPostImg,
+          latitude: activityLat,
+          longitude: activityLng,
+          matchLocation: activityAddr,
+        };
+
+        const result = await CreateTeamPostAPI({ teamId, CreateTeamPost });
+
+        if (result.code === 200) {
+          alert("게시글 작성을 완료하였습니다.");
+          navigator("/team", { state: teamId });
+          window.location.reload();
+        } else {
+          if (result.response.data.code === 500) {
+            alert("예상하지 못 한 이유로 인해 게시글 작성을 실패하였습니다.");
+          } else {
+            alert(`에러 코드 : ${result.response.data.code}`);
+          }
+        }
+      }
+    }
+  };
+
+  // 필수 입력 값 유효성 검사
+  const CheckTeamPostEssentialValues = () => {
+    if (!content) {
+      alert("게시글 내용을 입력해주세요.");
+      return false;
+    }
+    return true;
+  };
+
+  return {
+    content,
+    setContent,
+    activityAddr,
+    setActivityAddr,
+    activityLat,
+    setActivityLat,
+    activityLng,
+    setActivityLng,
+    attachImg,
+    setAttachImg,
+    attachImgRef,
+    geoLocation,
+    handleAddressChange,
+    handleSetLatLng,
+    handleTeamImageClick,
+    handleFileChange,
+    handleClickWriteTeamPost,
   };
 };

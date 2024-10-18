@@ -63,6 +63,7 @@ export const Team = () => {
     handleCheckTeamAuth,
     handleGoToUpdateTeam,
     handleGoToTeamPost,
+    handleGoToWriteTeamPost,
   } = useTeamEvent(teamId);
 
   useEffect(() => {
@@ -177,6 +178,7 @@ export const Team = () => {
                     flexDirection: "row",
                     gap: "0.5rem",
                   }}
+                  onClick={() => handleGoToWriteTeamPost(teamId)}
                 >
                   <LuPencilLine />
                   <LeftSmallText text="게시글 작성" />

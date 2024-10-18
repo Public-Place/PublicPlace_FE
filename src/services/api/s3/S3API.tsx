@@ -1,5 +1,6 @@
 import { axios } from "../../utils/axios";
 import { GetPostsAPI } from "../post/GetPostsAPI";
+import { GetTeamPostListAPI } from "../teamPost/GetTeamPostListAPI";
 import { GetUserAPI } from "../user/GetUserAPI";
 
 // 프로필 이미지 수정
@@ -140,6 +141,54 @@ export const CreateTeamImageS3API = async (
   const postBlob = await getFileBlob(teamImage);
   const formData = new FormData();
   formData.append("file", postBlob, `${teamName}_image.png`);
+
+  try {
+    const response = await axios.post(`/api/files/upload`, formData);
+    // console.log("s3 이미지 변환 성공", response.data);
+    return response.data;
+  } catch (error) {
+    // console.log("s3 이미지 변환 실패", error);
+  }
+};
+
+// 팀 게시글 작성 시 이미지 설정
+export const CreateTeamPostImageS3API = async (
+  attachImg: any,
+  teamId: number
+) => {
+  // 이미지 파일을 Blob으로 변환
+  const getFileBlob = async (url: string): Promise<Blob> => {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return blob;
+  };
+
+  // 게시글 이미지가 URL일 경우 S3에 업로드하지 않고 바로 반환
+  if (attachImg.startsWith("http")) {
+    return attachImg;
+  }
+
+  // 팀 게시글 전체 조회 후 teamBoardId 최대값 가져오기
+  const teamBoardArray = await GetTeamPostListAPI({
+    teamId,
+    page: 1,
+    content: "",
+  });
+
+  // teamBoardArray가 빈 배열일 경우 새로운 게시글 ID를 1로 설정
+  const newTeamBoardId =
+    teamBoardArray.length > 0
+      ? teamBoardArray.reduce(
+          (maxId: number, post: { teamBoardId: number }) => {
+            return post.teamBoardId > maxId ? post.teamBoardId : maxId;
+          },
+          0
+        ) + 1
+      : 1;
+
+  const postBlob = await getFileBlob(attachImg);
+  const formData = new FormData();
+  formData.append("file", postBlob, `teamBoard${newTeamBoardId}_image.png`);
 
   try {
     const response = await axios.post(`/api/files/upload`, formData);

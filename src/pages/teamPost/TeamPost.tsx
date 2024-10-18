@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import {
   Advertisement,
   CommentBtnArea,
@@ -147,13 +147,17 @@ export default function TeamPost() {
             height: "1rem",
           }}
         />
-        <LeftMiddleText text={"활동 장소"} />
-        <KakaoMap
-          Lat={teamPost?.latitude}
-          Lng={teamPost?.longitude}
-          height={"20rem"}
-          isShow={true}
-        />
+        {teamPost?.matchLocation && (
+          <>
+            <LeftMiddleText text={"활동 장소"} />
+            <KakaoMap
+              Lat={teamPost?.latitude}
+              Lng={teamPost?.longitude}
+              height={"20rem"}
+              isShow={true}
+            />
+          </>
+        )}
         <hr
           style={{
             width: "100%",
