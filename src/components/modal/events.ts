@@ -70,6 +70,10 @@ export const useSignInModalEvent = ({
           alert("예상하지 못 한 이유로 로그인에 실패하였습니다.");
         } else if (result.response.data.code === 401) {
           alert("아이디와 비밀번호를 확인해주세요.");
+        } else if (result.response.data.code === 404) {
+          alert("찾을 수 없는 계정입니다.");
+        } else {
+          alert(`에러 코드 : ${result.response.data.code}`);
         }
       }
     }
@@ -352,7 +356,7 @@ export const useKebabModalEvent = () => {
   // 수정하기 버튼 클릭 시
   const handleClickUpdate = ({ postId, isTeamPost }: KebabModalType) => {
     if (isTeamPost) {
-      alert("팀 게시글 수정하기 클릭");
+      navigate("/writeteampost", { state: { postId } });
     } else if (!isTeamPost) {
       navigate("/writepost", { state: postId });
     }

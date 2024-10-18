@@ -11,10 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { KakaoLat, KakaoLng } from "../../constants/FixValues";
 import { useGeolocation } from "../../hooks/UseGeolocation";
 import { CreateTeamPostAPI } from "../../services/api/teamPost/CreateTeamPostAPI";
-import { GetTeamPostListAPI } from "../../services/api/teamPost/GetTeamPostListAPI";
-import { TeamPostListType } from "../team/types";
 import { CreateTeamPostImageS3API } from "../../services/api/s3/S3API";
-import { UpdateTeamPostAPI } from "../../services/api/teamPost/UpdateTeamPostAPI";
 
 export const useTeamPostEvent = () => {
   // 게시글
@@ -190,6 +187,18 @@ export const useWriteTeamPostEvent = () => {
     return true;
   };
 
+  // 페이지 Type
+  const [isCreateType, setIsCreateType] = useState<boolean>();
+
+  // 게시글 정보
+  const [teamPost, setTeamPost] = useState<TeamPostDto>();
+
+  // 게시글 정보 조회
+  const handleGetTeamPost = async (postId: number) => {
+    const result = await GetTeamPostAPI(postId);
+    setTeamPost(result);
+  };
+
   return {
     content,
     setContent,
@@ -208,5 +217,9 @@ export const useWriteTeamPostEvent = () => {
     handleTeamImageClick,
     handleFileChange,
     handleClickWriteTeamPost,
+    isCreateType,
+    setIsCreateType,
+    handleGetTeamPost,
+    teamPost,
   };
 };
