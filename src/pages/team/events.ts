@@ -564,6 +564,11 @@ export const useTeamEvent = (teamId: number) => {
     navigator("/teampost", { state: teamBoardId });
   };
 
+  // 팀 게시글 작성 클릭 시
+  const handleGoToWriteTeamPost = (teamId: number) => {
+    navigator("/writeteampost", { state: teamId });
+  };
+
   return {
     team,
     handleGetTeam,
@@ -586,5 +591,6 @@ export const useTeamEvent = (teamId: number) => {
     handleCheckTeamAuth,
     handleGoToUpdateTeam,
     handleGoToTeamPost,
+    handleGoToWriteTeamPost,
   };
 };

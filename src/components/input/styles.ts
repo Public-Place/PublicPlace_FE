@@ -242,9 +242,7 @@ export const TeamName = styled.input.attrs({
   font-size: 0.7rem;
 `;
 
-export const TeamIntroduce = styled.textarea.attrs({
-  placeholder: "팀을 한 줄로 소개해주세요.",
-})<{ height?: string }>`
+export const TeamIntroduce = styled.textarea.attrs({})<{ height?: string }>`
   width: calc(100% - 1.4rem);
   height: ${(props) => props.height || "13rem"};
 

@@ -19,3 +19,11 @@ export interface TeamPostCommentType {
   profileImg: string;
   createdDate: string;
 }
+
+export interface CreateTeamPostDto {
+  content: string;
+  image: string;
+  latitude: number;
+  longitude: number;
+  matchLocation: string;
+}

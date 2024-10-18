@@ -220,6 +220,23 @@ export const TeamIntroduceInput = ({ value, setValue }: SignUpInputType) => {
   return (
     <TeamIntroduce
       height={"3rem"}
+      placeholder="팀을 한 줄로 소개해주세요."
+      value={value}
+      onChange={(e) => {
+        if (setValue) {
+          setValue(e.target.value);
+        }
+      }}
+    />
+  );
+};
+
+// 팀 한 줄 소개 입력창
+export const TeamPostContent = ({ value, setValue }: SignUpInputType) => {
+  return (
+    <TeamIntroduce
+      height={"12rem"}
+      placeholder="게시글 내용을 작성해주세요."
       value={value}
       onChange={(e) => {
         if (setValue) {

@@ -14,5 +14,6 @@ export const GetTeamPostListAPI = async ({
     return response.data;
   } catch (error) {
     // console.log("팀 게시글 조회 실패", error);
+    return error;
   }
 };

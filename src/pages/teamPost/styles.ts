@@ -31,3 +31,5 @@ export const TeamPostingDay = styled.div`
   font-size: 0.8rem;
   color: gray;
 `;
+
+/* -------------------------------------------------- */
