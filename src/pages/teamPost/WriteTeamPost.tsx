@@ -15,7 +15,7 @@ import { KakaoLat, KakaoLng } from "../../constants/FixValues";
 
 export default function WriteTeamPost() {
   const location = useLocation();
-  const teamId = location.state;
+  const { teamId, postId } = location.state;
 
   const {
     content,
@@ -31,7 +31,31 @@ export default function WriteTeamPost() {
     handleTeamImageClick,
     handleFileChange,
     handleClickWriteTeamPost,
+    isCreateType,
+    setIsCreateType,
+    handleGetTeamPost,
+    teamPost,
   } = useWriteTeamPostEvent();
+
+  useEffect(() => {
+    handleGetTeamPost(postId);
+  }, []);
+
+  useEffect(() => {
+    if (teamPost) {
+      // isCreateType이 false일 경우 teamPost 정보 렌더링
+      console.log("teamPost : ", teamPost);
+    }
+  }, [teamPost]);
+
+  useEffect(() => {
+    if (teamId) {
+      setIsCreateType(true);
+    }
+    if (postId) {
+      setIsCreateType(false);
+    }
+  }, [teamId, postId]);
 
   // 위치 정보가 로드되면 activityLat, activityLng 값을 업데이트
   useEffect(() => {
@@ -50,7 +74,9 @@ export default function WriteTeamPost() {
     <Container>
       <Advertisement></Advertisement>
       <Wrapper>
-        <PageCenterText text={"팀 게시글 작성"} />
+        <PageCenterText
+          text={isCreateType ? "팀 게시글 작성" : "팀 게시글 수정"}
+        />
         <TeamName>
           <InputTitle text={"게시글 내용"} />
           <TeamPostContent value={content} setValue={setContent} />
@@ -93,8 +119,12 @@ export default function WriteTeamPost() {
           }}
         >
           <GreenBtn
-            text={"작성하기"}
-            onClick={() => handleClickWriteTeamPost(teamId)}
+            text={isCreateType ? "작성하기" : "수정하기"}
+            onClick={
+              isCreateType
+                ? () => handleClickWriteTeamPost(teamId)
+                : () => alert("수정하기 클릭")
+            }
           />
         </div>
       </Wrapper>
