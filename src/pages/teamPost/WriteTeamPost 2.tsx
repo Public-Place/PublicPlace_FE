@@ -15,19 +15,15 @@ import { KakaoLat, KakaoLng } from "../../constants/FixValues";
 
 export default function WriteTeamPost() {
   const location = useLocation();
-  const { teamId, postId } = location.state;
+  const teamId = location.state;
 
   const {
     content,
     setContent,
     activityAddr,
-    setActivityAddr,
     activityLat,
-    setActivityLat,
     activityLng,
-    setActivityLng,
     attachImg,
-    setAttachImg,
     attachImgRef,
     geoLocation,
     handleAddressChange,
@@ -35,36 +31,7 @@ export default function WriteTeamPost() {
     handleTeamImageClick,
     handleFileChange,
     handleClickWriteTeamPost,
-    isCreateType,
-    setIsCreateType,
-    handleGetTeamPost,
-    teamPost,
-    handleUpdateTeamPost,
   } = useWriteTeamPostEvent();
-
-  useEffect(() => {
-    handleGetTeamPost(postId);
-  }, []);
-
-  useEffect(() => {
-    if (teamPost) {
-      setContent(teamPost.content);
-      setActivityAddr(teamPost.matchLocation);
-      setActivityLat(teamPost.latitude);
-      setActivityLng(teamPost.longitude);
-      setAttachImg(teamPost.image);
-    }
-  }, [teamPost]);
-
-  useEffect(() => {
-    if (teamId) {
-      setIsCreateType(true);
-    }
-    if (postId) {
-      setIsCreateType(false);
-      console.log("postId : ", postId);
-    }
-  }, [teamId, postId]);
 
   // 위치 정보가 로드되면 activityLat, activityLng 값을 업데이트
   useEffect(() => {
@@ -83,9 +50,7 @@ export default function WriteTeamPost() {
     <Container>
       <Advertisement></Advertisement>
       <Wrapper>
-        <PageCenterText
-          text={isCreateType ? "팀 게시글 작성" : "팀 게시글 수정"}
-        />
+        <PageCenterText text={"팀 게시글 작성"} />
         <TeamName>
           <InputTitle text={"게시글 내용"} />
           <TeamPostContent value={content} setValue={setContent} />
@@ -128,12 +93,8 @@ export default function WriteTeamPost() {
           }}
         >
           <GreenBtn
-            text={isCreateType ? "작성하기" : "수정하기"}
-            onClick={
-              isCreateType
-                ? () => handleClickWriteTeamPost(teamId)
-                : () => handleUpdateTeamPost(postId)
-            }
+            text={"작성하기"}
+            onClick={() => handleClickWriteTeamPost(teamId)}
           />
         </div>
       </Wrapper>

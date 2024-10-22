@@ -198,3 +198,32 @@ export const CreateTeamPostImageS3API = async (
     // console.log("s3 이미지 변환 실패", error);
   }
 };
+
+export const UpdateTeamPostImageS3API = async (
+  attachImg: any,
+  teamBoardId: number
+) => {
+  // 이미지 파일을 Blob으로 변환
+  const getFileBlob = async (url: string): Promise<Blob> => {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return blob;
+  };
+
+  // 게시글 이미지가 URL일 경우 S3에 업로드하지 않고 바로 반환
+  if (attachImg.startsWith("http")) {
+    return attachImg;
+  }
+
+  const postBlob = await getFileBlob(attachImg);
+  const formData = new FormData();
+  formData.append("file", postBlob, `teamBoard${teamBoardId}_image.png`);
+
+  try {
+    const response = await axios.post(`/api/files/upload`, formData);
+    // console.log("s3 이미지 변환 성공", response.data);
+    return response.data;
+  } catch (error) {
+    // console.log("s3 이미지 변환 실패", error);
+  }
+};

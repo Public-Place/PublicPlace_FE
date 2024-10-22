@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Advertisement,
   CommentBtnArea,
@@ -35,6 +35,7 @@ import { useEffect } from "react";
 import { KebabModal } from "../../components/modal/Modal";
 
 export default function TeamPost() {
+  const navigate = useNavigate();
   const location = useLocation();
   const teamBoardId = location.state;
 
@@ -53,7 +54,9 @@ export default function TeamPost() {
 
   useEffect(() => {
     if (!teamBoardId) {
+      window.location.reload();
       alert("찾을 수 없는 게시글입니다.");
+      navigate(-1);
     } else {
       handleGetPostInfo(teamBoardId);
     }
