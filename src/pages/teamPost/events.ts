@@ -11,7 +11,11 @@ import { useNavigate } from "react-router-dom";
 import { KakaoLat, KakaoLng } from "../../constants/FixValues";
 import { useGeolocation } from "../../hooks/UseGeolocation";
 import { CreateTeamPostAPI } from "../../services/api/teamPost/CreateTeamPostAPI";
-import { CreateTeamPostImageS3API } from "../../services/api/s3/S3API";
+import {
+  CreateTeamPostImageS3API,
+  UpdateTeamPostImageS3API,
+} from "../../services/api/s3/S3API";
+import { UpdateTeamPostAPI } from "../../services/api/teamPost/UpdateTeamPostAPI";
 
 export const useTeamPostEvent = () => {
   // 게시글
@@ -199,6 +203,42 @@ export const useWriteTeamPostEvent = () => {
     setTeamPost(result);
   };
 
+  // '수정하기' 클릭 시
+  const handleUpdateTeamPost = async (teamBoardId: number) => {
+    // alert("수정하기 클릭");
+    if (!CheckTeamPostEssentialValues()) {
+      return;
+    } else {
+      if (window.confirm("게시글을 수정하시겠습니까?")) {
+        const teamPostImg = attachImg
+          ? await UpdateTeamPostImageS3API(attachImg, teamBoardId)
+          : "";
+
+        const UpdateTeamPost: CreateTeamPostDto = {
+          content: content,
+          image: teamPostImg,
+          latitude: activityLat,
+          longitude: activityLng,
+          matchLocation: activityAddr,
+        };
+
+        const result = await UpdateTeamPostAPI({ teamBoardId, UpdateTeamPost });
+
+        if (result.code === 200) {
+          alert("게시글 수정을 완료하였습니다.");
+          navigator("/teampost", { state: teamBoardId });
+          window.location.reload();
+        } else {
+          if (result.response.data.code === 500) {
+            alert("예상하지 못 한 이유로 인해 게시글 수정을 실패하였습니다.");
+          } else {
+            alert(`에러 코드 : ${result.response.data.code}`);
+          }
+        }
+      }
+    }
+  };
+
   return {
     content,
     setContent,
@@ -221,5 +261,6 @@ export const useWriteTeamPostEvent = () => {
     setIsCreateType,
     handleGetTeamPost,
     teamPost,
+    handleUpdateTeamPost,
   };
 };

@@ -31,13 +31,14 @@ import { LuUserPlus } from "react-icons/lu";
 import KakaoMap from "../../components/map/KakaoMap";
 import { SearchPost } from "../../components/input/Input";
 import { AiOutlineComment } from "react-icons/ai";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useTeamEvent } from "./events";
 import { BarCharts } from "../../components/recharts/Recharts";
 import { MorePostBtn, NoDataBtn } from "../../components/button/Button";
 
 export const Team = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const teamId = location.state;
 
@@ -67,8 +68,14 @@ export const Team = () => {
   } = useTeamEvent(teamId);
 
   useEffect(() => {
-    handleGetTeam(teamId);
-    handleCheckTeamAuth();
+    if (!teamId) {
+      window.location.reload();
+      alert("찾을 수 없는 팀입니다.");
+      navigate(-1);
+    } else {
+      handleGetTeam(teamId);
+      handleCheckTeamAuth();
+    }
   }, []);
 
   useEffect(() => {
