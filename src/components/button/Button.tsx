@@ -33,6 +33,7 @@ import { IoInformationCircleOutline } from "react-icons/io5";
 import {
   BasicMsgColor,
   ErrorMsgColor,
+  RedBtnColor,
   SuccessMsgColor,
 } from "../../constants/FixValues";
 import { LuPencilLine } from "react-icons/lu";
@@ -231,7 +232,7 @@ export const WritePostBtn = ({
   );
 };
 
-// 초록색 색상의 기본 버튼
+// 초록 색상의 기본 버튼
 export const GreenBtn = ({
   text,
   onClick,
@@ -241,6 +242,21 @@ export const GreenBtn = ({
 }) => {
   return (
     <CreateAccountContainer onClick={onClick}>{text}</CreateAccountContainer>
+  );
+};
+
+// 빨간 색상의 기본 버튼
+export const RedBtn = ({
+  text,
+  onClick,
+}: {
+  text: string;
+  onClick?: () => void;
+}) => {
+  return (
+    <CreateAccountContainer onClick={onClick} color={RedBtnColor}>
+      {text}
+    </CreateAccountContainer>
   );
 };
 

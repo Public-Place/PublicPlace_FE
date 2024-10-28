@@ -231,12 +231,28 @@ export const TeamIntroduceInput = ({ value, setValue }: SignUpInputType) => {
   );
 };
 
-// 팀 한 줄 소개 입력창
+// 팀 게시글 내용 입력창
 export const TeamPostContent = ({ value, setValue }: SignUpInputType) => {
   return (
     <TeamIntroduce
       height={"12rem"}
       placeholder="게시글 내용을 작성해주세요."
+      value={value}
+      onChange={(e) => {
+        if (setValue) {
+          setValue(e.target.value);
+        }
+      }}
+    />
+  );
+};
+
+// 팀 가입 자기소개 입력창
+export const IntroduceMe = ({ value, setValue }: SignUpInputType) => {
+  return (
+    <TeamIntroduce
+      height={"15rem"}
+      placeholder="가입 이유 & 거주지 & 하고싶은 말 등을 작성해주세요."
       value={value}
       onChange={(e) => {
         if (setValue) {
