@@ -12,6 +12,7 @@ import CreateTeam from "../pages/team/CreateTeam";
 import { Team } from "../pages/team/Team";
 import TeamPost from "../pages/teamPost/TeamPost";
 import WriteTeamPost from "../pages/teamPost/WriteTeamPost";
+import { JoinTeam } from "../pages/joinTeam/JoinTeam";
 
 /*
   페이지 경로 이름 작성 규칙
@@ -84,6 +85,11 @@ export const router = createBrowserRouter([
         // 내 정보 수정 페이지
         path: "/updatemyinfo",
         element: <UpdateMyInfo />,
+      },
+      {
+        // 팀 가입하기 페이지
+        path: "jointeam",
+        element: <JoinTeam />,
       },
     ],
   },

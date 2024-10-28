@@ -118,7 +118,7 @@ export const KakaoIcon = styled.div`
   left: 0.5rem;
 `;
 
-export const CreateAccountContainer = styled.div`
+export const CreateAccountContainer = styled.div<{ color?: string }>`
   width: fit-content;
   height: fit-content;
 
@@ -132,7 +132,7 @@ export const CreateAccountContainer = styled.div`
   margin-top: 1rem;
 
   color: white;
-  background-color: ${BtnColor};
+  background-color: ${(props) => props.color || `${BtnColor}`};
   font-size: 0.8rem;
   font-weight: bold;
 
