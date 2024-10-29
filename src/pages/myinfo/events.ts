@@ -39,8 +39,14 @@ export const useMyInfoEvent = () => {
   // 팀 가입 신청 취소 버튼 클릭 시
   const handleCancleTeamJoin = async (teamId: number, teamName: string) => {
     if (window.confirm(`'${teamName}'에게 보낸 가입 신청을 취소하겠습니까?`)) {
-      await CancleTeamJoinAPI({ teamId, teamName });
-      window.location.reload();
+      const result = await CancleTeamJoinAPI({ teamId });
+
+      if (result.code === 200) {
+        alert(`'${teamName}'에게 보낸 가입 신청을 취소하였습니다.`);
+        window.location.reload();
+      } else {
+        alert("예상하지 못 한 이유로 가입 신청 취소를 실패하였습니다.");
+      }
     } else {
       return;
     }

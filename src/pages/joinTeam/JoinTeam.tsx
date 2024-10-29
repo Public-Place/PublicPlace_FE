@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { GreenBtn, RedBtn } from "../../components/button/Button";
 import { IntroduceMe, TeamNameInput } from "../../components/input/Input";
 import { InputTitle, PageCenterText } from "../../components/text/Text";
@@ -9,11 +9,10 @@ import { useLocation } from "react-router-dom";
 import { useJoinTeamEvent } from "./events";
 
 export function JoinTeam() {
-  // test state
-  const user = true;
+  const [isJoinTeam, setIsJoinTeam] = useState<boolean>();
 
   const location = useLocation();
-  const { teamId } = location.state;
+  const { teamId, requestId } = location.state;
 
   const {
     userInfo,
@@ -21,47 +20,80 @@ export function JoinTeam() {
     introduce,
     setIntroduce,
     handleClickJoinBtn,
+    joinUser,
+    handleGetJoinUserInfo,
+    handleClickApproveBtn,
+    handleClickRejectBtn,
   } = useJoinTeamEvent();
 
   useEffect(() => {
-    handleGetUserInfo();
+    if (teamId) {
+      setIsJoinTeam(true);
+      handleGetUserInfo();
+    } else if (requestId) {
+      setIsJoinTeam(false);
+      handleGetJoinUserInfo(requestId);
+    }
   }, []);
 
   return (
     <Container>
       <Advertisement></Advertisement>
       <Wrapper>
-        <PageCenterText text={user ? "팀 가입하기" : "팀 가입 지원서"} />
+        <PageCenterText text={isJoinTeam ? "팀 가입하기" : "팀 가입 지원서"} />
         <TeamName>
           <InputTitle text={"신청자 이름"} />
-          <TeamNameInput value={userInfo?.name} setValue={() => {}} />
+          <TeamNameInput
+            value={isJoinTeam ? userInfo?.name : joinUser?.userName}
+            setValue={() => {}}
+          />
         </TeamName>
         <TeamInformation>
           <JoinInfoBox width="15%">
             <InputTitle text={"성별"} />
-            <TeamNameInput value={userInfo?.gender} setValue={() => {}} />
+            <TeamNameInput
+              value={isJoinTeam ? userInfo?.gender : joinUser?.userGender}
+              setValue={() => {}}
+            />
           </JoinInfoBox>
           <JoinInfoBox width="15%">
             <InputTitle text={"연령대"} />
-            <TeamNameInput value={userInfo?.ageRange} setValue={() => {}} />
+            <TeamNameInput
+              value={isJoinTeam ? userInfo?.ageRange : joinUser?.userAgeRange}
+              setValue={() => {}}
+            />
           </JoinInfoBox>
           <JoinInfoBox width="15%">
             <InputTitle text={"주발"} />
-            <TeamNameInput value={userInfo?.foot} setValue={() => {}} />
+            <TeamNameInput
+              value={isJoinTeam ? userInfo?.foot : joinUser?.foot}
+              setValue={() => {}}
+            />
           </JoinInfoBox>
           <JoinInfoBox width="20%">
             <InputTitle text={"선호 포지션"} />
-            <TeamNameInput value={userInfo?.position} setValue={() => {}} />
+            <TeamNameInput
+              value={isJoinTeam ? userInfo?.position : joinUser?.position}
+              setValue={() => {}}
+            />
           </JoinInfoBox>
           <JoinInfoBox width="35%">
             <InputTitle text={"전화번호"} />
-            <TeamNameInput value={userInfo?.phoneNumber} setValue={() => {}} />
+            <TeamNameInput
+              value={
+                isJoinTeam ? userInfo?.phoneNumber : joinUser?.userPhoneNumber
+              }
+              setValue={() => {}}
+            />
           </JoinInfoBox>
         </TeamInformation>
         <hr style={{ width: "100%", marginBlock: "2rem" }} />
         <JoinInfoBox width="100%">
           <InputTitle text={"자기 소개"} />
-          <IntroduceMe value={introduce} setValue={setIntroduce} />
+          <IntroduceMe
+            value={isJoinTeam ? introduce : joinUser?.joinReason}
+            setValue={setIntroduce}
+          />
         </JoinInfoBox>
         <div
           style={{
@@ -72,7 +104,7 @@ export function JoinTeam() {
             marginTop: "1rem",
           }}
         >
-          {user ? (
+          {isJoinTeam ? (
             <GreenBtn
               text="가입하기"
               onClick={() => handleClickJoinBtn(teamId)}
@@ -86,8 +118,18 @@ export function JoinTeam() {
                 gap: "1rem",
               }}
             >
-              <RedBtn text="거절" />
-              <GreenBtn text="승인" />
+              <RedBtn
+                text="거절"
+                onClick={() =>
+                  joinUser && handleClickRejectBtn(joinUser.requestId)
+                }
+              />
+              <GreenBtn
+                text="승인"
+                onClick={() =>
+                  joinUser && handleClickApproveBtn(joinUser.requestId)
+                }
+              />
             </div>
           )}
         </div>

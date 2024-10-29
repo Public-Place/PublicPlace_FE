@@ -37,7 +37,7 @@ export const Wrapper = styled.div`
 `;
 
 export const UserInfoArea = styled.div`
-  width: 35%;
+  width: 30%;
   height: fit-content;
 
   padding: 0rem 2rem;
@@ -99,7 +99,7 @@ export const UserSubInfo = styled.div`
 `;
 
 export const TeamInfoArea = styled.div`
-  width: 65%;
+  width: 70%;
   height: 100%;
 
   padding: 0rem 2rem;
