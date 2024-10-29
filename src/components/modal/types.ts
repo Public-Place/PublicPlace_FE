@@ -32,3 +32,9 @@ export interface BoardRulesType {
   isBoardRulesOpen: boolean;
   setIsBoardRulesOpen: Dispatch<SetStateAction<boolean>>;
 }
+
+export interface JoinListModalType {
+  isJoinListModalOpen: boolean;
+  setIsJoinListModalOpen: Dispatch<SetStateAction<boolean>>;
+  teamId: number;
+}

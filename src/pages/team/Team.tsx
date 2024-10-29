@@ -36,6 +36,7 @@ import { useEffect } from "react";
 import { useTeamEvent } from "./events";
 import { BarCharts } from "../../components/recharts/Recharts";
 import { MorePostBtn, NoDataBtn } from "../../components/button/Button";
+import { JoinListModal } from "../../components/modal/Modal";
 
 export const Team = () => {
   const navigate = useNavigate();
@@ -66,6 +67,8 @@ export const Team = () => {
     handleGoToTeamPost,
     handleGoToWriteTeamPost,
     handleGoToJoinTeam,
+    isJoinListModalOpen,
+    setIsJoinListModalOpen,
   } = useTeamEvent(teamId);
 
   useEffect(() => {
@@ -204,6 +207,7 @@ export const Team = () => {
                     flexDirection: "row",
                     gap: "0.5rem",
                   }}
+                  onClick={() => setIsJoinListModalOpen(true)}
                 >
                   <LuUserPlus />
                   <LeftSmallText text="가입 요청" />
@@ -403,6 +407,14 @@ export const Team = () => {
           <KakaoMap Lat={teamLat} Lng={teamLng} isShow={true} />
         </SideInfoBox>
       </SideInfoRight>
+      {/* 가입 요청 Modal */}
+      {isJoinListModalOpen && (
+        <JoinListModal
+          isJoinListModalOpen={isJoinListModalOpen}
+          setIsJoinListModalOpen={setIsJoinListModalOpen}
+          teamId={teamId}
+        />
+      )}
     </TeamContainer>
   );
 };

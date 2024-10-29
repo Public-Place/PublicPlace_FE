@@ -22,6 +22,8 @@ import { LocalSignInAPI } from "../../services/api/signIn/LocalSignInAPI";
 import { DeletePostAPI } from "../../services/api/post/DeletePostAPI";
 import { useNavigate } from "react-router-dom";
 import { DeleteTeamPostAPI } from "../../services/api/teamPost/DeleteTeamPostAPI";
+import { JoinListAPI } from "../../services/api/joinRequest/JoinListAPI";
+import { JoinListType } from "../../services/api/joinRequest/types";
 
 // 로그인 창 내부 상태 및 핸들러
 export const useSignInModalEvent = ({
@@ -407,4 +409,19 @@ export const useKebabModalEvent = () => {
   };
 
   return { handleClickUpdate, handleClickDelete };
+};
+
+// 가입 요청 Modal
+export const useJoinListModalEvent = (teamId: number) => {
+  const [joinList, setJoinList] = useState<JoinListType[]>();
+
+  const handleGetJoinList = async () => {
+    const result = await JoinListAPI(teamId);
+    setJoinList(result);
+  };
+
+  return {
+    joinList,
+    handleGetJoinList,
+  };
 };

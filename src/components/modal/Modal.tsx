@@ -1,12 +1,23 @@
 import Modal from "react-modal";
 import {
   BoardRulesType,
+  JoinListModalType,
   KebabModalType,
   SignInModalType,
   SignUpModalType,
 } from "./types";
-import { InputTitle, RulesTitle, SignInTitle, SignUpTitle } from "../text/Text";
 import {
+  InputTitle,
+  LeftMiddleText,
+  LeftSmallText,
+  RulesTitle,
+  SignInTitle,
+  SignUpTitle,
+} from "../text/Text";
+import {
+  JoinUserBox,
+  JoinUserInfo,
+  JoinUserProfile,
   KebabContainer,
   KebabContent,
   ModalButton,
@@ -38,12 +49,14 @@ import {
   SuccessBtn,
 } from "../button/Button";
 import {
+  useJoinListModalEvent,
   useKebabModalEvent,
   useSignInModalEvent,
   useSignUpModalEvent,
 } from "./events";
-import { useBoardEvent } from "../../pages/board/events";
+import DefaultProfile from "../../assets/images/Profile.png";
 import { useEffect } from "react";
+import { FaRegSadTear } from "react-icons/fa";
 
 // 로그인 창
 export const SignInModal = ({
@@ -309,7 +322,7 @@ export const SignUpModal = ({
 };
 
 /* -------------------------------------------------------------------------------- */
-// 게시글 페이지 케밥 버튼
+// 게시글 페이지 케밥 버튼 Modal
 export const KebabModal = ({ postId, isTeamPost }: KebabModalType) => {
   const { handleClickUpdate, handleClickDelete } = useKebabModalEvent();
 
@@ -428,6 +441,97 @@ export const BoardRules = ({
           내용은 게시판 공지사항을 통해 안내됩니다.
         </RulesDetail>
       </ModalInput>
+    </Modal>
+  );
+};
+
+// 가입 요청 Modal
+export const JoinListModal = ({
+  isJoinListModalOpen,
+  setIsJoinListModalOpen,
+  teamId,
+}: JoinListModalType) => {
+  const { joinList, handleGetJoinList } = useJoinListModalEvent(teamId);
+
+  useEffect(() => {
+    handleGetJoinList();
+  }, []);
+
+  return (
+    <Modal
+      isOpen={isJoinListModalOpen}
+      onRequestClose={() => setIsJoinListModalOpen(false)}
+      style={{
+        overlay: {
+          backgroundColor: "rgba(0, 0, 0, 0.7)",
+        },
+        content: {
+          top: "50%",
+          left: "50%",
+          right: "auto",
+          bottom: "auto",
+          transform: "translate(-50%, -50%)",
+          width: "25rem",
+          height: "30rem",
+          backgroundColor: ModalColor,
+          color: "white",
+          border: "1px solid lightgray",
+          borderRadius: "1rem",
+          padding: "1rem 1.5rem",
+        },
+      }}
+    >
+      <LeftMiddleText text="가입 요청" />
+      <div
+        style={{
+          marginTop: "1rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          gap: "0.7rem",
+        }}
+      >
+        {/* joinList 데이터를 JoinUserBox에 매핑 */}
+        {joinList && joinList.length > 0 ? (
+          joinList.map((user) => (
+            <JoinUserBox
+              key={user.requestId}
+              onClick={() => alert(`${user.requestId}번 가입 요청자 클릭`)}
+            >
+              <JoinUserProfile>
+                <img
+                  src={DefaultProfile}
+                  alt="error"
+                  width={"100%"}
+                  height={"100%"}
+                />
+              </JoinUserProfile>
+              <JoinUserInfo>
+                <b>
+                  <LeftSmallText text={user.name} />
+                </b>
+                <LeftSmallText text={user.phoneNumber} />
+              </JoinUserInfo>
+            </JoinUserBox>
+          ))
+        ) : (
+          <div
+            style={{
+              width: "100%",
+              marginTop: "10rem",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "1rem",
+            }}
+          >
+            <FaRegSadTear size={50} />
+            <b>가입 요청이 없습니다</b>
+          </div>
+        )}
+      </div>
     </Modal>
   );
 };
