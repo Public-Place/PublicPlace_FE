@@ -413,15 +413,25 @@ export const useKebabModalEvent = () => {
 
 // 가입 요청 Modal
 export const useJoinListModalEvent = (teamId: number) => {
+  const navigator = useNavigate();
+
+  // 가입 요청자 리스트
   const [joinList, setJoinList] = useState<JoinListType[]>();
 
+  // 가입 요청자 리스트 조회
   const handleGetJoinList = async () => {
     const result = await JoinListAPI(teamId);
     setJoinList(result);
   };
 
+  // 가입 요청자 클릭 시
+  const handleClickJoinUser = (requestId: number) => {
+    navigator("/jointeam", { state: { requestId } });
+  };
+
   return {
     joinList,
     handleGetJoinList,
+    handleClickJoinUser,
   };
 };

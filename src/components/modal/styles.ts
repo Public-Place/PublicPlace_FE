@@ -116,17 +116,17 @@ export const RulesDetail = styled.div`
 `;
 
 export const JoinUserBox = styled.div`
-  width: calc(100% - 2rem);
+  width: calc(100% - 2.4rem);
   height: 5rem;
 
-  padding: 0rem 1rem;
+  padding: 0rem 1.2rem;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: start;
 
-  gap: 1rem;
+  gap: 1.2rem;
 
   border-radius: 0.5rem;
 
@@ -145,9 +145,6 @@ export const JoinUserProfile = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  border: 1px solid white;
-  border-radius: 50%;
 `;
 
 export const JoinUserInfo = styled.div`

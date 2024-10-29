@@ -34,5 +34,4 @@ export interface JoinedTeamsType {
 
 export interface CancleJoinTeamType {
   teamId: number;
-  teamName: string;
 }

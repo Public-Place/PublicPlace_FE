@@ -451,7 +451,8 @@ export const JoinListModal = ({
   setIsJoinListModalOpen,
   teamId,
 }: JoinListModalType) => {
-  const { joinList, handleGetJoinList } = useJoinListModalEvent(teamId);
+  const { joinList, handleGetJoinList, handleClickJoinUser } =
+    useJoinListModalEvent(teamId);
 
   useEffect(() => {
     handleGetJoinList();
@@ -497,14 +498,19 @@ export const JoinListModal = ({
           joinList.map((user) => (
             <JoinUserBox
               key={user.requestId}
-              onClick={() => alert(`${user.requestId}번 가입 요청자 클릭`)}
+              onClick={() => handleClickJoinUser(user.requestId)}
             >
               <JoinUserProfile>
                 <img
-                  src={DefaultProfile}
+                  src={user.profileImg}
                   alt="error"
                   width={"100%"}
                   height={"100%"}
+                  style={{
+                    borderRadius: "50%",
+                    border: "1px solid white",
+                    objectFit: "cover",
+                  }}
                 />
               </JoinUserProfile>
               <JoinUserInfo>
