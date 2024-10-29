@@ -65,6 +65,7 @@ export const Team = () => {
     handleGoToUpdateTeam,
     handleGoToTeamPost,
     handleGoToWriteTeamPost,
+    handleGoToJoinTeam,
   } = useTeamEvent(teamId);
 
   useEffect(() => {
@@ -158,6 +159,7 @@ export const Team = () => {
                     flexDirection: "row",
                     gap: "0.5rem",
                   }}
+                  onClick={() => handleGoToJoinTeam(teamId)}
                 >
                   <CiSquarePlus />
                   <LeftSmallText text="팀 가입하기" />

@@ -1,12 +1,31 @@
+import { useEffect } from "react";
 import { GreenBtn, RedBtn } from "../../components/button/Button";
 import { IntroduceMe, TeamNameInput } from "../../components/input/Input";
 import { InputTitle, PageCenterText } from "../../components/text/Text";
 import { Advertisement, Container, Wrapper } from "../post/styles";
 import { TeamInformation, TeamName } from "../team/styles";
 import { JoinInfoBox } from "./styles";
+import { useLocation } from "react-router-dom";
+import { useJoinTeamEvent } from "./events";
 
 export function JoinTeam() {
+  // test state
   const user = true;
+
+  const location = useLocation();
+  const { teamId } = location.state;
+
+  const {
+    userInfo,
+    handleGetUserInfo,
+    introduce,
+    setIntroduce,
+    handleClickJoinBtn,
+  } = useJoinTeamEvent();
+
+  useEffect(() => {
+    handleGetUserInfo();
+  }, []);
 
   return (
     <Container>
@@ -15,26 +34,34 @@ export function JoinTeam() {
         <PageCenterText text={user ? "팀 가입하기" : "팀 가입 지원서"} />
         <TeamName>
           <InputTitle text={"신청자 이름"} />
-          <TeamNameInput value={"김영훈"} setValue={() => {}} />
+          <TeamNameInput value={userInfo?.name} setValue={() => {}} />
         </TeamName>
         <TeamInformation>
-          <JoinInfoBox width="25%">
+          <JoinInfoBox width="15%">
             <InputTitle text={"성별"} />
-            <TeamNameInput value={"남"} setValue={() => {}} />
+            <TeamNameInput value={userInfo?.gender} setValue={() => {}} />
           </JoinInfoBox>
-          <JoinInfoBox width="30%">
+          <JoinInfoBox width="15%">
             <InputTitle text={"연령대"} />
-            <TeamNameInput value={"20~29"} setValue={() => {}} />
+            <TeamNameInput value={userInfo?.ageRange} setValue={() => {}} />
           </JoinInfoBox>
-          <JoinInfoBox width="45%">
+          <JoinInfoBox width="15%">
+            <InputTitle text={"주발"} />
+            <TeamNameInput value={userInfo?.foot} setValue={() => {}} />
+          </JoinInfoBox>
+          <JoinInfoBox width="20%">
+            <InputTitle text={"선호 포지션"} />
+            <TeamNameInput value={userInfo?.position} setValue={() => {}} />
+          </JoinInfoBox>
+          <JoinInfoBox width="35%">
             <InputTitle text={"전화번호"} />
-            <TeamNameInput value={"01040869454"} setValue={() => {}} />
+            <TeamNameInput value={userInfo?.phoneNumber} setValue={() => {}} />
           </JoinInfoBox>
         </TeamInformation>
         <hr style={{ width: "100%", marginBlock: "2rem" }} />
         <JoinInfoBox width="100%">
           <InputTitle text={"자기 소개"} />
-          <IntroduceMe value={""} setValue={() => {}} />
+          <IntroduceMe value={introduce} setValue={setIntroduce} />
         </JoinInfoBox>
         <div
           style={{
@@ -46,7 +73,10 @@ export function JoinTeam() {
           }}
         >
           {user ? (
-            <GreenBtn text="가입하기" />
+            <GreenBtn
+              text="가입하기"
+              onClick={() => handleClickJoinBtn(teamId)}
+            />
           ) : (
             <div
               style={{
