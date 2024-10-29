@@ -21,6 +21,7 @@ import { TeamPostListType } from "./types";
 import { useGeolocation } from "../../hooks/UseGeolocation";
 import { TeamAuthCheckAPI } from "../../services/api/team/teamAuthCheckAPI";
 import { UpdateTeamAPI } from "../../services/api/team/UpdateTeamAPI";
+import { LeaveTeamAPI } from "../../services/api/joinTeam/LeaveTeamAPI";
 
 export const useSearchTeamEvent = () => {
   const navigator = useNavigate();
@@ -577,6 +578,22 @@ export const useTeamEvent = (teamId: number) => {
   // '가입 요청 Modal' show & hide 상태
   const [isJoinListModalOpen, setIsJoinListModalOpen] = useState(false);
 
+  // '팀 탈퇴하기' 클릭 시
+  const handleClickExitTeamBtn = async (teamId: number) => {
+    if (window.confirm("정말로 탈퇴하시겠습니까?")) {
+      const result = await LeaveTeamAPI(teamId);
+
+      if (result.code === 200) {
+        alert("팀 탈퇴가 완료되었습니다.");
+        window.location.reload();
+      } else {
+        alert("예상하지 못 한 이유로 팀 탈퇴를 실패하였습니다.");
+      }
+    } else {
+      return;
+    }
+  };
+
   return {
     team,
     handleGetTeam,
@@ -603,5 +620,6 @@ export const useTeamEvent = (teamId: number) => {
     handleGoToJoinTeam,
     isJoinListModalOpen,
     setIsJoinListModalOpen,
+    handleClickExitTeamBtn,
   };
 };

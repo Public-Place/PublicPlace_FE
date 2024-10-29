@@ -69,6 +69,7 @@ export const Team = () => {
     handleGoToJoinTeam,
     isJoinListModalOpen,
     setIsJoinListModalOpen,
+    handleClickExitTeamBtn,
   } = useTeamEvent(teamId);
 
   useEffect(() => {
@@ -80,6 +81,9 @@ export const Team = () => {
       handleGetTeam(teamId);
       handleCheckTeamAuth();
     }
+
+    const token = localStorage.getItem("token");
+    console.log("token : ", token);
   }, []);
 
   useEffect(() => {
@@ -176,6 +180,7 @@ export const Team = () => {
                     flexDirection: "row",
                     gap: "0.5rem",
                   }}
+                  onClick={() => handleClickExitTeamBtn(teamId)}
                 >
                   <LuUserMinus />
                   <LeftSmallText text="팀 탈퇴하기" />
