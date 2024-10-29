@@ -574,6 +574,9 @@ export const useTeamEvent = (teamId: number) => {
     navigator("/jointeam", { state: { teamId } });
   };
 
+  // '가입 요청 Modal' show & hide 상태
+  const [isJoinListModalOpen, setIsJoinListModalOpen] = useState(false);
+
   return {
     team,
     handleGetTeam,
@@ -598,5 +601,7 @@ export const useTeamEvent = (teamId: number) => {
     handleGoToTeamPost,
     handleGoToWriteTeamPost,
     handleGoToJoinTeam,
+    isJoinListModalOpen,
+    setIsJoinListModalOpen,
   };
 };

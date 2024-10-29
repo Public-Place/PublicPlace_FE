@@ -114,3 +114,50 @@ export const RulesDetail = styled.div`
 
   font-size: 0.8rem;
 `;
+
+export const JoinUserBox = styled.div`
+  width: calc(100% - 2rem);
+  height: 5rem;
+
+  padding: 0rem 1rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+
+  gap: 1rem;
+
+  border-radius: 0.5rem;
+
+  background-color: rgb(35, 35, 35);
+  box-shadow: 0 0 5px 1px rgb(10, 10, 10);
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const JoinUserProfile = styled.div`
+  width: 3rem;
+  height: 3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid white;
+  border-radius: 50%;
+`;
+
+export const JoinUserInfo = styled.div`
+  width: fit-content;
+  height: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-around;
+
+  background-color: transparent;
+`;
