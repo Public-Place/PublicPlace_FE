@@ -37,3 +37,7 @@ export interface CategoryBtnType {
 export interface MorePostBtnType {
   onClick: () => void;
 }
+
+export interface ChatBotBtnType {
+  onClick: () => void;
+}

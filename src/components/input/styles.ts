@@ -145,7 +145,7 @@ export const Profile = styled.div<{ src?: string }>`
 export const SearchContainer = styled.input.attrs((props) => ({
   type: "text",
   placeholder: props.placeholder,
-}))`
+}))<{ radius?: string }>`
   width: calc(100% - 2rem);
   height: 1rem;
 
@@ -161,7 +161,7 @@ export const SearchContainer = styled.input.attrs((props) => ({
   font-size: 0.7rem;
 
   border: 1px solid white;
-  border-radius: 1rem;
+  border-radius: ${(props) => props.radius || "1rem"};
 
   color: white;
   background-color: transparent;

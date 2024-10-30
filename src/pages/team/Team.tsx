@@ -81,9 +81,6 @@ export const Team = () => {
       handleGetTeam(teamId);
       handleCheckTeamAuth();
     }
-
-    const token = localStorage.getItem("token");
-    console.log("token : ", token);
   }, []);
 
   useEffect(() => {

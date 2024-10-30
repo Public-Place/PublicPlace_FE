@@ -13,6 +13,7 @@ import { Team } from "../pages/team/Team";
 import TeamPost from "../pages/teamPost/TeamPost";
 import WriteTeamPost from "../pages/teamPost/WriteTeamPost";
 import { JoinTeam } from "../pages/joinTeam/JoinTeam";
+import { ChatBot } from "../pages/chatBot/ChatBot";
 
 /*
   페이지 경로 이름 작성 규칙
@@ -90,6 +91,11 @@ export const router = createBrowserRouter([
         // 팀 가입하기 페이지
         path: "jointeam",
         element: <JoinTeam />,
+      },
+      {
+        // Chat Bot 페이지
+        path: "chatbot",
+        element: <ChatBot />,
       },
     ],
   },
