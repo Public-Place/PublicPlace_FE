@@ -41,6 +41,7 @@ export default function SearchTeam() {
     handleNextPage,
     handlePrevPage,
     handleGoToTeam,
+    handleGoToChatBot,
   } = useSearchTeamEvent();
 
   useEffect(() => {
@@ -134,7 +135,7 @@ export default function SearchTeam() {
             <TeamSortInput value={sortBy} setValue={setSortBy} />
           </TeamFilterLeft>
           <TeamFilterRight>
-            <ChatBotBtn />
+            <ChatBotBtn onClick={handleGoToChatBot} />
             <div style={{ width: "20rem" }}>
               <SearchPost
                 value={teamName}

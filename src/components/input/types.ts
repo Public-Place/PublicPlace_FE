@@ -19,4 +19,5 @@ export interface SearchPostType {
   setValue?: (value: string) => void;
   handler?: () => void;
   placeholder: string;
+  radius?: string;
 }

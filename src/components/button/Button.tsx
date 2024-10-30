@@ -19,6 +19,7 @@ import { FaBars, FaXmark, FaCheck, FaO } from "react-icons/fa6";
 import {
   CancleBtnType,
   CategoryBtnType,
+  ChatBotBtnType,
   CheckValues,
   HambergerBtnType,
   handleCancleTeamJoinType,
@@ -261,9 +262,9 @@ export const RedBtn = ({
 };
 
 // Chat Bot 버튼
-export const ChatBotBtn = () => {
+export const ChatBotBtn = ({ onClick }: ChatBotBtnType) => {
   return (
-    <ChatBotContainer>
+    <ChatBotContainer onClick={onClick}>
       <VscRobot size={17} />
     </ChatBotContainer>
   );

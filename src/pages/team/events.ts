@@ -106,6 +106,11 @@ export const useSearchTeamEvent = () => {
     navigator("/team", { state: teamId });
   };
 
+  // 'Chat Bot' 버튼 클릭 시
+  const handleGoToChatBot = () => {
+    navigator("/chatbot");
+  };
+
   return {
     teamList,
     randomTeam,
@@ -126,6 +131,7 @@ export const useSearchTeamEvent = () => {
     currentPage,
     teamsPerPage,
     handleGoToTeam,
+    handleGoToChatBot,
   };
 };
 

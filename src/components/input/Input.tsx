@@ -486,6 +486,7 @@ export const SearchPost = ({
   value,
   setValue,
   placeholder,
+  radius,
 }: SearchPostType) => {
   return (
     <div style={{ position: "relative" }}>
@@ -497,9 +498,11 @@ export const SearchPost = ({
           }
         }}
         placeholder={placeholder}
+        radius={radius}
       />
       <MdSearch
         size={15}
+        color="#868686"
         style={{
           position: "absolute",
           top: "0.4rem",
