@@ -435,3 +435,14 @@ export const useJoinListModalEvent = (teamId: number) => {
     handleClickJoinUser,
   };
 };
+
+// 팀 카드 Modal
+export const useTeamCardModal = (teamId: number) => {
+  const navigator = useNavigate();
+
+  const handleGoToTeamPage = () => {
+    navigator("/team", { state: teamId });
+  };
+
+  return { handleGoToTeamPage };
+};

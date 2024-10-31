@@ -5,6 +5,7 @@ import {
   KebabModalType,
   SignInModalType,
   SignUpModalType,
+  TeamCardModalType,
 } from "./types";
 import {
   InputTitle,
@@ -25,6 +26,10 @@ import {
   ModalSelect,
   ModalTitle,
   RulesDetail,
+  TeamCardContainer,
+  TeamCardDetailInfo,
+  TeamCardImg,
+  TeamCardInfo,
 } from "./styles";
 import { ModalColor } from "../../constants/FixValues";
 import {
@@ -43,6 +48,7 @@ import {
   BasicBtn,
   CreateAccount,
   ErrorBtn,
+  GreenBtn,
   KakaoLoginBtn,
   SignInBtnInModal,
   SignUpBtnInModal,
@@ -53,8 +59,8 @@ import {
   useKebabModalEvent,
   useSignInModalEvent,
   useSignUpModalEvent,
+  useTeamCardModal,
 } from "./events";
-import DefaultProfile from "../../assets/images/Profile.png";
 import { useEffect } from "react";
 import { FaRegSadTear } from "react-icons/fa";
 
@@ -108,6 +114,9 @@ export const SignInModal = ({
           if (e.key === "Enter") {
             handleCheckAccount(); // Enter키를 누르면 로그인 실행
           }
+        }}
+        style={{
+          outline: "none",
         }}
       >
         <ModalTitle>
@@ -207,6 +216,9 @@ export const SignUpModal = ({
           if (e.key === "Enter") {
             handleCreateAccount(); // Enter키를 누르면 로그인 실행
           }
+        }}
+        style={{
+          outline: "none",
         }}
       >
         <ModalTitle>
@@ -538,6 +550,90 @@ export const JoinListModal = ({
           </div>
         )}
       </div>
+    </Modal>
+  );
+};
+
+export const TeamCardModal = ({
+  isTeamCardOpen,
+  setIsTeamCardOpen,
+  team,
+}: TeamCardModalType) => {
+  const { handleGoToTeamPage } = useTeamCardModal(team.teamId);
+
+  return (
+    <Modal
+      isOpen={isTeamCardOpen}
+      onRequestClose={() => setIsTeamCardOpen(!isTeamCardOpen)}
+      style={{
+        overlay: {
+          backgroundColor: "rgba(0, 0, 0, 0.7)",
+        },
+        content: {
+          top: "50%",
+          left: "50%",
+          right: "auto",
+          bottom: "auto",
+          transform: "translate(-50%, -50%)",
+          width: "40rem",
+          height: "15rem",
+          backgroundColor: ModalColor,
+          color: "white",
+          border: "1px solid white",
+          borderRadius: "1rem",
+          padding: "1rem 1.5rem",
+          boxShadow: "0 0 5px 1px rgb(10, 10, 10)",
+        },
+      }}
+    >
+      <TeamCardContainer>
+        <TeamCardImg>
+          <img
+            src={team.teamImg}
+            alt="error"
+            style={{
+              width: "100%",
+              height: "100%",
+              // border: "1px solid white",
+              borderRadius: "1rem",
+              objectFit: "cover",
+              boxShadow: "0 0 5px 1px rgb(10, 10, 10)",
+            }}
+          />
+        </TeamCardImg>
+        <TeamCardInfo>
+          <LeftMiddleText text={team.teamName} />
+          <TeamCardDetailInfo>
+            <b>창단일</b> :{" "}
+            {team.createdAt
+              ? `${new Date(team.createdAt).getFullYear()}년 
+       ${String(new Date(team.createdAt).getMonth() + 1).padStart(2, "0")}월 
+       ${String(new Date(team.createdAt).getDate()).padStart(2, "0")}일`
+              : "정보 없음"}
+          </TeamCardDetailInfo>
+          <TeamCardDetailInfo>
+            <b>활동 장소</b> : {team.teamLocation}
+          </TeamCardDetailInfo>
+          <TeamCardDetailInfo>
+            <b>평균 연령대</b> : 약 {team.averageAge}세
+          </TeamCardDetailInfo>
+          <TeamCardDetailInfo>
+            <b>회원 수</b> : {team.teamMemberCount}명
+          </TeamCardDetailInfo>
+        </TeamCardInfo>
+        <div
+          style={{
+            width: "fit-content",
+            height: "fit-content",
+            backgroundColor: "transparent",
+            position: "absolute",
+            bottom: "1rem",
+            right: "1rem",
+          }}
+        >
+          <GreenBtn text="이동" onClick={handleGoToTeamPage} />
+        </div>
+      </TeamCardContainer>
     </Modal>
   );
 };

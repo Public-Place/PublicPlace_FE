@@ -82,7 +82,7 @@ export default function SearchTeam() {
               text={randomTeam[currentIndex]?.teamName || "팀 이름"}
             />
             <UserInfoText
-              text={`창단일: ${
+              text={`창단일 : ${
                 randomTeam[currentIndex]?.createdAt
                   ? `${new Date(
                       randomTeam[currentIndex].createdAt
@@ -96,14 +96,19 @@ export default function SearchTeam() {
               }`}
             />
             <UserInfoText
-              text={`팀원 수: ${
+              text={`팀원 수 : ${
                 randomTeam[currentIndex]?.teamMemberCount || "정보 없음"
               }명`}
             />
             <UserInfoText
-              text={`위치: ${
+              text={`위치 : ${
                 randomTeam[currentIndex]?.teamLocation || "정보 없음"
               }`}
+            />
+            <UserInfoText
+              text={`평균 연령대 : 약 ${
+                randomTeam[currentIndex]?.averageAge || "정보 없음"
+              }세`}
             />
             <GreenBtn
               text={"팀 페이지로 이동"}

@@ -16,6 +16,10 @@ export const Email = styled.input.attrs({
   border-radius: 0.3rem;
 
   font-size: 0.7rem;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Password = styled.input.attrs({
@@ -33,6 +37,10 @@ export const Password = styled.input.attrs({
   border-radius: 0.3rem;
 
   font-size: 0.7rem;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const PasswordCheck = styled.input.attrs({
@@ -50,6 +58,10 @@ export const PasswordCheck = styled.input.attrs({
   border-radius: 0.3rem;
 
   font-size: 0.7rem;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Name = styled.input.attrs({
@@ -67,6 +79,10 @@ export const Name = styled.input.attrs({
   border-radius: 0.3rem;
 
   font-size: 0.7rem;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const NickName = styled.input.attrs({
@@ -84,6 +100,10 @@ export const NickName = styled.input.attrs({
   border-radius: 0.3rem;
 
   font-size: 0.7rem;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Tel = styled.input.attrs({
@@ -101,6 +121,10 @@ export const Tel = styled.input.attrs({
   border-radius: 0.3rem;
 
   font-size: 0.7rem;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Select = styled.select`
@@ -118,6 +142,10 @@ export const Select = styled.select`
 
   @media (max-width: ${MobileScreen}) {
     width: 90%;
+  }
+
+  &:focus {
+    outline: none;
   }
 `;
 
@@ -165,6 +193,10 @@ export const SearchContainer = styled.input.attrs((props) => ({
 
   color: white;
   background-color: transparent;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const CommentInputContainer = styled.input.attrs({
@@ -204,6 +236,10 @@ export const Title = styled.input.attrs({
   border-radius: 0.3rem;
 
   font-size: 0.7rem;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Content = styled.textarea.attrs({
@@ -223,6 +259,10 @@ export const Content = styled.textarea.attrs({
 
   font-size: 0.7rem;
   resize: none; // 크기 조절을 막고 싶을 경우 사용
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const TeamName = styled.input.attrs({
@@ -240,6 +280,10 @@ export const TeamName = styled.input.attrs({
   border-radius: 0.3rem;
 
   font-size: 0.7rem;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const TeamIntroduce = styled.textarea.attrs({})<{ height?: string }>`
@@ -257,6 +301,10 @@ export const TeamIntroduce = styled.textarea.attrs({})<{ height?: string }>`
 
   font-size: 0.7rem;
   resize: none; // 크기 조절을 막고 싶을 경우 사용
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const TeamStadium = styled.input.attrs({
@@ -274,6 +322,10 @@ export const TeamStadium = styled.input.attrs({
   border-radius: 0.3rem;
 
   font-size: 0.7rem;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const PostImage = styled.div<{ src?: string }>`
@@ -319,5 +371,33 @@ export const TeamImage = styled.div<{ src?: string }>`
 
   &:hover {
     cursor: pointer;
+  }
+`;
+
+export const ChatBotInputContainer = styled.input.attrs({
+  placeholder:
+    "ex) 나는 수원에 사는 20대 대학생이고, 주로 주말에 활동하는 젊은 팀을 추천해줬으면 좋겠어",
+})`
+  width: calc(100% - 2rem);
+  height: fit-content;
+
+  padding: 0.7rem 1rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgb(35, 35, 35);
+  box-shadow: 0 0 5px 1px rgb(10, 10, 10);
+
+  color: white;
+  font-size: 0.8rem;
+
+  border: none;
+  border-radius: 0.5rem;
+
+  &:focus {
+    outline: none;
   }
 `;
