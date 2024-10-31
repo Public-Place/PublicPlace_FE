@@ -158,3 +158,56 @@ export const JoinUserInfo = styled.div`
 
   background-color: transparent;
 `;
+
+export const TeamCardContainer = styled.div`
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  position: relative;
+
+  background-color: transparent;
+`;
+
+export const TeamCardImg = styled.div`
+  width: calc(50% - 2rem);
+  height: calc(100% - 2rem);
+
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const TeamCardInfo = styled.div`
+  width: calc(50% - 2rem);
+  height: calc(100% - 2rem);
+
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+
+  gap: 1rem;
+
+  background-color: transparent;
+`;
+
+export const TeamCardDetailInfo = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  padding: 0rem 0rem;
+
+  color: white;
+  font-size: 0.8rem;
+`;

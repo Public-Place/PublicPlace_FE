@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { SortedTeamListType } from "../../dtos/team/TeamListType";
 
 export interface SignInModalType {
   isSignInModalOpen: boolean;
@@ -37,4 +38,10 @@ export interface JoinListModalType {
   isJoinListModalOpen: boolean;
   setIsJoinListModalOpen: Dispatch<SetStateAction<boolean>>;
   teamId: number;
+}
+
+export interface TeamCardModalType {
+  isTeamCardOpen: boolean;
+  setIsTeamCardOpen: Dispatch<SetStateAction<boolean>>;
+  team: SortedTeamListType;
 }

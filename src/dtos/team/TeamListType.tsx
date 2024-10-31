@@ -10,6 +10,7 @@ export interface TeamListType {
   members: MembersType[];
   latitude: number;
   longitude: number;
+  averageAge: number;
 }
 
 export interface MembersType {

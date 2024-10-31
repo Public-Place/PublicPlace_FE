@@ -5,10 +5,6 @@ export const Container = styled.div`
   width: calc(100% - 3rem);
   height: calc(100% - 2rem);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-
   padding: 1rem 1.5rem;
 
   box-shadow: 0 0 5px 1px rgb(10, 10, 10);
@@ -36,18 +32,13 @@ export const TeamListHeader = styled.div`
 export const TeamListUp = styled.div`
   width: 100%;
   height: fit-content;
-  max-height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: start;
+  max-height: 90%;
 
   margin-top: 1rem;
 
   gap: 0.3rem;
 
-  overflow: scroll;
+  overflow-y: scroll;
   /* 스크롤바 숨기기 */
   -ms-overflow-style: none; /* IE 및 Edge */
   scrollbar-width: none; /* Firefox */
@@ -61,14 +52,9 @@ export const TeamListUp = styled.div`
 
 export const TeamName = styled.div`
   width: calc(100% - 2rem);
-  height: calc(2.5rem - 1rem);
+  height: fit-content;
 
   padding: 0.5rem 1rem;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: start;
 
   background-color: transparent;
   border-radius: 0.5rem;

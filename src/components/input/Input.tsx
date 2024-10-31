@@ -16,6 +16,7 @@ import {
   TeamIntroduce,
   TeamStadium,
   TeamImage,
+  ChatBotInputContainer,
 } from "./styles";
 import {
   PostImageInputType,
@@ -25,6 +26,7 @@ import {
 } from "./types";
 import { LuRefreshCcw } from "react-icons/lu";
 import { MdSearch } from "react-icons/md";
+import { GrSend } from "react-icons/gr";
 
 /* --------------------------------------------------------------- */
 
@@ -525,5 +527,32 @@ export const CommentInput = ({ value, setValue }: SignUpInputType) => {
         }
       }}
     />
+  );
+};
+
+// ChatBot 채팅 입력창
+export const ChatBotInput = () => {
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: "97%",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      <ChatBotInputContainer />
+      <GrSend
+        size={"1rem"}
+        color="#868686"
+        style={{
+          position: "absolute",
+          right: "1rem",
+          cursor: "pointer",
+        }}
+      />
+    </div>
   );
 };
