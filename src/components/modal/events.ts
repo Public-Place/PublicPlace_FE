@@ -136,7 +136,7 @@ export const useSignUpModalEvent = ({
 
   // 회원가입 창 내부 확인 버튼 클릭 시
   const handleCreateAccount = async () => {
-    // 필수 입력 값 확인 (미입력 시 종료))
+    // 필수 입력 값 확인 (미입력 시 종료)
     if (!CheckEssentialValues()) {
       return;
     } else {
@@ -242,8 +242,18 @@ export const useSignUpModalEvent = ({
       } else {
         const checkEmailResult = await EmailCheckAPI({ email });
 
-        setEmailSuccess(checkEmailResult.success);
-        setEmailMsg(checkEmailResult.msg);
+        if (checkEmailResult.code === 200) {
+          setEmailSuccess(checkEmailResult.success);
+          setEmailMsg(checkEmailResult.msg);
+        } else {
+          if (checkEmailResult.response.data.code === 409) {
+            setEmailSuccess(false);
+            setEmailMsg("이미 존재하는 이메일입니다.");
+          } else {
+            setEmailSuccess(false);
+            setEmailMsg(checkEmailResult.response.data.msg);
+          }
+        }
       }
     }
   };
@@ -256,8 +266,19 @@ export const useSignUpModalEvent = ({
       alert("닉네임을 작성한 후 중복 여부를 확인해주세요.");
     } else {
       const checkNickNameResult = await NickNameCheckAPI({ nickname });
-      setNickNameSuccess(checkNickNameResult.success);
-      setNickNameMsg(checkNickNameResult.msg);
+
+      if (checkNickNameResult.code === 200) {
+        setNickNameSuccess(checkNickNameResult.success);
+        setNickNameMsg(checkNickNameResult.msg);
+      } else {
+        if (checkNickNameResult.response.data.code === 409) {
+          setNickNameSuccess(false);
+          setNickNameMsg("이미 존재하는 닉네임입니다.");
+        } else {
+          setNickNameSuccess(false);
+          setNickNameMsg(checkNickNameResult.response.data.msg);
+        }
+      }
     }
   };
 
@@ -268,8 +289,18 @@ export const useSignUpModalEvent = ({
     } else {
       const checkTelResult = await TelCheckAPI({ tel });
 
-      setTelSuccess(checkTelResult.success);
-      setTelMsg(checkTelResult.msg);
+      if (checkTelResult.code === 200) {
+        setTelSuccess(checkTelResult.success);
+        setTelMsg(checkTelResult.msg);
+      } else {
+        if (checkTelResult.response.data.code === 409) {
+          setTelSuccess(false);
+          setTelMsg("이미 존재하는 전화번호입니다.");
+        } else {
+          setTelSuccess(false);
+          setTelMsg(checkTelResult.response.data.msg);
+        }
+      }
     }
   };
 

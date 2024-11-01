@@ -8,5 +8,6 @@ export const EmailCheckAPI = async ({ email }: EmailCheckAPIType) => {
     return response.data;
   } catch (error) {
     // console.log("이메일 중복 확인 실패", error);
+    return error;
   }
 };

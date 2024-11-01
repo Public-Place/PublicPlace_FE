@@ -10,5 +10,6 @@ export const NickNameCheckAPI = async ({ nickname }: NickNameCheckAPIType) => {
     return response.data;
   } catch (error) {
     // console.log("닉네임 중복 확인 실패", error);
+    return error;
   }
 };

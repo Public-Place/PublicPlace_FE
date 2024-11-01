@@ -124,8 +124,18 @@ export const useUpdateMyInfoEvent = () => {
     } else {
       const checkNickNameResult = await NickNameCheckAPI({ nickname });
 
-      setNickNameSuccess(checkNickNameResult.success);
-      setNickNameMsg(checkNickNameResult.msg);
+      if (checkNickNameResult.code === 200) {
+        setNickNameSuccess(checkNickNameResult.success);
+        setNickNameMsg(checkNickNameResult.msg);
+      } else {
+        if (checkNickNameResult.response.data.code === 409) {
+          setNickNameSuccess(checkNickNameResult.response.data.success);
+          setNickNameMsg("이미 존재하는 닉네임입니다.");
+        } else {
+          setNickNameSuccess(checkNickNameResult.response.data.success);
+          setNickNameMsg(checkNickNameResult.response.data.msg);
+        }
+      }
     }
   };
 
@@ -139,8 +149,18 @@ export const useUpdateMyInfoEvent = () => {
     } else {
       const checkTelResult = await TelCheckAPI({ tel });
 
-      setTelSuccess(checkTelResult.success);
-      setTelMsg(checkTelResult.msg);
+      if (checkTelResult.code === 200) {
+        setTelSuccess(checkTelResult.success);
+        setTelMsg(checkTelResult.msg);
+      } else {
+        if (checkTelResult.response.data.code === 409) {
+          setTelSuccess(checkTelResult.response.data.success);
+          setTelMsg("이미 존재하는 전화번호입니다.");
+        } else {
+          setTelSuccess(checkTelResult.response.data.success);
+          setTelMsg(checkTelResult.response.data.msg);
+        }
+      }
     }
   };
 

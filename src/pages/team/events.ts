@@ -305,12 +305,17 @@ export const useCreateTeamEvent = () => {
         // 팀 이름 중복 확인 (팀 생성 페이지)
         const result = await TeamNameCheckAPI(teamName);
 
-        if (result.success) {
+        if (result.code === 200) {
           setTeamNameSuccess(result.success);
           setTeamNameMsg(result.msg);
         } else {
-          setTeamNameSuccess(result.response.data.success);
-          setTeamNameMsg(result.response.data.msg);
+          if (result.response.data.code === 409) {
+            setTeamNameSuccess(result.response.data.success);
+            setTeamNameMsg("이미 존재하는 팀명입니다,");
+          } else {
+            setTeamNameSuccess(result.response.data.success);
+            setTeamNameMsg(result.response.data.msg);
+          }
         }
       }
     }
