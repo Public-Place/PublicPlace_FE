@@ -21,3 +21,9 @@ export interface SearchPostType {
   placeholder: string;
   radius?: string;
 }
+
+export interface ChatBotInputType {
+  prompt: string;
+  setPrompt: (value: string) => void;
+  handleClickSendPrompt: () => void;
+}

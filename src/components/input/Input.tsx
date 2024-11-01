@@ -19,6 +19,7 @@ import {
   ChatBotInputContainer,
 } from "./styles";
 import {
+  ChatBotInputType,
   PostImageInputType,
   ProfileInputType,
   SearchPostType,
@@ -531,7 +532,11 @@ export const CommentInput = ({ value, setValue }: SignUpInputType) => {
 };
 
 // ChatBot 채팅 입력창
-export const ChatBotInput = () => {
+export const ChatBotInput = ({
+  prompt,
+  setPrompt,
+  handleClickSendPrompt,
+}: ChatBotInputType) => {
   return (
     <div
       style={{
@@ -541,9 +546,24 @@ export const ChatBotInput = () => {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+        outline: "none",
+      }}
+      tabIndex={0}
+      onKeyUp={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          handleClickSendPrompt();
+        }
       }}
     >
-      <ChatBotInputContainer />
+      <ChatBotInputContainer
+        value={prompt}
+        onChange={(e) => {
+          if (setPrompt) {
+            setPrompt(e.target.value);
+          }
+        }}
+      />
       <GrSend
         size={"1rem"}
         color="#868686"
@@ -552,6 +572,7 @@ export const ChatBotInput = () => {
           right: "1rem",
           cursor: "pointer",
         }}
+        onClick={handleClickSendPrompt}
       />
     </div>
   );
