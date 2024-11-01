@@ -8,5 +8,6 @@ export const TelCheckAPI = async ({ tel }: TelCheckAPIType) => {
     return response.data;
   } catch (error) {
     // console.log("전화번호 중복 확인 실패", error);
+    return error;
   }
 };
