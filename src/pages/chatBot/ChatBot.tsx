@@ -34,10 +34,12 @@ export function ChatBot() {
     setPrompt,
     chatHistory,
     loading,
+    handleRefreshChatHistory,
     endOfMessagesRef,
   } = useChatBotEvent();
 
   useEffect(() => {
+    handleRefreshChatHistory(); // 화면 렌더링 시 누적된 채팅 기록 초기화
     setIsStart(false); // 초기 화면은 Welcome 멘트 출력
     handleGetUserInfo();
   }, []);
