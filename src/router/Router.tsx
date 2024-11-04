@@ -14,6 +14,7 @@ import TeamPost from "../pages/teamPost/TeamPost";
 import WriteTeamPost from "../pages/teamPost/WriteTeamPost";
 import { JoinTeam } from "../pages/joinTeam/JoinTeam";
 import { ChatBot } from "../pages/chatBot/ChatBot";
+import { Landing } from "../pages/landing/Landing";
 
 /*
   페이지 경로 이름 작성 규칙
@@ -28,9 +29,9 @@ export const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        // 메인 페이지
+        // 랜딩 페이지
         path: "",
-        element: <Main />,
+        element: <Landing />,
       },
       {
         // 카카오 로그인을 위한 리다이렉션 페이지
