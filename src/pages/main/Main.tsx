@@ -20,7 +20,7 @@ export default function Main() {
     setRandomSlogan01(slogan01[index]);
     setRandomSlogan02(slogan02[index]);
 
-    handleCheckToken();
+    // handleCheckToken();
   }, []);
 
   return (
