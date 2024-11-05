@@ -15,6 +15,7 @@ import {
   ChatBotContainer,
   MorePostBtnContainer,
   LandingGoToBtnContainer,
+  GoToHomeBtnContainer,
 } from "./styles";
 import { FaBars, FaXmark, FaCheck, FaO } from "react-icons/fa6";
 import {
@@ -22,6 +23,7 @@ import {
   CategoryBtnType,
   ChatBotBtnType,
   CheckValues,
+  GoToHomeBtnType,
   HambergerBtnType,
   handleCancleTeamJoinType,
   KakaoSignInType,
@@ -42,6 +44,7 @@ import { LuPencilLine } from "react-icons/lu";
 import { VscRobot } from "react-icons/vsc";
 import { FaRegSadTear } from "react-icons/fa";
 import { MdExpandMore } from "react-icons/md";
+import { IoHomeOutline } from "react-icons/io5";
 
 // 햄버거 버튼
 export const HambergerBtn = ({ toggleNav }: HambergerBtnType) => {
@@ -58,6 +61,15 @@ export const CancleBtn = ({ toggleNav }: CancleBtnType) => {
     <BtnContainer onClick={toggleNav}>
       <FaXmark size={"100%"} color="white" />
     </BtnContainer>
+  );
+};
+
+// 홈 화면 이동 버튼
+export const GoToHomeBtn = ({ onClick }: GoToHomeBtnType) => {
+  return (
+    <GoToHomeBtnContainer onClick={onClick}>
+      <IoHomeOutline size={"85%"} color="white" />
+    </GoToHomeBtnContainer>
   );
 };
 
