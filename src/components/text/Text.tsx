@@ -1,4 +1,6 @@
 import {
+  LandingSubTitleText,
+  LandingTitleText,
   LeftMiddleTitle,
   LeftSmallTitle,
   Msg,
@@ -72,4 +74,12 @@ export const LeftMiddleText = ({ text }: { text?: string }) => {
 
 export const LeftSmallText = ({ text }: { text?: string }) => {
   return <LeftSmallTitle>{text}</LeftSmallTitle>;
+};
+
+export const LandingTitle = ({ text }: { text?: string }) => {
+  return <LandingTitleText>{text}</LandingTitleText>;
+};
+
+export const LandingSubTitle = ({ text }: { text?: string }) => {
+  return <LandingSubTitleText>{text}</LandingSubTitleText>;
 };

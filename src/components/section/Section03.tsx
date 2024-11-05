@@ -7,17 +7,22 @@ export const Section03 = () => {
   const [backgroundImage, setBackgroundImage] =
     useState<string>(darkBackground);
   const sectionRef = useRef<HTMLDivElement | null>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null); // 타이머 참조 변수
 
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const timer = setTimeout(() => {
+          // Section03이 화면에 보일 때마다 새로운 타이머 설정
+          timerRef.current = setTimeout(() => {
             setBackgroundImage(background);
-          }, 3000);
-
-          // 클린업 함수: 컴포넌트가 언마운트될 때 타이머를 클리어합니다.
-          return () => clearTimeout(timer);
+          }, 2000);
+        } else {
+          // Section03이 화면에서 사라지면 타이머를 클리어
+          if (timerRef.current) {
+            clearTimeout(timerRef.current);
+          }
+          setBackgroundImage(darkBackground); // 초기 배경 이미지로 복원
         }
       });
     };
@@ -27,17 +32,21 @@ export const Section03 = () => {
       observer.observe(sectionRef.current);
     }
 
-    // 클린업: 컴포넌트가 언마운트될 때 observer를 해제합니다.
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
+      }
+      // 컴포넌트 언마운트 시 타이머 클리어
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
       }
     };
   }, []);
 
   return (
     <Section3 className="section" backgroundImage={backgroundImage}>
-      <div ref={sectionRef}>{/*setTimeout 컨트롤용 div*/}</div>
+      <div ref={sectionRef}></div>
+      {/* 컨트롤용 div */}
     </Section3>
   );
 };
