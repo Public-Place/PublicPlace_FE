@@ -322,3 +322,15 @@ export const MorePostBtnContainer = styled.div`
     cursor: pointer;
   }
 `;
+
+export const LandingGoToBtnContainer = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  font-size: 0.8rem;
+  color: green;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;

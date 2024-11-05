@@ -170,3 +170,20 @@ export const LeftSmallTitle = styled.div`
 
   font-size: 0.8rem;
 `;
+
+export const LandingTitleText = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+`;
+
+export const LandingSubTitleText = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  font-size: 1rem;
+  color: white;
+`;

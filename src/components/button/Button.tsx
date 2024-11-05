@@ -14,6 +14,7 @@ import {
   Write,
   ChatBotContainer,
   MorePostBtnContainer,
+  LandingGoToBtnContainer,
   GoToHomeBtnContainer,
 } from "./styles";
 import { FaBars, FaXmark, FaCheck, FaO } from "react-icons/fa6";
@@ -295,4 +296,9 @@ export const MorePostBtn = ({ onClick }: MorePostBtnType) => {
       <MdExpandMore size={17} />
     </MorePostBtnContainer>
   );
+};
+
+// 랜딩 페이지 내부의 이동 버튼
+export const LandingGoToBtn = ({ text }: { text?: string }) => {
+  return <LandingGoToBtnContainer>{text}</LandingGoToBtnContainer>;
 };
