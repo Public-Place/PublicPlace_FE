@@ -6,6 +6,10 @@ export interface CancleBtnType {
   toggleNav: () => void;
 }
 
+export interface GoToHomeBtnType {
+  onClick: () => void;
+}
+
 export interface SignInBtnType {
   handleSignIn: () => void;
   isSignIn?: boolean;

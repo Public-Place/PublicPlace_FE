@@ -107,6 +107,11 @@ export const useNavigationEvent = ({
     }
   };
 
+  // '홈 화면 이동 버튼' 클릭 시
+  const handleGoToHome = () => {
+    navigator("/");
+  };
+
   return {
     isSignInModalOpen,
     setIsSignInModalOpen,
@@ -121,5 +126,6 @@ export const useNavigationEvent = ({
     handleGoToWritePost,
     handleGoToMyInfo,
     handleGoToUpdateMyInfo,
+    handleGoToHome,
   };
 };

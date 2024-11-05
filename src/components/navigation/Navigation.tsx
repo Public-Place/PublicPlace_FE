@@ -1,4 +1,4 @@
-import { CancleBtn, SignInBtn, SignUpBtn } from "../button/Button";
+import { CancleBtn, GoToHomeBtn, SignInBtn, SignUpBtn } from "../button/Button";
 import { Auth, Category, Container, Details, Li, Summary, Ul } from "./styles";
 import { NavagationType } from "./types";
 import { SignInModal, SignUpModal } from "../modal/Modal";
@@ -33,6 +33,7 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
     handleGoToWritePost,
     handleGoToMyInfo,
     handleGoToUpdateMyInfo,
+    handleGoToHome,
   } = useNavigationEvent({ setIsSignIn, toggleNav });
 
   // 로그인 여부에 따라 각자 다른 함수 실행
@@ -48,6 +49,7 @@ export const Navigation = ({ toggleNav, isClosing }: NavagationType) => {
   return (
     <Container isClosing={isClosing}>
       <CancleBtn toggleNav={toggleNav} />
+      <GoToHomeBtn onClick={handleGoToHome} />
       <Category>
         <Details open>
           <Summary>&nbsp;&nbsp;Team</Summary>

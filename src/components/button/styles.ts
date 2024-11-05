@@ -20,6 +20,25 @@ export const BtnContainer = styled.div`
   }
 `;
 
+export const GoToHomeBtnContainer = styled.div`
+  width: 2rem;
+  height: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  z-index: 9999;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 export const SignInStateBtnWrapper = styled.button`
   width: fit-content;
   height: fit-content;
