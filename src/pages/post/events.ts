@@ -243,7 +243,7 @@ export const useWritePostEvent = () => {
   const [btnValue, setBtnValue] = useState("");
 
   // 게시글 상단 text와 버튼 value 값
-  const handleToggleValue = ({ postId }: { postId: number }) => {
+  const handleToggleValue = ({ postId }: { postId?: number }) => {
     if (postId) {
       setAboveText("게시글 수정");
       setBtnValue("수정");
