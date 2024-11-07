@@ -187,3 +187,20 @@ export const LandingSubTitleText = styled.div`
   font-size: 1rem;
   color: white;
 `;
+
+export const InterestTitleText = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+`;
+
+export const InterestSubTitleText = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  font-size: 0.8rem;
+  color: white;
+`;

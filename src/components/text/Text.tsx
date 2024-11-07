@@ -1,4 +1,6 @@
 import {
+  InterestSubTitleText,
+  InterestTitleText,
   LandingSubTitleText,
   LandingTitleText,
   LeftMiddleTitle,
@@ -82,4 +84,12 @@ export const LandingTitle = ({ text }: { text?: string }) => {
 
 export const LandingSubTitle = ({ text }: { text?: string }) => {
   return <LandingSubTitleText>{text}</LandingSubTitleText>;
+};
+
+export const InterestTitle = ({ text }: { text?: string }) => {
+  return <InterestTitleText>{text}</InterestTitleText>;
+};
+
+export const InterestSubTitle = ({ text }: { text?: string }) => {
+  return <InterestSubTitleText>{text}</InterestSubTitleText>;
 };

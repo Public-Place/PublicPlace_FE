@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { KakaoLoginBtnColor, BtnColor } from "../../constants/FixValues";
 
 export const BtnContainer = styled.div`
@@ -328,9 +328,43 @@ export const LandingGoToBtnContainer = styled.div`
   height: fit-content;
 
   font-size: 0.8rem;
+  font-weight: bold;
   color: green;
 
   &:hover {
     cursor: pointer;
   }
+`;
+
+// 아래에서 위로 슬라이드하는 애니메이션
+const slideUpAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+
+export const LandingArrowBtnContainer = styled.div`
+  width: 10rem;
+  height: fit-content;
+
+  padding: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  position: absolute;
+  bottom: 1rem;
+  left: calc(50% - 5rem);
+
+  animation: ${slideUpAnimation} 2s ease-in-out infinite;
 `;

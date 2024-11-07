@@ -16,6 +16,7 @@ import {
   MorePostBtnContainer,
   LandingGoToBtnContainer,
   GoToHomeBtnContainer,
+  LandingArrowBtnContainer,
 } from "./styles";
 import { FaBars, FaXmark, FaCheck, FaO } from "react-icons/fa6";
 import {
@@ -45,6 +46,7 @@ import { VscRobot } from "react-icons/vsc";
 import { FaRegSadTear } from "react-icons/fa";
 import { MdExpandMore } from "react-icons/md";
 import { IoHomeOutline } from "react-icons/io5";
+import { GiClick } from "react-icons/gi";
 
 // 햄버거 버튼
 export const HambergerBtn = ({ toggleNav }: HambergerBtnType) => {
@@ -301,4 +303,21 @@ export const MorePostBtn = ({ onClick }: MorePostBtnType) => {
 // 랜딩 페이지 내부의 이동 버튼
 export const LandingGoToBtn = ({ text }: { text?: string }) => {
   return <LandingGoToBtnContainer>{text}</LandingGoToBtnContainer>;
+};
+
+// 랜딩 페이지 내부의 화살표 버튼
+export const LandingArrowBtn = () => {
+  return (
+    <LandingArrowBtnContainer>
+      <GiClick color="white" size={20} />
+      <div
+        style={{
+          color: "white",
+          fontSize: "0.7rem",
+        }}
+      >
+        스크롤하여 아래로 내려보세요
+      </div>
+    </LandingArrowBtnContainer>
+  );
 };

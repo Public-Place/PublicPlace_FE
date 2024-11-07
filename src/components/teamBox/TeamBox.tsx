@@ -1,7 +1,8 @@
 import { TeamBoxContainer } from "./styles";
 import TeamImg from "../../assets/images/TeamImg.png";
+import { TeamBoxType } from "./MockUp";
 
-export const TeamBox = () => {
+export const TeamBox = ({ team }: TeamBoxType) => {
   return (
     <TeamBoxContainer>
       <img
@@ -16,13 +17,13 @@ export const TeamBox = () => {
       />
       <div
         style={{
-          marginTop: "8px",
+          marginTop: "2px",
           paddingLeft: "1px",
           fontWeight: "bold",
           fontSize: "1rem",
         }}
       >
-        서천FC
+        {team.teamName}
       </div>
       <div
         style={{
@@ -31,7 +32,7 @@ export const TeamBox = () => {
           fontSize: "0.6rem",
         }}
       >
-        창단일 : 2024년 11월 5일
+        창단일 : {team.createdAt}
       </div>
       <div
         style={{
@@ -40,7 +41,7 @@ export const TeamBox = () => {
           fontSize: "0.6rem",
         }}
       >
-        활동 장소 : 경기도 용인시 기흥구 서천서로 27
+        활동 장소 : {team.location}
       </div>
       <div
         style={{
@@ -49,7 +50,7 @@ export const TeamBox = () => {
           fontSize: "0.6rem",
         }}
       >
-        회원 수 : 48명
+        회원 수 : {team.memberCount}명
       </div>
     </TeamBoxContainer>
   );

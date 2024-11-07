@@ -51,10 +51,11 @@ export default function WritePost() {
   const { postInfo, handleGetPostInfo } = usePostEvent({ postId });
 
   useEffect(() => {
-    GetUserInfo();
+    GetUserInfo(); // 현재 회원 정보 조회
     handleToggleValue({ postId });
 
     if (postId) {
+      // 게시글 수정 모드
       handleGetPostInfo();
     }
   }, []);

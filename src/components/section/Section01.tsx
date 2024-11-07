@@ -1,13 +1,6 @@
-import { LandingGoToBtn } from "../button/Button";
-import { TeamBox } from "../teamBox/TeamBox";
+import { LandingArrowBtn, LandingGoToBtn } from "../button/Button";
 import { LandingSubTitle, LandingTitle } from "../text/Text";
-import {
-  Section1,
-  Section1Scroll01,
-  Section1Scroll02,
-  Section1ScrollBox,
-  Section1Title,
-} from "./styles";
+import { Section1, Section1Title } from "./styles";
 
 export const Section01 = () => {
   return (
@@ -21,12 +14,7 @@ export const Section01 = () => {
         <div style={{ height: "2rem" }} />
         <LandingGoToBtn text={"로그인 하러 가기 →"} />
       </Section1Title>
-      <Section1ScrollBox>
-        <Section1Scroll01>
-          <TeamBox />
-        </Section1Scroll01>
-        <Section1Scroll02></Section1Scroll02>
-      </Section1ScrollBox>
+      <LandingArrowBtn />
     </Section1>
   );
 };
