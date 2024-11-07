@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import {
   AIChat,
+  RefTag,
   Section3,
   Section3Chat,
   Section3Title,
@@ -13,10 +14,13 @@ import UserChat01 from "../../assets/images/UserChat01.png";
 import UserChat02 from "../../assets/images/UserChat02.png";
 import AIChat01 from "../../assets/images/AIChat01.png";
 import AIChat02 from "../../assets/images/AIChat02.png";
+import { useLandingEvent } from "../../pages/landing/events";
 
 export const Section03 = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null); // 타이머 참조 변수
+
+  const { handleGoToChatBot } = useLandingEvent();
 
   // 각 챗의 표시 여부를 제어하기 위한 상태
   const [userChatVisible, setUserChatVisible] = useState(false);
@@ -29,10 +33,10 @@ export const Section03 = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           // 챗 순차적으로 나타나기 위한 타이머 설정
-          setTimeout(() => setUserChatVisible(true), 500);
-          setTimeout(() => setAiChatVisible(true), 1000);
-          setTimeout(() => setUserChat02Visible(true), 1500);
-          setTimeout(() => setAiChat02Visible(true), 2000);
+          setTimeout(() => setUserChatVisible(true), 0);
+          setTimeout(() => setAiChatVisible(true), 250);
+          setTimeout(() => setUserChat02Visible(true), 500);
+          setTimeout(() => setAiChat02Visible(true), 750);
         } else {
           // 모든 챗을 다시 숨김
           setUserChatVisible(false);
@@ -61,6 +65,7 @@ export const Section03 = () => {
 
   return (
     <Section3 className="section" backgroundImage={darkBackground}>
+      <RefTag ref={sectionRef} />
       <Section3Title className={userChatVisible ? "fade-in" : ""}>
         <LandingTitle text={"대화를 통해"} />
         <LandingTitle text={"팀을 찾아보세요"} />
@@ -69,11 +74,11 @@ export const Section03 = () => {
           text={"AI와의 대화를 통해, 더 적합한 팀을 효율적으로 찾아줍니다."}
         />
       </Section3Title>
-      <div
-        ref={sectionRef}
-        style={{ position: "absolute", bottom: "7rem", right: "10rem" }}
-      >
-        <LandingGoToBtn text={"AI와 대화하러 가기 →"} />
+      <div style={{ position: "absolute", bottom: "7rem", right: "10rem" }}>
+        <LandingGoToBtn
+          text={"AI와 대화하러 가기 →"}
+          onClick={handleGoToChatBot}
+        />
       </div>
       <Section3Chat>
         {userChatVisible && (

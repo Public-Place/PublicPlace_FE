@@ -6,12 +6,15 @@ import {
   Interest04,
 } from "../interest/Interest";
 import { LandingSubTitle, LandingTitle } from "../text/Text";
-import { Section2, Section2Interest, Section2Title } from "./styles";
+import { RefTag, Section2, Section2Interest, Section2Title } from "./styles";
 import { LandingGoToBtn } from "../button/Button";
+import { useLandingEvent } from "../../pages/landing/events";
 
 export const Section02 = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+
+  const { handleGoToSearchTeam } = useLandingEvent();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -43,6 +46,7 @@ export const Section02 = () => {
 
   return (
     <Section2 className="section">
+      <RefTag ref={sectionRef} />
       <Section2Title className={`${isVisible ? "fade-in" : ""}`}>
         <LandingTitle text={"어떤 팀을 찾고 계신가요?"} />
         <div style={{ height: "0.5rem" }} />
@@ -58,12 +62,12 @@ export const Section02 = () => {
           justifyContent: "end",
         }}
       >
-        <LandingGoToBtn text={"팀 찾으러 가기 →"} />
+        <LandingGoToBtn
+          text={"팀 찾으러 가기 →"}
+          onClick={handleGoToSearchTeam}
+        />
       </div>
-      <Section2Interest
-        ref={sectionRef}
-        className={`${isVisible ? "fade-in" : ""}`}
-      >
+      <Section2Interest className={`${isVisible ? "fade-in" : ""}`}>
         <Interest01 />
         <Interest02 />
         <Interest03 />
