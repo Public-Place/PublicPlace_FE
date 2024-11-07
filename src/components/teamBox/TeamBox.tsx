@@ -1,18 +1,18 @@
 import { TeamBoxContainer } from "./styles";
-import TeamImg from "../../assets/images/TeamImg.png";
 import { TeamBoxType } from "./MockUp";
 
 export const TeamBox = ({ team }: TeamBoxType) => {
   return (
     <TeamBoxContainer>
       <img
-        src={TeamImg}
+        src={team.teamImg}
         alt="error"
         style={{
           width: "100%",
-          height: "6rem",
+          height: "8rem",
           objectFit: "cover",
           borderRadius: "10px",
+          border: "0.5px solid black",
         }}
       />
       <div
@@ -39,6 +39,9 @@ export const TeamBox = ({ team }: TeamBoxType) => {
           marginTop: "3px",
           paddingLeft: "1px",
           fontSize: "0.6rem",
+
+          whiteSpace: "nowrap",
+          overflow: "hidden",
         }}
       >
         활동 장소 : {team.location}

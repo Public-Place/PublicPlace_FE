@@ -1,5 +1,5 @@
 import { LandingTitle } from "../text/Text";
-import { Section4, Section4Content, Section4Title } from "./styles";
+import { RefTag, Section4, Section4Content, Section4Title } from "./styles";
 import board from "../../assets/images/board.png";
 import { useEffect, useRef, useState } from "react";
 
@@ -37,6 +37,7 @@ export const Section04 = () => {
 
   return (
     <Section4 className="section">
+      <RefTag ref={sectionRef} />
       <div
         style={{
           width: "200px",
@@ -72,10 +73,7 @@ export const Section04 = () => {
           <LandingTitle text={"자유롭게 소통하세요"} />
         </div>
       </Section4Title>
-      <Section4Content
-        ref={sectionRef}
-        className={`${isVisible ? "fade-in" : ""}`}
-      >
+      <Section4Content className={`${isVisible ? "fade-in" : ""}`}>
         <img
           src={board}
           alt="error"

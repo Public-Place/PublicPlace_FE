@@ -26,6 +26,24 @@ const appear = keyframes`
   }
 `;
 
+const scrollUp = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-90rem);
+  }
+`;
+
+const scrollDown = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(90rem);
+  }
+`;
+
 // 기본 섹션 스타일
 export const Section = styled.div`
   width: 100%;
@@ -34,10 +52,13 @@ export const Section = styled.div`
 
 // Section1 스타일
 export const Section1 = styled(Section)`
+  width: 100%;
+  height: 100%;
+
   display: flex;
   flex-direction: row;
-  align-items: start;
-  justify-content: end;
+  align-items: center;
+  justify-content: center;
 
   position: relative;
 
@@ -54,13 +75,88 @@ export const Section1Title = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  justify-content: center;
+  justify-content: end;
 
   position: absolute;
   bottom: 10rem;
   left: 10rem;
 
   background-color: transparent;
+`;
+
+export const TestBox = styled.div`
+  width: 14rem;
+  height: 12rem;
+
+  margin-bottom: 1rem;
+
+  background-color: whitesmoke;
+`;
+
+export const SlideArea = styled.div`
+  width: 35rem;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+
+  position: absolute;
+  top: 0;
+  right: 7rem;
+`;
+
+export const UpInfinitySlide = styled.div`
+  width: fit-content;
+  height: 100%;
+
+  padding: 0rem 0.5rem;
+
+  overflow: hidden;
+
+  background-color: transparent;
+`;
+
+export const UpPlain = styled.div`
+  width: fit-content;
+  height: calc(84rem + 6rem);
+
+  animation: ${scrollUp} 30s linear infinite;
+`;
+
+export const UpClone = styled.div`
+  width: fit-content;
+  height: calc(84rem + 6rem);
+
+  animation: ${scrollUp} 30s linear infinite;
+`;
+
+export const DownInfinitySlide = styled.div`
+  width: fit-content;
+  height: 100%;
+
+  padding: 0rem 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  background-color: transparent;
+`;
+
+export const DownPlain = styled.div`
+  width: fit-content;
+  height: calc(84rem + 6rem);
+
+  animation: ${scrollDown} 30s linear infinite;
+`;
+
+export const DownClone = styled.div`
+  width: fit-content;
+  height: calc(84rem + 6rem);
+
+  animation: ${scrollDown} 30s linear infinite;
 `;
 
 // Section2 스타일
@@ -259,4 +355,15 @@ export const Section4Content = styled.div`
   &.fade-in {
     animation: ${fadeIn} 0.8s ease forwards;
   }
+`;
+
+export const RefTag = styled.div`
+  width: 2rem;
+  height: 2rem;
+
+  position: absolute;
+  top: calc(50% - 1rem);
+  left: calc(50% - 1rem);
+
+  background-color: transparent;
 `;

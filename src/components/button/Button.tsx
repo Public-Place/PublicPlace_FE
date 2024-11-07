@@ -47,6 +47,7 @@ import { FaRegSadTear } from "react-icons/fa";
 import { MdExpandMore } from "react-icons/md";
 import { IoHomeOutline } from "react-icons/io5";
 import { GiClick } from "react-icons/gi";
+import { HiHome } from "react-icons/hi2";
 
 // 햄버거 버튼
 export const HambergerBtn = ({ toggleNav }: HambergerBtnType) => {
@@ -70,7 +71,7 @@ export const CancleBtn = ({ toggleNav }: CancleBtnType) => {
 export const GoToHomeBtn = ({ onClick }: GoToHomeBtnType) => {
   return (
     <GoToHomeBtnContainer onClick={onClick}>
-      <IoHomeOutline size={"85%"} color="white" />
+      <HiHome size={"85%"} color="white" />
     </GoToHomeBtnContainer>
   );
 };
@@ -301,8 +302,16 @@ export const MorePostBtn = ({ onClick }: MorePostBtnType) => {
 };
 
 // 랜딩 페이지 내부의 이동 버튼
-export const LandingGoToBtn = ({ text }: { text?: string }) => {
-  return <LandingGoToBtnContainer>{text}</LandingGoToBtnContainer>;
+export const LandingGoToBtn = ({
+  text,
+  onClick,
+}: {
+  text?: string;
+  onClick?: () => void;
+}) => {
+  return (
+    <LandingGoToBtnContainer onClick={onClick}>{text}</LandingGoToBtnContainer>
+  );
 };
 
 // 랜딩 페이지 내부의 화살표 버튼

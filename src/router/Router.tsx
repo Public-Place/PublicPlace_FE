@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../pages/root/Root";
-import Main from "../pages/main/Main";
 import Redirection from "../pages/redirection/Redirection";
 import MyInfo from "../pages/myinfo/MyInfo";
 import { UpdateMyInfo } from "../pages/updateMyInfo/UpdateMyInfo";
