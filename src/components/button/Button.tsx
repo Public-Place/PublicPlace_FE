@@ -45,7 +45,6 @@ import { LuPencilLine } from "react-icons/lu";
 import { VscRobot } from "react-icons/vsc";
 import { FaRegSadTear } from "react-icons/fa";
 import { MdExpandMore } from "react-icons/md";
-import { IoHomeOutline } from "react-icons/io5";
 import { GiClick } from "react-icons/gi";
 import { HiHome } from "react-icons/hi2";
 

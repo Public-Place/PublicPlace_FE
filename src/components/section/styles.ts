@@ -272,6 +272,11 @@ export const Section3Chat = styled.div`
 
   background-color: transparent;
   color: white;
+
+  /* 스크롤바를 안 보이게 하는 경우 */
+  &::-webkit-scrollbar {
+    display: none; /* 웹킷 기반 브라우저에서 스크롤바 숨기기 */
+  }
 `;
 
 export const UserChat = styled.div`

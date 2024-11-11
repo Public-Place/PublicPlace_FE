@@ -149,5 +149,7 @@ export const TeamBox = styled.div`
 
   &:hover {
     cursor: pointer;
+
+    background-color: #ebebeb;
   }
 `;

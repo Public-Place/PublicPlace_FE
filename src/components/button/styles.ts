@@ -259,6 +259,8 @@ export const Category = styled.div<{ isClicked: boolean }>`
 
   &:hover {
     cursor: pointer;
+
+    background-color: #2c2c2c;
   }
 `;
 
