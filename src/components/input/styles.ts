@@ -147,6 +147,10 @@ export const Select = styled.select`
   &:focus {
     outline: none;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Profile = styled.div<{ src?: string }>`

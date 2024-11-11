@@ -50,7 +50,7 @@ export const team03: Team = {
 export const team04: Team = {
   teamName: "포항스틸러스",
   createdAt: "1973년 4월 1일",
-  location: "경상북도 포항시 남구 동해안로6213번길 20",
+  location: "경상북도 포항시 남구 동해안로 6213번길 20",
   memberCount: 14,
   teamImg: Pohang,
 };
