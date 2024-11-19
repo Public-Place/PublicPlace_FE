@@ -26,7 +26,7 @@ export const ErrorMsgColor = "rgb(233, 51, 35)";
 export const DefaultBackgroundColor = "#1C1C1C";
 
 // 카카오 본사 (판교) 위도
-export const KakaoLat = 37.395422906049305;
+export const KakaoLat = 37.27684498529982;
 
 // 카카오 본사 (판교) 경도
-export const KakaoLng = 127.1104534300779;
+export const KakaoLng = 127.13443484709629;
