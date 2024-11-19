@@ -1,46 +1,116 @@
-# Getting Started with Create React App
+# 동호회 활동 장려 웹사이트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/cbfc8f85-da92-41ca-bd75-e7686be26254" alt="프로젝트 로고" width="600">
+</p>
 
-## Available Scripts
+**공공장소는 효율적인 팀 검색 기능과 다양한 소통 채널을 제공하여 사용자 초기 이탈률을 낮추고, 사용자 간 유대감을 형성합니다.**
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🌟 프로젝트 설명
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **ChatBot**과의 대화를 통해 복잡한 조건의 팀을 빠르게 찾을 수 있습니다.
+- 가입 신청 및 승인 관리 시스템을 통해 팀에 적합한 멤버를 모집하고 커뮤니티 품질을 높일 수 있습니다.
+- 오프라인으로 활동하는 팀원들만 이용할 수 있는 팀 게시판을 통해 민감한 내용을 안전하게 공유할 수 있습니다.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠 개발 환경
 
-### `npm run build`
+### Front-End :
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Tool**: Visual Studio Code  
+- **Library**: React ^18.3.1  
+- **Package Manager**: NPM  
+- **CLI**: CRA (Create React App)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Back-End :
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **IDE**: IntelliJ  
+- **Database**: MariaDB  
+- **Framework**: Spring Boot  
+- **Build Tool**: Maven  
 
-### `npm run eject`
+### 협업 툴 :
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- **GitHub**  
+- **Notion**  
+- **Figma**  
+- **Discord**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 인프라 :
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **Server**: AWS EC2 (Ubuntu)  
+- **Storage**: AWS S3  
+- **Database**: MariaDB  
+- **Container**: Docker, Docker Compose  
+- **CI/CD**: GitHub Actions  
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## ⚙️ 기술 스택
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Front-End :
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Language**: TypeScript  
+- **CSS**: Styled-components  
+- **Routing**: React Router v6  
+- **Linter**: esLint  
+- **Code Formatter**: Prettier  
+
+### Back-End :
+
+- **Language**: Java 17  
+- **Framework**: Spring Boot 2.5.6  
+- **ORM**: Spring Data JPA  
+- **Security**: Spring Security, JWT  
+- **API Design**: RESTful API, Swagger  
+- **Query Builder**: QueryDSL  
+- **AI Integration**: OpenAI  
+- **Deployment**: Docker Compose, GitHub Actions  
+
+
+## 👥 팀원 구성
+
+<table align="center">
+  <tr>
+    <td align="center"><img src="https://github.com/user-attachments/assets/49cb8b59-ff13-4fb7-9bd3-0ebde34dfacc" alt="김민기" width="100"><br><b>김민기</b><br>Back-End Developer</td>
+    <td align="center"><img src="https://via.placeholder.com/100" alt="김영훈" width="100"><br><b>김영훈</b><br>Front-End Developer</td>
+  </tr>
+</table>
+
+
+## 🚀 주요 기능
+
+- **로그인/회원가입** :
+  - 카카오 로그인 연동으로 간편하고 직관적인 회원가입 절차 제공
+  - 유효성 검사를 통해 중복 및 잘못된 입력 방지로 데이터 무결성과 사용자 경험 개선
+
+- **온보딩** :
+  - 랜딩 페이지에서 다양한 기능들을 한 눈에 확인 가능, 초기 사용자 이탈 방지
+
+- **팀 찾기** :
+  - 관심사를 기반으로 적합한 팀을 효율적으로 탐색하여 사용자 만족도 향상
+
+- **ChatBot** :
+  - 복잡한 조건의 팀을 ChatBot 대화를 통해 효율적으로 탐색하여 시간 절약 및 불필요한 노동 감소
+
+- **팀 CRUD** :
+  - 손쉽게 팀 생성, 수정, 삭제 가능
+
+- **팀** :
+  - 팀 정보를 시각적으로 표현, 직관적 UI 제공
+  - 팀원 전용 소통 채널을 통한 유대감 형성
+  - 비회원 게시글 내용 블러 처리로 보안 강화
+
+- **가입 신청 및 승인 관리** :
+  - 가입 신청 후 회장의 승인을 통해 체계적인 팀 관리
+
+- **게시판** :
+  - 익명 게시판 운영, 효율적인 게시글 필터링 및 댓글 작성 기능 제공
+
+- **게시글 CRUD** :
+  - 자유로운 게시글 생성, 수정, 삭제 지원
+
+- **회원 정보** :
+  - 소속 팀, 가입 신청 팀 정보를 시각적으로 제공
+  - 회원 정보 수정 기능 지원
