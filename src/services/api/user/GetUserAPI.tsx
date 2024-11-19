@@ -9,5 +9,6 @@ export const GetUserAPI = async () => {
     return response.data;
   } catch (error) {
     // console.log("회원정보 조회 실패", error);
+    return error;
   }
 };
