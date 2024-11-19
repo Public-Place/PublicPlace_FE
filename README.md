@@ -109,3 +109,105 @@
 - **회원 정보** :
   - 소속 팀, 가입 신청 팀 정보를 **시각적**으로 제공
   - 사용자 편의를 위한 회원 정보 수정 기능 지원
+
+# 💡 주요 기능
+
+<table>
+  <tr>
+    <td>
+      <b>로그인/회원가입</b><br><br>
+      - <b>카카오 로그인</b> 연동으로 간편하고 직관적인 회원가입 절차 제공<br>
+      - <b>유효성 검사</b>를 통해 중복 및 잘못된 입력 방지로 데이터 무결성과 사용자 경험 개선
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/400x300" alt="로그인 기능" width="300" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>온보딩</b><br><br>
+      - <b>랜딩 페이지</b>에서 다양한 기능들을 한 눈에 확인 가능<br>
+      - 초기 사용자 이탈 방지
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/400x300" alt="로그인 기능" width="300" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>팀 찾기</b><br><br>
+      - <b>관심사 기반</b>으로 적합한 팀 탐색하여 사용자 만족도 향상
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/400x300" alt="팀 찾기 기능" width="300" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>ChatBot</b><br><br>
+      - 복잡한 조건의 팀을 ChatBot 대화를 통해 효율적으로 탐색하여 <b>시간 절약<b /> 및 <b>불필요한 노동 감소<b /><br>
+      - <b>시간 절약</b> 및 <b>불필요한 노동 감소</b>
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/400x300" alt="ChatBot 기능" width="300" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>팀 CRUD</b><br><br>
+      - 손쉽게 팀 생성, 수정, 삭제 가능
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/400x300" alt="팀 CRUD 기능" width="300" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>팀</b><br><br>
+      - 팀 정보를 <b>시각적</b>으로 표현, 직관적 UI 제공<br>
+      - 팀원 전용 소통 채널을 통한 <b>유대감 형성</b><br>
+      - 비회원 게시글 내용 블러 처리로 <b>보안 강화</b>
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/400x300" alt="팀 기능" width="300" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>가입 신청 및 승인 관리</b><br><br>
+      - 가입 신청 후 회장의 승인을 통해 <b>체계적인 팀 관리</b>
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/400x300" alt="가입 신청 및 승인 관리" width="300" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>게시판</b><br><br>
+      - 익명 게시판 운영<br>
+      - 효율적인 게시글 필터링 및 댓글 작성 기능 제공
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/400x300" alt="게시판 기능" width="300" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>게시글 CRUD</b><br><br>
+      - 자유로운 게시글 생성, 수정, 삭제 지원
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/400x300" alt="게시글 CRUD 기능" width="300" />
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>회원 정보</b><br><br>
+      - 소속 팀, 가입 신청 팀 정보를 <b>시각적</b>으로 제공<br>
+      - 사용자 편의를 위한 회원 정보 수정 기능 지원
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/400x300" alt="회원 정보 기능" width="300" />
+    </td>
+  </tr>
+</table>
