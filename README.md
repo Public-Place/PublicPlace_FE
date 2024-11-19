@@ -71,7 +71,7 @@
 # 👥 팀원 구성
 | **김민기** | **김영훈** |
 | :------: |  :------: |
-| [<img src="https://github.com/user-attachments/assets/49cb8b59-ff13-4fb7-9bd3-0ebde34dfacc" alt="김민기" width="100"><br />@mike7051141](https://github.com/mike7051141) | [<img src="https://avatars.githubusercontent.com/u/145416076?v=4" height=100 width=100> <br/> @eth220421](https://github.com/eth220421) |
+| [<img src="https://avatars.githubusercontent.com/u/111833871?v=4" alt="김민기" width="70" height="70"><br />@mike7051141](https://github.com/mike7051141) | [<img src="https://avatars.githubusercontent.com/u/145416076?v=4" height=70 width=70> <br/> @eth220421](https://github.com/eth220421) |
 | Back-End Developer | Front-End Developer |
 
 # 💡 주요 기능
