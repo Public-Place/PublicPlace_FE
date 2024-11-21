@@ -94,7 +94,7 @@
       - 초기 사용자 이탈 방지
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/400x300" alt="로그인 기능" width="300" />
+      ![PublicPlace-ezgif com-speed](https://github.com/user-attachments/assets/5d1fc910-36d0-4d2a-99e1-d72b08a385cf)
     </td>
   </tr>
   <tr>
