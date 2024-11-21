@@ -84,7 +84,7 @@
       - <b>유효성 검사</b>를 통해 중복 및 잘못된 입력 방지로 데이터 무결성과 사용자 경험 개선
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/400x300" alt="로그인 기능" width="300" />
+      <img src="https://github.com/user-attachments/assets/88433381-3041-4660-8119-a620f01ae628" alt="로그인 기능" width="300" />
     </td>
   </tr>
   <tr>
@@ -94,7 +94,7 @@
       - 초기 사용자 이탈 방지
     </td>
     <td align="center">
-      ![PublicPlace-ezgif com-speed](https://github.com/user-attachments/assets/5d1fc910-36d0-4d2a-99e1-d72b08a385cf)
+      <img src="https://github.com/user-attachments/assets/5d1fc910-36d0-4d2a-99e1-d72b08a385cf" alt="랜딩 페이지.gif" width="300" />
     </td>
   </tr>
   <tr>
@@ -103,7 +103,7 @@
       - <b>관심사 기반</b>으로 적합한 팀 탐색하여 사용자 만족도 향상
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/400x300" alt="팀 찾기 기능" width="300" />
+      <img src="https://github.com/user-attachments/assets/39027be4-8985-49b1-a380-5f7ed6190c5e" alt="팀 찾기 기능" width="300" />
     </td>
   </tr>
   <tr>
@@ -113,7 +113,7 @@
       - <b>시간 절약</b> 및 <b>불필요한 노동 감소</b>
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/400x300" alt="ChatBot 기능" width="300" />
+      <img src="https://github.com/user-attachments/assets/0390d325-a61f-4043-88c7-faa6adba92c2" alt="ChatBot 기능" width="300" />
     </td>
   </tr>
   <tr>
@@ -122,7 +122,7 @@
       - 손쉽게 팀 생성, 수정, 삭제 가능
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/400x300" alt="팀 CRUD 기능" width="300" />
+      <img src="https://github.com/user-attachments/assets/3250a229-29ae-40b3-bb11-3609e1bc7bf6" alt="팀 CRUD 기능" width="300" />
     </td>
   </tr>
   <tr>
@@ -133,7 +133,7 @@
       - 비회원 게시글 내용 블러 처리로 <b>보안 강화</b>
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/400x300" alt="팀 기능" width="300" />
+      <img src="https://github.com/user-attachments/assets/3ae01e17-9d7d-47c7-bca0-e7e4814e574b" alt="팀 기능" width="300" />
     </td>
   </tr>
   <tr>
@@ -142,7 +142,7 @@
       - 가입 신청 후 회장의 승인을 통해 <b>체계적인 팀 관리</b>
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/400x300" alt="가입 신청 및 승인 관리" width="300" />
+      <img src="https://github.com/user-attachments/assets/f25cba5c-6dba-44cb-84f0-889bf41197cc" alt="가입 신청 및 승인 관리" width="300" />
     </td>
   </tr>
   <tr>
@@ -152,7 +152,7 @@
       - 효율적인 게시글 필터링 및 댓글 작성 기능 제공
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/400x300" alt="게시판 기능" width="300" />
+      <img src="https://github.com/user-attachments/assets/2424d5a1-39ed-44a7-aac4-63fb3a59f917" alt="게시판 기능" width="300" />
     </td>
   </tr>
   <tr>
@@ -161,7 +161,7 @@
       - 자유로운 게시글 생성, 수정, 삭제 지원
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/400x300" alt="게시글 CRUD 기능" width="300" />
+      <img src="https://github.com/user-attachments/assets/f94bbce8-cb61-423c-bd39-4e8613415f82" alt="게시글 CRUD 기능" width="300" />
     </td>
   </tr>
   <tr>
@@ -171,7 +171,7 @@
       - 사용자 편의를 위한 회원 정보 수정 기능 지원
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/400x300" alt="회원 정보 기능" width="300" />
+      <img src="https://github.com/user-attachments/assets/df815f97-b28f-4239-be6d-ad099bdccfc8" alt="회원 정보 기능" width="300" />
     </td>
   </tr>
 </table>
