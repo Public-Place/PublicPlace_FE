@@ -1,14 +1,44 @@
 <h1 align="center">Public Place</h1>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/cbfc8f85-da92-41ca-bd75-e7686be26254" alt="프로젝트 로고" width="100%" />
+  **공공장소는 효율적인 팀 검색 기능과 다양한 소통 채널을 제공하여 사용자 초기 이탈률을 낮추고, 사용자 간 유대감을 형성합니다.**
 </p>
 
-**공공장소는 효율적인 팀 검색 기능과 다양한 소통 채널을 제공하여 사용자 초기 이탈률을 낮추고, 사용자 간 유대감을 형성합니다.**
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/cbfc8f85-da92-41ca-bd75-e7686be26254" alt="Error" width="100%" />
+</p>
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c0fa03bd-63e5-4c38-98ca-f7a85525e19a" alt="Error" width="100%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a17fdea5-017c-4e3e-a916-872e7c6263ad" alt="Error" width="100%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8073bf77-d6d3-4c4a-95e9-1ba58d085d65" alt="Error" width="100%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/248c9620-6907-461b-bb9f-65a7a6d06f1a" alt="Error" width="100%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/862d5028-78bf-4d0f-9a71-543357b9cf85" alt="Error" width="100%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/adbf7bba-8e90-4f88-b8c7-550c4002fca1" alt="Error" width="100%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a3fcd3c0-2c15-45ef-a0dc-1edbf0bea737" alt="Error" width="100%" />
+</p>
 
 
 # 🖥️ 프로젝트 설명
+
 
 - **ChatBot**과의 대화를 통해 복잡한 조건의 팀을 빠르게 찾을 수 있습니다.
 - **가입 신청 및 승인 관리 시스템**을 통해 팀에 적합한 멤버를 모집하고 커뮤니티 품질을 높일 수 있습니다.
